@@ -2,7 +2,6 @@
 
 import 'package:advanced_app/core/StringImage/string_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginWhitheGoogleandFaceBook extends StatelessWidget {
   const LoginWhitheGoogleandFaceBook({
@@ -26,9 +25,11 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'assets/images/googleIcon.svg',
-                width: 10,
+              Image(
+                image: AssetImage(
+                  StringImage.googleIcon,
+                ),
+                width: 22,
               ),
               SizedBox(width: 8), // Space between icon and text
               Text(
@@ -60,7 +61,7 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
               Icon(
                 Icons.facebook, // Facebook icon
                 color: Colors.blue,
-                size: 18,
+                size: 20,
               ),
               SizedBox(width: 8), // Space between icon and text
               Text(
