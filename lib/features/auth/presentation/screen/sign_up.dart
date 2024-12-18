@@ -2,23 +2,25 @@
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/core/widgets/botton.dart';
+import 'package:advanced_app/core/widgets/text_fieald.dart';
 import 'package:advanced_app/features/auth/presentation/widget/divider.dart';
 import 'package:advanced_app/features/auth/presentation/widget/login_whithe_google_and_faceBoock.dart';
 
-import 'package:advanced_app/features/auth/presentation/widget/login_text_filed_and_button_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SingUP extends StatefulWidget {
+  const SingUP({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SingUP> createState() => _SingUPState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SingUPState extends State<SingUP> {
   final TextEditingController controllerGemail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
+  final TextEditingController controllerName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,45 +44,51 @@ class _SignInState extends State<SignIn> {
                     height: 10.h,
                   ),
                   Text(
-                    "Sign In",
+                    "Sing UP",
                     style: StyleTextApp.font24ColorblacColorFontWeightBolde,
                   ),
                   Text(
-                    "Welcome back! Don’t have an account?",
+                    "Welcome back! Your create an account?",
                     style: StyleTextApp.font14Colorblac,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        '/singUP',
+                        '/signIn',
                       );
                     },
                     child: Text(
-                      "Sign UP",
+                      "Sign In",
                       style: StyleTextApp.font20ColorManColor,
                     ),
                   ),
-
-                  //! Text Feild using email and password
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextFieldandButtonLogin(
-                        controllerGemail: controllerGemail,
-                        controllerPassword: controllerPassword),
-                  ),
-                  //! Forgot Password ?
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Forgot password?",
-                          style: StyleTextApp.font13ColorManColor,
+                    child: Column(
+                      spacing: 15.h,
+                      children: [
+                        TextFiealdApp(
+                          controller: controllerName,
+                          hintText: 'Name',
                         ),
-                      ),
-                    ],
+                        TextFiealdApp(
+                          controller: controllerGemail,
+                          hintText: 'Gmail',
+                        ),
+                        TextFiealdPassword(
+                          controller: controllerPassword,
+                          hintText: 'Password',
+                        ),
+                        BottonAPP(
+                          onTap: () {},
+                          nameBotton: 'Log In',
+                          colorBotton: ColorManager.green,
+                          colorText: ColorManager.white,
+                          width: double.infinity.w,
+                        ),
+                      ],
+                    ),
                   ),
                   DividerOR(),
                   LoginWhitheGoogleandFaceBook(),

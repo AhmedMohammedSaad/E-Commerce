@@ -66,7 +66,12 @@ class Onboarding extends StatelessWidget {
                   BottonAPP(
                       width: 140,
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/signIn');
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/signIn',
+                          (Route<dynamic> route) => false,
+                        );
+                        // Navigator.pushReplacementNamed(context, '/signIn');
                       },
                       nameBotton: 'Log In',
                       colorBotton: ColorManager.green,
@@ -74,9 +79,14 @@ class Onboarding extends StatelessWidget {
                   BottonAPP(
                     width: 140,
                     onTap: () {
-                      // Navigator.pushReplacementNamed(context, '/signUP');
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/singUP',
+                        (Route<dynamic> route) => false,
+                      );
+                      //    Navigator.pushReplacementNamed(context, '/singUP');
                     },
-                    nameBotton: 'Log In',
+                    nameBotton: 'Sing UP',
                     colorBotton: ColorManager.white,
                     colorText: ColorManager.green,
                   ),
