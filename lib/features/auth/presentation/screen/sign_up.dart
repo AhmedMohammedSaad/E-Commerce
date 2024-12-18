@@ -2,10 +2,10 @@
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/core/widgets/botton.dart';
-import 'package:advanced_app/core/widgets/text_fieald.dart';
+
 import 'package:advanced_app/features/auth/presentation/widget/divider.dart';
-import 'package:advanced_app/features/auth/presentation/widget/login_whithe_google_and_faceBoock.dart';
+import 'package:advanced_app/features/auth/presentation/widget/signup_text_filed_and_button.dart';
+import 'package:advanced_app/features/auth/presentation/widget/signup_whithe_google_and_faceboock.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,35 +63,13 @@ class _SingUPState extends State<SingUP> {
                       style: StyleTextApp.font20ColorManColor,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      spacing: 15.h,
-                      children: [
-                        TextFiealdApp(
-                          controller: controllerName,
-                          hintText: 'Name',
-                        ),
-                        TextFiealdApp(
-                          controller: controllerGemail,
-                          hintText: 'Gmail',
-                        ),
-                        TextFiealdPassword(
-                          controller: controllerPassword,
-                          hintText: 'Password',
-                        ),
-                        BottonAPP(
-                          onTap: () {},
-                          nameBotton: 'Log In',
-                          colorBotton: ColorManager.green,
-                          colorText: ColorManager.white,
-                          width: double.infinity.w,
-                        ),
-                      ],
-                    ),
-                  ),
+                  //! Text Feild using name and email and password
+                  TextFieldandButtonSignup(
+                      controllerName: controllerName,
+                      controllerGemail: controllerGemail,
+                      controllerPassword: controllerPassword),
                   DividerOR(),
-                  LoginWhitheGoogleandFaceBook(),
+                  SingUPWhitheGoogleandFaceBook(),
                 ],
               ),
             ),

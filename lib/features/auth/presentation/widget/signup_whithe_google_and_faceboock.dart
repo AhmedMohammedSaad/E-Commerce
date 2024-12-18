@@ -4,8 +4,8 @@ import 'package:advanced_app/core/StringImage/string_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class LoginWhitheGoogleandFaceBook extends StatelessWidget {
-  const LoginWhitheGoogleandFaceBook({
+class SingUPWhitheGoogleandFaceBook extends StatelessWidget {
+  const SingUPWhitheGoogleandFaceBook({
     super.key,
   });
 
@@ -13,7 +13,7 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Login with Google
+        // SingUP with Google
         Container(
           width: double.infinity,
           height: 45,
@@ -34,7 +34,7 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
               ),
               SizedBox(width: 8), // Space between icon and text
               Text(
-                "Login with Google",
+                "SignUp with Google",
                 style: TextStyle(
                   color: Colors.black, // Text color
                   fontSize: 14, // Text size
@@ -43,14 +43,14 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
               ),
             ],
           ),
-        ).animate().fadeIn(duration: 550.ms).then(delay: 180.ms).slide(
+        ).animate().fadeIn(duration: 540.ms).then(delay: 180.ms).slide(
               begin: const Offset(1.0, 1.0), // Start from the right
               end: Offset.zero, // End at the original position
               duration: 800.ms,
             ),
         SizedBox(height: 16), // Space between buttons
 
-        //! Login with Facebook
+        //! SingUP with Facebook
         Container(
           width: double.infinity,
           height: 48,
@@ -70,7 +70,7 @@ class LoginWhitheGoogleandFaceBook extends StatelessWidget {
               ),
               SizedBox(width: 8), // Space between icon and text
               Text(
-                "Login with Facebook",
+                "SignUp with Facebook",
                 style: TextStyle(
                   color: Colors.black, // Text color
                   fontSize: 14, // Text size
