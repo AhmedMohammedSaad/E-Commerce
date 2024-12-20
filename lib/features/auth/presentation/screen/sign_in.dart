@@ -74,7 +74,9 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/forgotPass');
+                        },
                         child: Text(
                           "Forgot password?",
                           style: StyleTextApp.font13ColorManColor,

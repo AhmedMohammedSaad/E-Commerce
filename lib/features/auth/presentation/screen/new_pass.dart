@@ -5,8 +5,8 @@ import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/core/widgets/text_fieald.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPass extends StatelessWidget {
-  ForgotPass({super.key});
+class NewPass extends StatelessWidget {
+  NewPass({super.key});
   final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -22,18 +22,15 @@ class ForgotPass extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Forgot",
+                "Add New password",
                 style: StyleTextApp.font24ColorblacColorFontWeightBolde,
               ),
               TextFiealdApp(
                 controller: controller,
-                hintText: "Gmail",
+                hintText: "New password",
               ),
               BottonAPP(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/newPass');
-                  },
-                  nameBotton: 'Send Gmail',
+                  nameBotton: 'New Password',
                   colorBotton: ColorManager.green,
                   colorText: ColorManager.white,
                   width: double.infinity)

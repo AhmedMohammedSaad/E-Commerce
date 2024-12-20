@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:advanced_app/features/auth/presentation/screen/forgot_pass.dart';
+import 'package:advanced_app/features/auth/presentation/screen/new_pass.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_in.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_up.dart';
 import 'package:advanced_app/features/onboarding/presentation/screen/onboarding.dart';
@@ -10,8 +12,8 @@ class RouteManager {
   static const String onboarding = '/onboarding';
   static const String signIn = '/signIn';
   static const String singUP = '/singUP';
-  static const String profile = '/profile';
-  static const String settings = '/settings';
+  static const String forgotPass = '/forgotPass';
+  static const String newPass = '/newPass';
   static const String about = '/about';
 
   //! Route generator method
@@ -23,10 +25,10 @@ class RouteManager {
         return MaterialPageRoute(builder: (_) => SignIn());
       case singUP:
         return MaterialPageRoute(builder: (_) => SingUP());
-      // case profile:
-      //   return MaterialPageRoute(builder: (_) => ProfilePage());
-      // case settings:
-      //   return MaterialPageRoute(builder: (_) => SettingsPage());
+      case forgotPass:
+        return MaterialPageRoute(builder: (_) => ForgotPass());
+      case newPass:
+        return MaterialPageRoute(builder: (_) => NewPass());
       // case about:
       //   return MaterialPageRoute(builder: (_) => AboutPage());
       default:
