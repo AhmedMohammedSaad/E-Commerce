@@ -4,6 +4,7 @@ import 'package:advanced_app/features/auth/presentation/screen/forgot_pass.dart'
 import 'package:advanced_app/features/auth/presentation/screen/new_pass.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_in.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_up.dart';
+import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/onboarding/presentation/screen/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,8 @@ class RouteManager {
   static const String signIn = '/signIn';
   static const String singUP = '/singUP';
   static const String forgotPass = '/forgotPass';
+  static const String home = '/home';
   static const String newPass = '/newPass';
-  static const String about = '/about';
 
   //! Route generator method
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,8 +30,8 @@ class RouteManager {
         return MaterialPageRoute(builder: (_) => ForgotPass());
       case newPass:
         return MaterialPageRoute(builder: (_) => NewPass());
-      // case about:
-      //   return MaterialPageRoute(builder: (_) => AboutPage());
+      case home:
+        return MaterialPageRoute(builder: (_) => Home());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

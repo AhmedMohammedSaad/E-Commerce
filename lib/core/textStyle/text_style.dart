@@ -27,6 +27,12 @@ class StyleTextApp {
     fontSize: 14.sp,
   );
   //!
+  static final font14ColorblacFontWeightBold = TextStyle(
+    color: ColorManager.black,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+  );
+  //!
   static final font24ColorblacColor = TextStyle(
     color: const Color.fromARGB(255, 0, 0, 0),
     fontSize: 24.sp,
