@@ -12,6 +12,13 @@ class StyleTextApp {
     fontSize: 10.sp,
   );
   //!
+
+  static final font12ColorblacFontWeightBold = TextStyle(
+    color: ColorManager.black,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+  );
+  //!
   static final font12Colorgray = TextStyle(
     color: ColorManager.grey,
     fontSize: 12.sp,
@@ -29,6 +36,13 @@ class StyleTextApp {
   //!
   static final font14ColorblacFontWeightBold = TextStyle(
     color: ColorManager.black,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+  );
+
+  //!
+  static final font14ColorWhiteFontWeightBold = TextStyle(
+    color: ColorManager.white,
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
   );
@@ -52,7 +66,7 @@ class StyleTextApp {
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
   );
-  static final font22ColorblacColorFontWeightBolde = TextStyle(
+  static final font22ColorblueColorFontWeightBolde = TextStyle(
     color: ColorManager.blue,
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
