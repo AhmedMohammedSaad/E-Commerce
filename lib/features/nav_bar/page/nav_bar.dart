@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:advanced_app/core/color/colors.dart';
-import 'package:advanced_app/core/widgets/appbar.dart';
+import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/cubit/navebarsd_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +14,10 @@ class NavBar extends StatelessWidget {
 
   final List widgetChangeIndex = [
     Home(),
-    Center(child: Text("2222")),
+    Shop(),
     Center(child: Text("333")),
     Center(child: Text("444")),
+    Center(child: Text("555")),
   ];
 
   @override
@@ -27,7 +28,6 @@ class NavBar extends StatelessWidget {
         builder: (context, state) {
           //  NavebarsdCubit indexChange = context.read<NavebarsdCubit>();
           return Scaffold(
-            appBar: appBar(title: 'Welcome Back!', leding: false),
             //! widget home  and > shop and favorite and profile ........
             body: widgetChangeIndex[context.read<NavebarsdCubit>().courntIndex],
             //!__________________________________________
@@ -44,9 +44,9 @@ class NavBar extends StatelessWidget {
                 activeColor: ColorManager.white, // selected icon and text color
                 iconSize: 24,
                 tabMargin:
-                    EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
+                    EdgeInsets.symmetric(vertical: 18.h, horizontal: 3.w),
                 padding: EdgeInsets.symmetric(
-                    horizontal: 15.w, vertical: 12.h), // navigation bar padding
+                    horizontal: 12.w, vertical: 12.h), // navigation bar padding
                 tabs: [
                   GButton(
                     icon: Icons.home,
@@ -59,6 +59,10 @@ class NavBar extends StatelessWidget {
                   GButton(
                     icon: Icons.favorite,
                     text: 'Favorite',
+                  ),
+                  GButton(
+                    icon: Icons.shopping_cart_outlined,
+                    text: 'Cartj',
                   ),
                   GButton(
                     icon: Icons.person,
