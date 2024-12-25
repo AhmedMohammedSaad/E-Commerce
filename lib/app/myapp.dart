@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'E-Commerse App',
           theme: LightTheme.theme,
-          initialRoute: RouteManager.navBar,
+          initialRoute: RouteManager.splashScreen,
           onGenerateRoute: RouteManager.generateRoute,
         );
       },

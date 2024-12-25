@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: 'Welcome Back!', leding: false),
+      appBar: appBar(title: 'Welcome in Brando', leding: false),
       body: SingleChildScrollView(
         child: Column(
           children: [

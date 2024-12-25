@@ -24,6 +24,12 @@ class StyleTextApp {
     fontSize: 12.sp,
   );
   //!
+  static final font12ColorgrayTextDecorationlineThrough = TextStyle(
+    color: ColorManager.grey,
+    fontSize: 12.sp,
+    decoration: TextDecoration.lineThrough,
+  );
+  //!
   static final font14Colorgrayofwite = TextStyle(
     color: const Color.fromARGB(255, 180, 180, 178),
     fontSize: 14.sp,

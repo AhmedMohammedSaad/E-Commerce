@@ -12,5 +12,10 @@ AppBar appBar({
       title,
       style: StyleTextApp.font14ColorblacFontWeightBold,
     ),
+    actions: [
+      Image.asset(
+        'assets/images/logo png.png',
+      )
+    ],
   );
 }

@@ -61,17 +61,36 @@ class ColumnImageNameShopIcon extends StatelessWidget {
           height: 10.h,
         ),
         //! text title name
-        Text(
-          SaleModel.salleSliderList[index].title,
-          style: StyleTextApp.font14ColorblacFontWeightBold,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Text(
+            overflow: TextOverflow.ellipsis,
+            SaleModel.salleSliderList[index].title,
+            style: StyleTextApp.font14ColorblacFontWeightBold,
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             //!  text for  price
-            Text(
-              "13\$",
-              style: StyleTextApp.font14ColorblacFontWeightBold,
+            SizedBox(
+              width: 55.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 5,
+                children: [
+                  Text(
+                    overflow: TextOverflow.ellipsis,
+                    "50\$",
+                    style: StyleTextApp.font14ColorblacFontWeightBold,
+                  ),
+                  Text(
+                    "209\$",
+                    style:
+                        StyleTextApp.font12ColorgrayTextDecorationlineThrough,
+                  ),
+                ],
+              ),
             ),
             IconButton(
               onPressed: () {},
