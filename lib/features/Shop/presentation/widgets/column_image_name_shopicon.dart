@@ -91,10 +91,14 @@ class ColumnImageNameShopIcon extends StatelessWidget {
             style: StyleTextApp.font14ColorblacFontWeightBold,
           ),
         ),
+        SizedBox(
+          height: 3.h,
+        ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            //!  text for  price
+            //! text for  price
             SizedBox(
               width: 55.w,
               child: Column(
@@ -102,6 +106,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                 spacing: 5,
                 children: [
                   Text(
+                    //! price name
                     overflow: TextOverflow.ellipsis,
                     "50\$",
                     style: StyleTextApp.font14ColorblacFontWeightBold,
@@ -117,7 +122,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
             IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.shopping_cart_sharp,
+                Icons.shopping_cart_outlined,
                 color: ColorManager.green,
                 size: 30,
               ),
