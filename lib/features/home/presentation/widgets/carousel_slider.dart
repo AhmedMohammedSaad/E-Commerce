@@ -1,9 +1,11 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/home/data/models/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
   const CarouselSliderWidget({
@@ -72,11 +74,33 @@ class CarouselSliderWidget extends StatelessWidget {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: NetworkImage(
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14.r),
+                  child: CachedNetworkImage(
+                    imageUrl:
                         CarouselSliderClass.carouselSliderList[index].image,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      fit: BoxFit.cover),
+                    ),
+                    placeholder: (context, url) => SizedBox(
+                      height: 121.h,
+                      width: 91.w,
+                      child: Card(
+                        child: LoadingAnimationWidget.dotsTriangle(
+                          size: 90,
+                          color: ColorManager.green,
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 ),
               ),
             ],

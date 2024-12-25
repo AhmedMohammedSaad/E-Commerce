@@ -3,8 +3,10 @@ import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/reting_container.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ColumnImageNameShopIcon extends StatelessWidget {
   const ColumnImageNameShopIcon({
@@ -34,13 +36,33 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                   ),
                 ],
                 //! image
-                image: DecorationImage(
-                  image: NetworkImage(
-                    SaleModel.salleSliderList[index].image,
-                  ),
-                  fit: BoxFit.fill,
-                ),
+
                 borderRadius: BorderRadius.circular(14.r),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(14.r),
+                child: CachedNetworkImage(
+                  imageUrl: SaleModel.salleSliderList[index].image,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  placeholder: (context, url) => SizedBox(
+                    height: 185.h,
+                    width: 200.w,
+                    child: Card(
+                      child: LoadingAnimationWidget.dotsTriangle(
+                        size: 90,
+                        color: ColorManager.green,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
             Positioned(
