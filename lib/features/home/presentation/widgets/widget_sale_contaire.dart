@@ -17,6 +17,7 @@ class SlaleWidgetContainer extends StatelessWidget {
     return SizedBox(
       height: 225.h,
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         primary: true,
         scrollDirection: Axis.horizontal,
         itemCount: SaleModel.salleSliderList.length,

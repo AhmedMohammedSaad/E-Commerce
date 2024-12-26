@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:advanced_app/core/color/colors.dart';
+import 'package:advanced_app/features/Cart/presentation/pages/cart.dart';
+import 'package:advanced_app/features/Favorite/features/Favorite/presentation/pages/favorite.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/cubit/navebarsd_cubit.dart';
@@ -15,8 +17,8 @@ class NavBar extends StatelessWidget {
   final List widgetChangeIndex = [
     Home(),
     Shop(),
-    Center(child: Text("333")),
-    Center(child: Text("444")),
+    Favorite(),
+    Cart(),
     Center(child: Text("555")),
   ];
 
@@ -62,7 +64,7 @@ class NavBar extends StatelessWidget {
                   ),
                   GButton(
                     icon: Icons.shopping_cart_outlined,
-                    text: 'Cartj',
+                    text: 'Cart',
                   ),
                   GButton(
                     icon: Icons.person,

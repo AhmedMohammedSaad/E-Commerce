@@ -1,6 +1,5 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/features/Shop/presentation/widgets/reting_container.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class ColumnImageNameShopIcon extends StatelessWidget {
-  const ColumnImageNameShopIcon({
+class FavortColumnImageNameShopIcon extends StatelessWidget {
+  const FavortColumnImageNameShopIcon({
     super.key,
     required this.index,
   });
@@ -36,7 +35,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                   ),
                 ],
                 //! image
-
                 borderRadius: BorderRadius.circular(14.r),
               ),
               child: ClipRRect(
@@ -71,12 +69,12 @@ class ColumnImageNameShopIcon extends StatelessWidget {
               //! love icon
               child: const LoveIconButton(),
             ),
-            //! container reting
-            Positioned(
-              bottom: 5.h,
-              left: 5.w,
-              child: const ContainerReting(),
-            ),
+            //! container Delete
+            // Positioned(
+            //   top: 1.h,
+            //   left: 1.w,
+            //   child: const ButtonDelete(),
+            // ),
           ],
         ),
         SizedBox(
@@ -106,19 +104,25 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                 spacing: 5,
                 children: [
                   Text(
-                    //! price name
+                    //! new price
                     overflow: TextOverflow.ellipsis,
                     "${SaleModel.salleSliderList[index].price}\$",
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
-                  Text(
-                    "${SaleModel.salleSliderList[index].oldePrice}\$",
-                    style:
-                        StyleTextApp.font12ColorgrayTextDecorationlineThrough,
+                  Container(
+                    alignment: Alignment.center,
+                    height: 20.h,
+                    width: 80.w,
+                    color: ColorManager.red,
+                    child: Text(
+                      "Delete",
+                      style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                    ),
                   ),
                 ],
               ),
             ),
+            //! delete
             IconButton(
               onPressed: () {},
               icon: const Icon(

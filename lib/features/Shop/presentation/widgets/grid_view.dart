@@ -13,6 +13,7 @@ class GridviewForWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: SaleModel.salleSliderList.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
