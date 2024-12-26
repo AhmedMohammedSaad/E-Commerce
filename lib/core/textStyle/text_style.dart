@@ -77,4 +77,9 @@ class StyleTextApp {
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
   );
+  static final font22ColorblueColorFontWeightMancolor = TextStyle(
+    color: ColorManager.green,
+    fontSize: 24.sp,
+    fontWeight: FontWeight.bold,
+  );
 }
