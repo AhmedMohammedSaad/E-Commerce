@@ -3,6 +3,7 @@ import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/cart_category.dart';
+import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -25,7 +26,17 @@ class Cart extends StatelessWidget {
               itemCount: SaleModel.salleSliderList.length,
               itemBuilder: (BuildContext context, int index) {
                 //! this container is for widget image and shop ....
-                return CardCategory(index: index);
+                return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (ctx) => ProductDetailsScreen(
+                                  index: index,
+                                )),
+                      );
+                    },
+                    child: CardCategory(index: index));
               },
             )
                 .animate()

@@ -58,6 +58,13 @@ class StyleTextApp {
     fontSize: 24.sp,
   );
 //!
+  static final font16ColorblacFontWeightBold = TextStyle(
+    color: ColorManager.black,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+  );
+//!
+
   static final font20ColorManColor = TextStyle(
     color: ColorManager.green,
     fontSize: 20.sp,

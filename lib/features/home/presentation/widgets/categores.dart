@@ -12,13 +12,14 @@ class ListCategorys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90.h,
+      height: 110.h,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         primary: true,
         scrollDirection: Axis.horizontal,
         itemCount: CategoryModel.categrys.length,
         itemBuilder: (BuildContext context, int index) {
+          //! container
           return Container(
             margin: EdgeInsets.symmetric(
               horizontal: 8.w,
@@ -28,7 +29,7 @@ class ListCategorys extends StatelessWidget {
               horizontal: 3.w,
             ),
             height: 61.h,
-            width: 79.w,
+            width: 100.w,
             decoration: BoxDecoration(
               color: ColorManager.white,
               border: Border.all(color: ColorManager.green),
@@ -44,7 +45,7 @@ class ListCategorys extends StatelessWidget {
               borderRadius: BorderRadius.circular(14.r),
             ),
             child: Column(
-              spacing: 2.h,
+              spacing: 5.h,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(

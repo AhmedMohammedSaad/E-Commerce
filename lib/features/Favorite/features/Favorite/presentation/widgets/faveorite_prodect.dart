@@ -1,6 +1,5 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -63,12 +62,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 5.h,
-              right: 5.w,
-              //! love icon
-              child: const LoveIconButton(),
-            ),
+
             //! container Delete
             // Positioned(
             //   top: 1.h,

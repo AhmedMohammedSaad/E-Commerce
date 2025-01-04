@@ -3,6 +3,7 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/features/Cart/presentation/pages/cart.dart';
 import 'package:advanced_app/features/Favorite/features/Favorite/presentation/pages/favorite.dart';
+import 'package:advanced_app/features/Profile/presentation/pages/profile.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/cubit/navebarsd_cubit.dart';
@@ -19,7 +20,7 @@ class NavBar extends StatelessWidget {
     Shop(),
     Favorite(),
     Cart(),
-    Center(child: Text("555")),
+    ProfilePage(),
   ];
 
   @override
