@@ -202,31 +202,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
         //! Positioned widget for the bottom section containing the "Add to Cart" button
         Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 112.h,
-              color: Colors.white,
-              child: BottonReviews(
-                onPressedToCart: () {},
-              ),
-            ))
-      ]
-          //! Listener for cart-related state changes
-          // listener: (BuildContext context, AddToCartState state) {
-          //   if (state is SuccessAddToCart) {
-          //     ScaffoldMessenger.of(context).showSnackBar(
-          //       SnackBar(content: Text("Success Add To Cart")),
-          //     );
-          //   } else if (state is FillAddToCartInitial) {
-          //     ScaffoldMessenger.of(context).showSnackBar(
-          //       SnackBar(content: Text(state.errorMasseg)),
-          //     );
-          //   }
-
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 112.h,
+            color: Colors.white,
+            child: BottonReviews(
+              onPressedToCart: () {},
+            ),
           ),
+        ),
+      ]),
     );
   }
 }

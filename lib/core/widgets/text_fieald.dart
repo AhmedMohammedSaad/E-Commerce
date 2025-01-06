@@ -26,6 +26,13 @@ class TextFiealdApp extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This Field is required';
+        } else {
+          return null;
+        }
+      },
     );
   }
 }
@@ -73,6 +80,13 @@ class _TextFiealdPasswordState extends State<TextFiealdPassword> {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This Field is required';
+        } else {
+          return null;
+        }
+      },
     );
   }
 }
