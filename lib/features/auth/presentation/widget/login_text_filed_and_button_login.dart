@@ -17,12 +17,13 @@ class TextFieldandButtonLogin extends StatelessWidget {
     return Column(
       spacing: 15.h,
       children: [
+        // Text FiealdApp
         TextFiealdApp(
           controller: controllerGemail,
-          hintText: 'UserName',
+          hintText: 'UserName', // Hint text
         ),
         TextFiealdPassword(
-          controller: controllerPassword,
+          controller: controllerPassword, // Controller
           hintText: 'Password',
         ),
       ],

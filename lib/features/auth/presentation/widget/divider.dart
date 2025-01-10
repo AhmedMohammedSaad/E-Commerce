@@ -21,8 +21,9 @@ class DividerOR extends StatelessWidget {
           ),
         ),
         Text(
-          "OR",
+          "OR", // Text to display
           style: TextStyle(
+            // Text style
             fontSize: 16.0, // Adjust font size
             fontWeight: FontWeight.bold, // Optional: bold text
             color: ColorManager.green, // Optional: text color

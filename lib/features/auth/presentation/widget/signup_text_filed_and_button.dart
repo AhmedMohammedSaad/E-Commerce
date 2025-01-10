@@ -27,37 +27,15 @@ class TextFieldandButtonSignup extends StatelessWidget {
           TextFiealdApp(
             controller: controllerName,
             hintText: 'Name',
-          ).animate().fadeIn(duration: 600.ms).then(delay: 200.ms).slide(
-                begin: const Offset(-1.0, 0.0), // Start from the right
-                end: Offset.zero, // End at the original position
-                duration: 800.ms,
-              ),
+          ),
           TextFiealdApp(
             controller: controllerGemail,
             hintText: 'Gmail',
-          ).animate().fadeIn(duration: 600.ms).then(delay: 200.ms).slide(
-                begin: const Offset(1.0, 0.0), // Start from the right
-                end: Offset.zero, // End at the original position
-                duration: 800.ms,
-              ),
+          ),
           TextFiealdPassword(
             controller: controllerPassword,
             hintText: 'Password',
-          ).animate().fadeIn(duration: 600.ms).then(delay: 200.ms).slide(
-                begin: const Offset(-1.0, 0.0), // Start from the right
-                end: Offset.zero, // End at the original position
-                duration: 800.ms,
-              ),
-          BottonAPP(
-            onTap: () {},
-            nameBotton: 'Sign UP',
-            colorBotton: ColorManager.green,
-            colorText: ColorManager.white,
-            width: double.infinity.w,
-          )
-              .animate()
-              .then(duration: 1000.ms) // تأخير قبل العودة
-              .fadeIn(duration: 1000.ms), // الظهور التدريجي
+          ),
         ],
       ),
     );

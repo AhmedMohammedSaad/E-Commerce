@@ -30,3 +30,14 @@ final class SignUpFailure extends AuthState {
 
   const SignUpFailure(this.error);
 }
+
+//! the 3 state for verify email
+final class VerifyEmailLoading extends AuthState {}
+
+final class VerifyEmailSuccess extends AuthState {}
+
+final class VerifyEmailFailure extends AuthState {
+  final String error;
+
+  const VerifyEmailFailure(this.error);
+}

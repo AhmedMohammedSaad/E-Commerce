@@ -5,8 +5,6 @@ import 'package:advanced_app/core/functions/snack_bar_error.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:advanced_app/features/auth/presentation/widget/divider.dart';
-import 'package:advanced_app/features/auth/presentation/widget/login_whithe_google_and_faceBoock.dart';
 
 import 'package:advanced_app/features/auth/presentation/widget/login_text_filed_and_button_login.dart';
 import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
@@ -141,9 +139,9 @@ class _SignInState extends State<SignIn> {
                                       ),
                                     ],
                                   ),
-                                  DividerOR(),
-                                  LoginWhitheGoogleandFaceBook(
-                                      onTap: () => cubit.signInWithFacebook()),
+                                  // DividerOR(),
+                                  // LoginWhitheGoogleandFaceBook(
+                                  //     onTap: () => cubit.signInWithFacebook()),
                                 ],
                               ),
                             ),

@@ -23,7 +23,7 @@ class TextFiealdApp extends StatelessWidget {
         hintText: hintText,
         hintStyle: StyleTextApp.font14Colorgrayofwite,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
       validator: (value) {
@@ -77,7 +77,7 @@ class _TextFiealdPasswordState extends State<TextFiealdPassword> {
         hintText: widget.hintText,
         hintStyle: StyleTextApp.font14Colorgrayofwite,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
       validator: (value) {
