@@ -5,8 +5,9 @@ import 'package:advanced_app/core/functions/snack_bar_error.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/features/auth/presentation/cubit/auth_cubit.dart';
-
+import 'package:advanced_app/features/auth/presentation/widget/divider.dart';
 import 'package:advanced_app/features/auth/presentation/widget/login_text_filed_and_button_login.dart';
+import 'package:advanced_app/features/auth/presentation/widget/login_whithe_google_and_faceboock.dart';
 import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -45,7 +46,27 @@ class _SignInState extends State<SignIn> {
               );
             });
           }
-
+          if (state is SignInWithGoogleLoading) {
+            Future.microtask(() {
+              LoadingAnimationWidget.dotsTriangle(
+                size: 80,
+                color: ColorManager.green,
+              );
+            });
+          }
+          if (state is SignInWithGoogleFailure) {
+            // ignore: use_build_context_synchronously
+            Future.microtask(() => snackBarError(context, state.error));
+          } else if (state is SignInWithGoogleSuccess) {
+            Future.microtask(() async {
+              await Navigator.pushAndRemoveUntil(
+                // ignore: use_build_context_synchronously
+                context,
+                MaterialPageRoute(builder: (ctx) => NavBar()),
+                (route) => false,
+              );
+            });
+          }
           return Scaffold(
             body: state is LoginLoading
                 ? Center(
@@ -74,10 +95,30 @@ class _SignInState extends State<SignIn> {
                                   SizedBox(
                                     height: 10.h,
                                   ),
-                                  Text(
-                                    "Sign In",
-                                    style: StyleTextApp
-                                        .font24ColorblacColorFontWeightBolde,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Sign In",
+                                        style: StyleTextApp
+                                            .font24ColorblacColorFontWeightBolde,
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            '/navBar',
+                                            (route) => false,
+                                          );
+                                        },
+                                        child: Text(
+                                          "Skip",
+                                          style:
+                                              StyleTextApp.font20ColorManColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Text(
                                     "Welcome back! Don’t have an account?",
@@ -139,9 +180,10 @@ class _SignInState extends State<SignIn> {
                                       ),
                                     ],
                                   ),
-                                  // DividerOR(),
-                                  // LoginWhitheGoogleandFaceBook(
-                                  //     onTap: () => cubit.signInWithFacebook()),
+                                  DividerOR(),
+                                  LoginWhitheGoogleandFaceBook(
+                                    onTap: () => cubit.nativeGoogleSignIn(),
+                                  ),
                                 ],
                               ),
                             ),

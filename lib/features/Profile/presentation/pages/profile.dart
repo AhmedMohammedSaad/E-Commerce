@@ -5,6 +5,7 @@ import 'package:advanced_app/core/widgets/appbar.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -89,6 +90,17 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 20),
               // Logout Button
               BottonAPP(
+                onTap: () async {
+                  // Logout
+                  final supabase = Supabase.instance.client;
+
+                  await supabase.auth.signOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/signIn',
+                    (route) => false,
+                  );
+                },
                 nameBotton: 'Logout',
                 colorBotton: ColorManager.red,
                 colorText: ColorManager.white,

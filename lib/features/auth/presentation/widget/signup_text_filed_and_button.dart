@@ -1,8 +1,5 @@
-import 'package:advanced_app/core/color/colors.dart';
-import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/core/widgets/text_fieald.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldandButtonSignup extends StatelessWidget {

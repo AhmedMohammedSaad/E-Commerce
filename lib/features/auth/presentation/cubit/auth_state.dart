@@ -41,3 +41,25 @@ final class VerifyEmailFailure extends AuthState {
 
   const VerifyEmailFailure(this.error);
 }
+
+//! the 3 state for Signin with google
+final class SignInWithGoogleLoading extends AuthState {}
+
+final class SignInWithGoogleSuccess extends AuthState {}
+
+final class SignInWithGoogleFailure extends AuthState {
+  final String error;
+
+  const SignInWithGoogleFailure(this.error);
+}
+
+//! Reset Password
+final class ResetPasswordLoading extends AuthState {}
+
+final class ResetPasswordSuccess extends AuthState {}
+
+final class ResetPasswordFailure extends AuthState {
+  final String error;
+
+  const ResetPasswordFailure(this.error);
+}

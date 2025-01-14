@@ -23,7 +23,7 @@ class SearchFormIconButton extends StatelessWidget {
 
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(15),
                 color: ColorManager.white,
                 boxShadow: const [
                   BoxShadow(
@@ -39,14 +39,33 @@ class SearchFormIconButton extends StatelessWidget {
                   controller: controller, hintText: 'Search in here'),
             ),
           ),
-          //! this Icons is a Button search
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search_sharp,
-              size: 30,
-            ),
+          SizedBox(
+            width: 5.w,
           ),
+          //! this Icons is a Button search
+          // Container(
+          //   height: 60,
+          //   decoration: const BoxDecoration(
+          //     color: ColorManager.green,
+          //     shape: BoxShape.circle,
+          //     boxShadow: [
+          //       BoxShadow(
+          //         color: Color.fromARGB(40, 0, 0, 0),
+          //         spreadRadius: 2,
+          //         offset: Offset(3, 2),
+          //         blurRadius: 15,
+          //       ),
+          //     ],
+          //   ),
+          //   child: IconButton(
+          //     onPressed: () {},
+          //     icon: const Icon(
+          //       Icons.search_sharp,
+          //       color: ColorManager.white,
+          //       size: 22,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
