@@ -153,8 +153,11 @@ class _SingUPState extends State<SingUP> {
                                 BottonAPP(
                                   onTap: () {
                                     if (_key.currentState!.validate()) {
-                                      cubit.signup(controllerGemail.text,
-                                          controllerPassword.text);
+                                      cubit.signup(
+                                        controllerName.text,
+                                        controllerGemail.text,
+                                        controllerPassword.text,
+                                      );
                                     }
                                   },
                                   nameBotton: 'Sign UP',

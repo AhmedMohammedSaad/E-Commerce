@@ -12,9 +12,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class NavBar extends StatelessWidget {
-  NavBar({super.key});
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
 
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
   final List widgetChangeIndex = [
     Home(),
     Shop(),

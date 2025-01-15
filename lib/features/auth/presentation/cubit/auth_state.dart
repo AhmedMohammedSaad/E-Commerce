@@ -63,3 +63,14 @@ final class ResetPasswordFailure extends AuthState {
 
   const ResetPasswordFailure(this.error);
 }
+
+//! the 3 state for add data for user
+final class AddDataUserLoading extends AuthState {}
+
+final class AddDataUserSuccess extends AuthState {}
+
+final class AddDataUserFailure extends AuthState {
+  final String error;
+
+  const AddDataUserFailure(this.error);
+}

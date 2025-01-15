@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,13 +12,6 @@ class AuthCubit extends Cubit<AuthState> {
 //! supabase instance client
   final SupabaseClient supabase = Supabase.instance.client;
 
-//! get token Function
-  Future<String?> getToken() async {
-    final session = supabase.auth.currentSession;
-    log(session?.accessToken ?? 'No token available');
-    return session?.accessToken;
-  }
-
   //! login Function
   Future login(final String email, final String password) async {
     emit(LoginLoading());
@@ -31,17 +23,18 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LoginSuccess());
     } on AuthException catch (e) {
       emit(LoginFailure(e.message));
-      getToken();
     } catch (e) {
       emit(LoginFailure(e.toString()));
     }
   }
 
 //! sign up Function
-  Future signup(final String email, final String password) async {
+  Future signup(
+      final String name, final String email, final String password) async {
     emit(SignUpLoading());
     try {
       await supabase.auth.signUp(email: email, password: password);
+      addDataUser(name: name, email: email);
       emit(SignUpSuccess());
     } on AuthException catch (e) {
       emit(SignUpFailure(e.message));
@@ -79,6 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
       idToken: idToken.toString(),
       accessToken: accessToken,
     );
+    addDataUser(name: googleUser.displayName!, email: googleUser.email);
     emit(SignInWithGoogleSuccess());
     return authResponse;
   }
@@ -91,6 +85,21 @@ class AuthCubit extends Cubit<AuthState> {
       emit(ResetPasswordSuccess());
     } catch (e) {
       emit(ResetPasswordFailure(e.toString()));
+    }
+  }
+
+  //! Add data for user
+  Future addDataUser({required String name, required String email}) async {
+    emit(AddDataUserLoading());
+    try {
+      await supabase.from('users').upsert({
+        "user_id": supabase.auth.currentUser!.id,
+        "name": name,
+        "email": email,
+      });
+      emit(AddDataUserSuccess());
+    } catch (e) {
+      emit(AddDataUserFailure(e.toString()));
     }
   }
 }
