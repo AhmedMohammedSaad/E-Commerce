@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:developer';
-
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
