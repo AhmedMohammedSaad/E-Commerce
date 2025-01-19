@@ -70,12 +70,11 @@ class Cart extends StatelessWidget {
                   children: [
                     Text(
                       "Total",
-                      style:
-                          StyleTextApp.font22ColorblueColorFontWeightMancolor,
+                      style: StyleTextApp.font14ColorblacFontWeightBold,
                     ),
                     Text(
-                      "133\$",
-                      style: StyleTextApp.font24ColorblacColorFontWeightBolde,
+                      "133 LE",
+                      style: StyleTextApp.font16ColorblacFontWeightBold,
                     ),
                   ],
                 ),

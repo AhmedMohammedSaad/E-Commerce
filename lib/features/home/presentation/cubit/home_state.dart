@@ -18,3 +18,13 @@ final class AdvertisementsFailure extends HomeState {
   final String error;
   const AdvertisementsFailure({required this.error});
 }
+
+//! SaleHome
+final class SaleHomeLoading extends HomeState {}
+
+final class SaleHomeSuccses extends HomeState {}
+
+final class SaleHomeFailure extends HomeState {
+  final String error;
+  const SaleHomeFailure({required this.error});
+}

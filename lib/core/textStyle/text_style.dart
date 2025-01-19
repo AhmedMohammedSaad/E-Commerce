@@ -30,6 +30,12 @@ class StyleTextApp {
     decoration: TextDecoration.lineThrough,
   );
   //!
+  static final font13ColorblacFontWeightBold = TextStyle(
+    color: ColorManager.black,
+    fontSize: 13.sp,
+    fontWeight: FontWeight.bold,
+  );
+  //!
   static final font14Colorgrayofwite = TextStyle(
     color: const Color.fromARGB(255, 180, 180, 178),
     fontSize: 14.sp,

@@ -4,6 +4,7 @@ import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/widget/botton_reviews.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/widget/rating.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,12 +38,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             icon: Icon(Icons.arrow_back_ios_new_rounded)),
         title: SizedBox(
           width: MediaQuery.of(context).size.width * 0.75,
-          child: Expanded(
-            child: Text(
-              overflow: TextOverflow.ellipsis,
-              SaleModel.salleSliderList[widget.index].title,
-              style: StyleTextApp.font16ColorblacFontWeightBold,
-            ),
+          child: Text(
+            overflow: TextOverflow.ellipsis,
+            SaleModel.salleSliderList[widget.index].title,
+            style: StyleTextApp.font16ColorblacFontWeightBold,
           ),
         ),
         actions: [
@@ -60,53 +59,46 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             //! Widget to display product images in a list
             SizedBox(
               height: 300.h,
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: SaleModel.salleSliderList.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: ColorManager.green),
-                          borderRadius: BorderRadius.circular(10)),
-                      width: MediaQuery.of(context).size.width / 1,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          SaleModel.salleSliderList[index].image,
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) {
-                              return child;
-                            } else {
-                              return SizedBox(
-                                height: 185.h,
-                                width: 200.w,
-                                child: Card(
-                                  child: LoadingAnimationWidget.dotsTriangle(
-                                    size: 90,
-                                    color: ColorManager.green,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                          errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.error);
-                          },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: ColorManager.green),
+                        borderRadius: BorderRadius.circular(10)),
+                    width: MediaQuery.of(context).size.width / 1,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://images.pexels.com/photos/7974/pexels-photo.jpg?cs=srgb&dl=pexels-life-of-pix-7974.jpg&fm=jpg",
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      )
-                          .animate()
-                          .fadeIn() // uses `Animate.defaultDuration`
-                          .scale() // inherits duration from fadeIn
-                          .move(delay: 20.ms, duration: 600.ms),
-                    ),
-                  );
-                },
+                        placeholder: (context, url) => SizedBox(
+                          height: 185.h,
+                          width: 200.w,
+                          child: Card(
+                            child: LoadingAnimationWidget.dotsTriangle(
+                              size: 90,
+                              color: ColorManager.green,
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                    )),
               ),
-            ),
+            )
+                .animate()
+                .fadeIn() // uses `Animate.defaultDuration`
+                .scale() // inherits duration from fadeIn
+                .move(delay: 20.ms, duration: 600.ms),
             SizedBox(height: 20),
             Padding(
               padding: padding,
@@ -116,12 +108,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   //! name product
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.75,
-                    child: Expanded(
-                      child: Text(
-                        overflow: TextOverflow.ellipsis,
-                        SaleModel.salleSliderList[widget.index].title,
-                        style: StyleTextApp.font16ColorblacFontWeightBold,
-                      ),
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      SaleModel.salleSliderList[widget.index].title,
+                      style: StyleTextApp.font16ColorblacFontWeightBold,
                     ),
                   ),
                   Padding(

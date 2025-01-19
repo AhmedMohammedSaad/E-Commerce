@@ -1,6 +1,6 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
-import 'package:advanced_app/features/Favorite/features/Favorite/presentation/widgets/faveorite_prodect.dart';
+import 'package:advanced_app/features/Favorite/presentation/widgets/faveorite_prodect.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

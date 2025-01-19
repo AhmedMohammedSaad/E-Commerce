@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:advanced_app/core/api/method_for_api.dart';
 import 'package:advanced_app/features/home/data/models/advertisements/advertisements.dart';
 import 'package:bloc/bloc.dart';

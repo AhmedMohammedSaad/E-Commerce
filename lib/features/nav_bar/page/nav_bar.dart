@@ -2,7 +2,6 @@
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/features/Cart/presentation/pages/cart.dart';
-import 'package:advanced_app/features/Favorite/features/Favorite/presentation/pages/favorite.dart';
 import 'package:advanced_app/features/Profile/presentation/pages/profile.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
@@ -11,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
+import '../../Favorite/presentation/pages/favorite.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});

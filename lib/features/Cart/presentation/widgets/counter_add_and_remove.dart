@@ -18,7 +18,7 @@ class CunterAddandRemove extends StatelessWidget {
         //! prudct price
         Text(
           overflow: TextOverflow.ellipsis,
-          "${SaleModel.salleSliderList[index].price}\$",
+          "${SaleModel.salleSliderList[index].price} LE",
           style: StyleTextApp.font20ColorManColor,
         ),
         //! this row is tow button counter add and munes

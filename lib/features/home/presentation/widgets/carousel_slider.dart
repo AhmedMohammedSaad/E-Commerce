@@ -76,19 +76,39 @@ class CarouselSliderWidget extends StatelessWidget {
                           SizedBox(
                             width: 128.w,
                             height: 121.h,
-                            child: Column(
-                              spacing: 2.h,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  advertisements[index].titleName.toString(),
-                                  style: StyleTextApp
-                                      .font14ColorblacFontWeightBold,
-                                ),
-                                Text(advertisements[index]
-                                    .descreption
-                                    .toString()),
-                              ],
+                            child: SingleChildScrollView(
+                              child: Column(
+                                spacing: 2.h,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //! title name
+                                  SizedBox(
+                                    width: 128.w,
+                                    child: Text(
+                                      advertisements[index]
+                                          .titleName
+                                          .toString(),
+                                      style: StyleTextApp
+                                          .font14ColorblacFontWeightBold,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                    ),
+                                  ),
+                                  //! descreption
+                                  SizedBox(
+                                    width: 128.w,
+                                    height: 50.h,
+                                    child: Text(
+                                      advertisements[index]
+                                          .descreption
+                                          .toString(),
+                                      style: StyleTextApp.font12Colorgray,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Container(
@@ -111,6 +131,7 @@ class CarouselSliderWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.r),
                               child: CachedNetworkImage(
                                 imageUrl:
+                                    //! image url
                                     advertisements[index].imageUrl.toString(),
                                 imageBuilder: (context, imageProvider) =>
                                     Container(

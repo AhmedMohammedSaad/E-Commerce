@@ -1,7 +1,6 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/features/Favorite/features/Favorite/presentation/widgets/delete_product.dart';
-import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
+import 'package:advanced_app/features/Favorite/presentation/widgets/delete_product.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -65,12 +64,12 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 5.h,
-              right: 5.w,
-              //! love icon
-              child: const LoveIconButton(),
-            ),
+            // Positioned(
+            //   bottom: 5.h,
+            //   right: 5.w,
+            //   //! love icon
+            //   child: const LoveIconButton(index:  index, getProductData: [],),
+            // ),
             //! container Delete
             Positioned(
               top: 1.h,
@@ -108,11 +107,11 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                   Text(
                     //! price name
                     overflow: TextOverflow.ellipsis,
-                    "50\$",
+                    "50 LE",
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
                   Text(
-                    "209\$",
+                    "209 LE",
                     style:
                         StyleTextApp.font12ColorgrayTextDecorationlineThrough,
                   ),

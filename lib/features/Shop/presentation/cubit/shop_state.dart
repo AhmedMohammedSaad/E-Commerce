@@ -8,3 +8,13 @@ abstract class ShopState extends Equatable {
 }
 
 class ShopInitial extends ShopState {}
+
+//! Shoping
+final class ShopingLoading extends ShopState {}
+
+final class ShopingSuccses extends ShopState {}
+
+final class ShopingFailure extends ShopState {
+  final String error;
+  const ShopingFailure({required this.error});
+}
