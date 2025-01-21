@@ -8,3 +8,14 @@ abstract class DetailsscreenState extends Equatable {
 }
 
 class DetailsscreenInitial extends DetailsscreenState {}
+
+//! the stats for handel the get comments
+class CommentLoading extends DetailsscreenState {}
+
+class CommentSuccses extends DetailsscreenState {}
+
+class CommentError extends DetailsscreenState {
+  final String message;
+
+  const CommentError(this.message);
+}

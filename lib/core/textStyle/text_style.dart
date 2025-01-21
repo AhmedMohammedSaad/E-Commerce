@@ -46,6 +46,13 @@ class StyleTextApp {
     fontSize: 14.sp,
   );
   //!
+  static final font14ColorgrayTextDecorationlineThrough = TextStyle(
+    color: ColorManager.grey,
+    fontSize: 14.sp,
+    decoration: TextDecoration.lineThrough,
+  );
+  //!
+
   static final font14ColorblacFontWeightBold = TextStyle(
     color: ColorManager.black,
     fontSize: 14.sp,

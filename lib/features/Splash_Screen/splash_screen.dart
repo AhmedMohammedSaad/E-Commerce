@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +17,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 5), () {
-      Navigator.pushNamed(context, '/onboarding');
+      final SupabaseClient supabase = Supabase.instance.client;
+      if (supabase.auth.currentUser != null) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/navBar', (Route<dynamic> route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/onboarding', (Route<dynamic> route) => false);
+      }
     });
   }
 

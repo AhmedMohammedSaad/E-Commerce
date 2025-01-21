@@ -111,19 +111,20 @@ class _SingUPState extends State<SingUP> {
                                       style: StyleTextApp
                                           .font24ColorblacColorFontWeightBolde,
                                     ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          '/navBar',
-                                          (route) => false,
-                                        );
-                                      },
-                                      child: Text(
-                                        "Skip",
-                                        style: StyleTextApp.font20ColorManColor,
-                                      ),
-                                    ),
+                                    //! text button skip
+                                    // TextButton(
+                                    //   onPressed: () {
+                                    //     Navigator.pushNamedAndRemoveUntil(
+                                    //       context,
+                                    //       '/navBar',
+                                    //       (route) => false,
+                                    //     );
+                                    //   },
+                                    //   child: Text(
+                                    //     "Skip",
+                                    //     style: StyleTextApp.font20ColorManColor,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                                 Text(

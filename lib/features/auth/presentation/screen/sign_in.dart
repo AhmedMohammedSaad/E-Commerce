@@ -104,20 +104,21 @@ class _SignInState extends State<SignIn> {
                                         style: StyleTextApp
                                             .font24ColorblacColorFontWeightBolde,
                                       ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pushNamedAndRemoveUntil(
-                                            context,
-                                            '/navBar',
-                                            (route) => false,
-                                          );
-                                        },
-                                        child: Text(
-                                          "Skip",
-                                          style:
-                                              StyleTextApp.font20ColorManColor,
-                                        ),
-                                      ),
+                                      //!  text button Skip
+                                      // TextButton(
+                                      //   onPressed: () {
+                                      //     Navigator.pushNamedAndRemoveUntil(
+                                      //       context,
+                                      //       '/navBar',
+                                      //       (route) => false,
+                                      //     );
+                                      //   },
+                                      //   child: Text(
+                                      //     "Skip",
+                                      //     style:
+                                      //         StyleTextApp.font20ColorManColor,
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                   Text(

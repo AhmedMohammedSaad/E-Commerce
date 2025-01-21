@@ -7,7 +7,6 @@ class MyApp extends StatelessWidget {
   const MyApp._privateConstructor();
   static const MyApp _instance = MyApp._privateConstructor();
   factory MyApp() => _instance;
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

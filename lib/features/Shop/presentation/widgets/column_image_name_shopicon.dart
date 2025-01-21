@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/reting_container.dart';
@@ -59,31 +60,45 @@ class ColumnImageNameShopIcon extends StatelessWidget {
 
                     borderRadius: BorderRadius.circular(14.r),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14.r),
-                    child: CachedNetworkImage(
-                      imageUrl: getProductData[index].imageUrl.toString(),
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => ProductDetailsScreen(
+                            index: index,
+                            products: getProductData[index],
+                            productID: getProductData[index],
                           ),
                         ),
-                      ),
-                      placeholder: (context, url) => SizedBox(
-                        height: 185.h,
-                        width: 200.w,
-                        child: Card(
-                          child: LoadingAnimationWidget.dotsTriangle(
-                            size: 90,
-                            color: ColorManager.green,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(14.r),
+                      child: CachedNetworkImage(
+                        imageUrl: getProductData[index].imageUrl.toString(),
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      errorWidget: (context, url, error) => const Icon(
-                        Icons.broken_image_rounded,
-                        size: 50,
+                        placeholder: (context, url) => SizedBox(
+                          height: 185.h,
+                          width: 200.w,
+                          child: Card(
+                            child: LoadingAnimationWidget.dotsTriangle(
+                              size: 90,
+                              color: ColorManager.green,
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.broken_image_rounded,
+                          size: 50,
+                        ),
                       ),
                     ),
                   ),
@@ -138,10 +153,11 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                         "${getProductData[index].price.toString()} LE",
                         style: StyleTextApp.font13ColorblacFontWeightBold,
                       ),
+                      //! old price
                       Text(
                         getProductData[index].oldPrice == null
                             ? ""
-                            : "${getProductData[index].oldPrice.toString()}LE",
+                            : "${getProductData[index].oldPrice.toString()} LE",
                         style: StyleTextApp
                             .font12ColorgrayTextDecorationlineThrough,
                       ),
