@@ -1,3 +1,4 @@
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/home/presentation/cubit/home_cubit.dart';
@@ -17,7 +18,8 @@ class CarouselSliderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getAdvertisements(),
+      create: (context) =>
+          HomeCubit(apiConsumer: DioConsumer())..getAdvertisements(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state is AdvertisementsFailure) {

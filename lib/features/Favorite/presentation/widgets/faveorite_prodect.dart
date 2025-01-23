@@ -1,7 +1,7 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/features/Favorite/data/models/favorite/favorite.dart';
 import 'package:advanced_app/features/Favorite/presentation/widgets/delete_product.dart';
-import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,8 +11,10 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
   const FavortColumnImageNameShopIcon({
     super.key,
     required this.index,
+    required this.favorite,
   });
   final int index;
+  final FavoriteModel favorite;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,46 +23,50 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
         //! container image
         Stack(
           children: [
-            Container(
-              height: 165.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26, // لون أسود مع شفافية
-                    offset: Offset(5, 8), // اتجاه ومسافة الظل
-                    blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
-                    spreadRadius: 1, // عرض الظل
-                    blurRadius: 7, // نعومة الظل
-                  ),
-                ],
-                //! image
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 165.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26, // لون أسود مع شفافية
+                      offset: Offset(5, 8), // اتجاه ومسافة الظل
+                      blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
+                      spreadRadius: 1, // عرض الظل
+                      blurRadius: 7, // نعومة الظل
+                    ),
+                  ],
+                  //! image
 
-                borderRadius: BorderRadius.circular(14.r),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(14.r),
-                child: CachedNetworkImage(
-                  imageUrl: SaleModel.salleSliderList[index].image,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  borderRadius: BorderRadius.circular(14.r),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14.r),
+                  child: CachedNetworkImage(
+                    imageUrl: favorite.products!.imageUrl.toString(),
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  placeholder: (context, url) => SizedBox(
-                    height: 185.h,
-                    width: 200.w,
-                    child: Card(
-                      child: LoadingAnimationWidget.dotsTriangle(
-                        size: 90,
-                        color: ColorManager.green,
+                    placeholder: (context, url) => SizedBox(
+                      height: 185.h,
+                      width: 200.w,
+                      child: Card(
+                        child: LoadingAnimationWidget.dotsTriangle(
+                          size: 90,
+                          color: ColorManager.green,
+                        ),
                       ),
                     ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
@@ -74,7 +80,9 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
             Positioned(
               top: 1.h,
               left: 1.w,
-              child: const ButtonDelete(),
+              child: ButtonDelete(
+                favoriteId: favorite.products!,
+              ),
             ),
           ],
         ),
@@ -86,7 +94,10 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 4.w),
           child: Text(
             overflow: TextOverflow.ellipsis,
-            SaleModel.salleSliderList[index].title,
+            favorite.products!.productName != null &&
+                    favorite.products!.productName!.isNotEmpty
+                ? favorite.products!.productName.toString()
+                : "",
             style: StyleTextApp.font14ColorblacFontWeightBold,
           ),
         ),
@@ -107,11 +118,12 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                   Text(
                     //! price name
                     overflow: TextOverflow.ellipsis,
-                    "50 LE",
+
+                    "${favorite.products!.price != null && favorite.products!.price!.isNotEmpty ? favorite.products!.price.toString() : ""} LE",
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
                   Text(
-                    "209 LE",
+                    "${favorite.products!.oldPrice != null && favorite.products!.oldPrice!.isNotEmpty ? favorite.products!.oldPrice.toString() : ""} LE",
                     style:
                         StyleTextApp.font12ColorgrayTextDecorationlineThrough,
                   ),

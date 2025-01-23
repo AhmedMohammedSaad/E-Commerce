@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/DetailsScreen/data/models/comments/comments.dart';
@@ -26,10 +27,9 @@ class ProductDetailsScreen extends StatefulWidget {
     required this.productID,
   });
   final int index;
-  final ProductsShop products;
   final ProductsShop productID;
   //! The product object passed to the screen
-
+  final ProductsShop products;
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
@@ -42,8 +42,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          DetailsscreenCubit()..getComments(widget.productID.productId),
+      create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer())
+        ..getComments(widget.productID.productId),
       child: Scaffold(
         //! App bar with product category name, back button, and share button
         appBar: AppBar(

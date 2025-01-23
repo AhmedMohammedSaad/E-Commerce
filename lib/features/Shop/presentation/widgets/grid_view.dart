@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/column_image_name_shopicon.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +19,7 @@ class GridviewForWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ShopCubit()..getProducts(),
+      create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
       child: BlocConsumer<ShopCubit, ShopState>(
         listener: (context, state) {
           if (state is ShopingFailure) {

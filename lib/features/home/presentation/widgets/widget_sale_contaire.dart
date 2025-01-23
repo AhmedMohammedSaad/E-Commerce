@@ -1,3 +1,4 @@
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
@@ -17,7 +18,7 @@ class SlaleWidgetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ShopCubit()..getProducts(),
+      create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
       child: BlocConsumer<ShopCubit, ShopState>(
         listener: (context, state) {},
         builder: (context, state) {

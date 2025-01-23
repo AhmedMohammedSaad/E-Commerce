@@ -1,12 +1,16 @@
 import 'package:advanced_app/core/color/colors.dart';
+import 'package:advanced_app/features/Favorite/data/models/favorite/products.dart';
+import 'package:advanced_app/features/Favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonDelete extends StatelessWidget {
   const ButtonDelete({
     super.key,
+    required this.favoriteId,
   });
-
+  final Products favoriteId;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +32,9 @@ class ButtonDelete extends StatelessWidget {
       ),
       //!delete button
       child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<FavoriteCubit>().deleteFavorte(favoriteId.productId);
+          },
           icon: const Icon(
             Icons.delete_forever,
             color: ColorManager.red,
