@@ -16,7 +16,7 @@ class DioConsumer extends ApiConsumer {
   delete(String path, {data, Map<String, dynamic>? queryParameters}) async {
     try {
       Response response =
-          await dio.delete(path, queryParameters: queryParameters);
+          await dio.delete(path, queryParameters: queryParameters, data: data);
       return response.data;
     } on DioException catch (e) {
       handelExceptionsStatos(e);
@@ -28,7 +28,7 @@ class DioConsumer extends ApiConsumer {
   patch(String path, {data, Map<String, dynamic>? queryParameters}) async {
     try {
       Response response =
-          await dio.patch(path, queryParameters: queryParameters);
+          await dio.patch(path, queryParameters: queryParameters, data: data);
       return response.data;
     } on DioException catch (e) {
       handelExceptionsStatos(e);
@@ -40,7 +40,7 @@ class DioConsumer extends ApiConsumer {
   post(String path, {data, Map<String, dynamic>? queryParameters}) async {
     try {
       Response response =
-          await dio.post(path, queryParameters: queryParameters);
+          await dio.post(path, queryParameters: queryParameters, data: data);
       return response.data;
     } on DioException catch (e) {
       handelExceptionsStatos(e);
@@ -51,7 +51,8 @@ class DioConsumer extends ApiConsumer {
   @override
   get(String path, {data, Map<String, dynamic>? queryParameters}) async {
     try {
-      Response response = await dio.get(path, queryParameters: queryParameters);
+      Response response =
+          await dio.get(path, queryParameters: queryParameters, data: data);
       return response.data;
     } on DioException catch (e) {
       handelExceptionsStatos(e);

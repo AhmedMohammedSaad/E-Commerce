@@ -37,6 +37,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final coubitData = context.read<ShopCubit>();
         return Column(
           spacing: 4,
           children: [
@@ -69,6 +70,8 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                             index: index,
                             products: getProductData[index],
                             productID: getProductData[index],
+                            // isFavorte: coubitData.chaickIsFavorte(
+                            //     getProductData[index].productId!),
                           ),
                         ),
                       );
@@ -107,9 +110,16 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                   bottom: 5.h,
                   right: 5.w,
                   //! love icon
-                  child: LoveIconButton(
-                    index: index,
-                    getProductData: getProductData,
+                  child: BlocConsumer<ShopCubit, ShopState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return LoveIconButton(
+                        isFavorte: coubitData
+                            .chaickIsFavorte(getProductData[index].productId!),
+                        index: index,
+                        getProductData: getProductData[index],
+                      );
+                    },
                   ),
                 ),
                 //! container reting
@@ -164,14 +174,30 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                     ],
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    color: ColorManager.green,
-                    size: 30,
-                  ),
-                ),
+                BlocBuilder<ShopCubit, ShopState>(builder: (context, state) {
+                  if (state is AddToCartSuccses) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Added to Cart"),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    });
+                  }
+                  return IconButton(
+                    onPressed: () {
+                      context.read<ShopCubit>().addToCart(
+                            getProductData[index].productId.toString(),
+                          );
+                    },
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: ColorManager.green,
+                      size: 30,
+                    ),
+                  );
+                }),
               ],
             ),
           ],

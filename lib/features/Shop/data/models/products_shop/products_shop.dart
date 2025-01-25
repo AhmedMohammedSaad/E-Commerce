@@ -1,4 +1,3 @@
-import 'favorte.dart';
 import 'rating.dart';
 
 class ProductsShop {
@@ -12,7 +11,6 @@ class ProductsShop {
   String? discription;
   String? imageUrl;
   bool? isSale;
-  List<Favorte>? favorte;
   List<Rating>? rating;
 
   ProductsShop({
@@ -26,7 +24,6 @@ class ProductsShop {
     this.discription,
     this.imageUrl,
     this.isSale,
-    this.favorte,
     this.rating,
   });
 
@@ -44,9 +41,6 @@ class ProductsShop {
       discription: json['discription'] as String?,
       imageUrl: json['image_url'] as String?,
       isSale: json['is_sale'] as bool?,
-      favorte: (json['favorte'] as List<dynamic>?)
-          ?.map((e) => Favorte.fromJson(e as Map<String, dynamic>))
-          .toList(),
       rating: (json['rating'] as List<dynamic>?)
           ?.map((e) => Rating.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -65,7 +59,6 @@ class ProductsShop {
       'discription': discription,
       'image_url': imageUrl,
       'is_sale': isSale,
-      'favorte': favorte?.map((e) => e.fromJson()).toList(),
       'rating': rating?.map((e) => e.fromJson()).toList(),
     };
   }

@@ -1,9 +1,12 @@
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/features/Favorite/data/models/favorite/favorite.dart';
+import 'package:advanced_app/features/Favorite/data/models/favorite_model/favorite_model.dart';
 import 'package:advanced_app/features/Favorite/presentation/widgets/delete_product.dart';
+import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -12,9 +15,11 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
     super.key,
     required this.index,
     required this.favorite,
+    required this.listFavorite,
   });
   final int index;
   final FavoriteModel favorite;
+  final List<FavoriteModel> listFavorite;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,7 +86,9 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
               top: 1.h,
               left: 1.w,
               child: ButtonDelete(
-                favoriteId: favorite.products!,
+                favoriteId: favorite,
+                index: index,
+                listFavorite: listFavorite,
               ),
             ),
           ],
@@ -94,10 +101,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 4.w),
           child: Text(
             overflow: TextOverflow.ellipsis,
-            favorite.products!.productName != null &&
-                    favorite.products!.productName!.isNotEmpty
-                ? favorite.products!.productName.toString()
-                : "",
+            favorite.products!.productName.toString(),
             style: StyleTextApp.font14ColorblacFontWeightBold,
           ),
         ),
@@ -119,24 +123,45 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                     //! price name
                     overflow: TextOverflow.ellipsis,
 
-                    "${favorite.products!.price != null && favorite.products!.price!.isNotEmpty ? favorite.products!.price.toString() : ""} LE",
+                    "${favorite.products!.price.toString()} LE",
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
                   Text(
-                    "${favorite.products!.oldPrice != null && favorite.products!.oldPrice!.isNotEmpty ? favorite.products!.oldPrice.toString() : ""} LE",
+                    "${favorite.products!.oldPrice.toString()} LE",
                     style:
                         StyleTextApp.font12ColorgrayTextDecorationlineThrough,
                   ),
                 ],
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.shopping_cart_outlined,
-                color: ColorManager.green,
-                size: 30,
-              ),
+            BlocProvider(
+              create: (BuildContext context) =>
+                  ShopCubit(apiConsumer: DioConsumer()),
+              child:
+                  BlocBuilder<ShopCubit, ShopState>(builder: (context, state) {
+                if (state is AddToCartSuccses) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Added to Cart"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  });
+                }
+                return IconButton(
+                  onPressed: () {
+                    context.read<ShopCubit>().addToCart(
+                          listFavorite[index].products!.productId.toString(),
+                        );
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart_outlined,
+                    color: ColorManager.green,
+                    size: 30,
+                  ),
+                );
+              }),
             ),
           ],
         ),

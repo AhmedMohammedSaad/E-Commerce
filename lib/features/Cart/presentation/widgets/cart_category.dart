@@ -1,8 +1,8 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/chckout_and_delete.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/counter_add_and_remove.dart';
-import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,9 +11,10 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class CardCategory extends StatelessWidget {
   const CardCategory({
     super.key,
-    required this.index,
+    required this.cartModel,
   });
-  final int index;
+
+  final CartModel cartModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,7 +49,7 @@ class CardCategory extends StatelessWidget {
               ),
               //! image
               child: CachedNetworkImage(
-                imageUrl: SaleModel.salleSliderList[index].image,
+                imageUrl: cartModel.products!.imageUrl.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     border: const Border.symmetric(
@@ -84,12 +85,14 @@ class CardCategory extends StatelessWidget {
                   width: 160.w,
                   child: Text(
                     overflow: TextOverflow.ellipsis,
-                    SaleModel.salleSliderList[index].title,
+                    cartModel.products!.productName.toString(),
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
                 ),
                 //! counter add and remove
-                CunterAddandRemove(index: index),
+                CunterAddandRemove(
+                  price: cartModel,
+                ),
                 //! checkout and delete Buttons
                 const ChackoutAndDelete(),
               ],

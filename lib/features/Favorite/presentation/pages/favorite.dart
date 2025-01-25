@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
 import 'package:advanced_app/core/widgets/loding_app.dart';
-import 'package:advanced_app/features/Favorite/data/models/favorite/favorite.dart';
+import 'package:advanced_app/features/Favorite/data/models/favorite_model/favorite_model.dart';
 import 'package:advanced_app/features/Favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:advanced_app/features/Favorite/presentation/widgets/faveorite_prodect.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Favorite extends StatelessWidget {
-  const Favorite({super.key});
-
+  Favorite({super.key});
+  final FavoriteModel favoriteModel = FavoriteModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +21,19 @@ class Favorite extends StatelessWidget {
         create: (context) =>
             FavoriteCubit(apiConsumer: DioConsumer())..getFavorite(),
         child: BlocConsumer<FavoriteCubit, FavoriteState>(
-            listener: (BuildContext context, state) {},
-            builder: (context, state) {
-              List<FavoriteModel> favorites =
-                  context.read<FavoriteCubit>().favorites;
-              log(favorites.toString());
-              if (state is FavoriteLoding) {
-                return const LodingApp();
-              } else if (state is FavoriteSuccses) {
-                return GridView.builder(
+            listener: (BuildContext context, state) {
+          if (state is FavoriteError) {
+            Center(
+              child: Text(state.error),
+            );
+          }
+        }, builder: (context, state) {
+          List<FavoriteModel> favorites =
+              context.read<FavoriteCubit>().favorites;
+
+          return state is FavoriteLoding
+              ? const LodingApp()
+              : GridView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: favorites.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -66,18 +68,12 @@ class Favorite extends StatelessWidget {
                           FavortColumnImageNameShopIcon(
                         favorite: favorites[index],
                         index: index,
+                        listFavorite: favorites,
                       ),
                     );
                   },
                 );
-              } else if (state is FavoriteError) {
-                return Center(
-                  child: Text(state.error),
-                );
-              } else {
-                return const SizedBox();
-              }
-            }),
+        }),
       ),
     );
   }

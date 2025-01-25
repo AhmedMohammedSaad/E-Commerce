@@ -51,30 +51,40 @@ class SlaleWidgetContainer extends StatelessWidget {
               itemCount: getProductSale.length,
               itemBuilder: (BuildContext context, int index) {
                 if (getProductSale[index].isSale == true) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  ProductDetailsScreen(
-                            index: index,
-                            products: getProductSale[index],
-                            productID: getProductSale[index],
-                          ),
-                        ),
+                  return BlocConsumer<ShopCubit, ShopState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      ProductDetailsScreen(
+                                index: index,
+                                products: getProductSale[index],
+                                productID: getProductSale[index],
+                                // isFavorte: context
+                                //     .read<ShopCubit>()
+                                //     .chaickIsFavorte(
+                                //         getProductSale[index].productId),
+                              ),
+                            ),
+                          );
+                        },
+                        child: HomWidget(context, getProductSale, index)
+                            .animate()
+                            // .fadeIn(duration: 600.ms)
+                            .then(delay: 200.ms)
+                            .slide(
+                              begin: const Offset(
+                                  0.1, 1.0), // Start from the right
+                              end: Offset.zero, // End at the original position
+                              duration: 200.ms,
+                            ),
                       );
                     },
-                    child: HomWidget(context, getProductSale, index)
-                        .animate()
-                        // .fadeIn(duration: 600.ms)
-                        .then(delay: 200.ms)
-                        .slide(
-                          begin: const Offset(0.1, 1.0), // Start from the right
-                          end: Offset.zero, // End at the original position
-                          duration: 200.ms,
-                        ),
                   );
                 } else {
                   return const SizedBox();
