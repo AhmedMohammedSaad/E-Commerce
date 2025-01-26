@@ -8,7 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  CartCubit(this.apiConsumer) : super(CartInitial());
+  CartCubit({required this.apiConsumer}) : super(CartInitial());
   final userId = Supabase.instance.client.auth.currentUser!.id;
   //!instanse from api
   final ApiConsumer apiConsumer;

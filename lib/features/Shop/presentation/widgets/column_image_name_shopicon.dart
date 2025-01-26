@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+
 import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
+import 'package:advanced_app/features/Shop/presentation/widgets/add_to_cart.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/reting_container.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -174,30 +176,9 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                     ],
                   ),
                 ),
-                BlocBuilder<ShopCubit, ShopState>(builder: (context, state) {
-                  if (state is AddToCartSuccses) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Added to Cart"),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                    });
-                  }
-                  return IconButton(
-                    onPressed: () {
-                      context.read<ShopCubit>().addToCart(
-                            getProductData[index].productId.toString(),
-                          );
-                    },
-                    icon: const Icon(
-                      Icons.shopping_cart_outlined,
-                      color: ColorManager.green,
-                      size: 30,
-                    ),
-                  );
-                }),
+                addToCartForProduct(
+                  getProductData[index],
+                ),
               ],
             ),
           ],

@@ -26,7 +26,7 @@ class _CartState extends State<Cart> {
       //! AppBar
       appBar: appBar(leding: false, title: 'Cart'),
       body: BlocProvider(
-        create: (context) => CartCubit(DioConsumer())..getCart(),
+        create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
         child: BlocBuilder<CartCubit, CartState>(builder: (context, state) {
           //! totale price
 

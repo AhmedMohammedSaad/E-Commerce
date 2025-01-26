@@ -3,6 +3,8 @@
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/core/widgets/loding_app.dart';
+import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
 import 'package:advanced_app/features/DetailsScreen/data/models/comments/comments.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/cubit/detailsscreen_cubit.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/widget/botton_reviews.dart';
@@ -12,7 +14,6 @@ import 'package:advanced_app/features/Shop/data/models/products_shop/products_sh
 import 'package:advanced_app/features/Shop/data/models/products_shop/rating.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
-import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -51,6 +52,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         BlocProvider(
             create: (context) => ShopCubit(apiConsumer: DioConsumer())),
+        BlocProvider(
+          create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
+        ),
       ],
       child: Scaffold(
         //! App bar with product category name, back button, and share button
@@ -64,7 +68,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             width: MediaQuery.of(context).size.width * 0.75,
             child: Text(
               overflow: TextOverflow.ellipsis,
-              SaleModel.salleSliderList[widget.index].title,
+              widget.products.productName.toString(),
               style: StyleTextApp.font16ColorblacFontWeightBold,
             ),
           ),
@@ -321,8 +325,72 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               width: MediaQuery.of(context).size.width,
               height: 112.h,
               color: Colors.white,
-              child: BottonReviews(
-                onPressedToCart: () {},
+              child: BlocBuilder<ShopCubit, ShopState>(
+                builder: (context, state) {
+                  return BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      return state is GetCartLoding
+                          ? Center(
+                              child: LoadingAnimationWidget.dotsTriangle(
+                                size: 60,
+                                color: ColorManager.green,
+                              ),
+                            )
+                          : BottonReviews(
+                              onPressedToCart: () {
+                                final carts = context.read<CartCubit>().carts;
+
+                                // التحقق من وجود المنتج في السلة
+                                final isProductInCart = carts.any(
+                                  (cart) =>
+                                      cart.products!.productId ==
+                                      widget.productID.productId,
+                                );
+
+                                if (isProductInCart) {
+                                  // إذا كان المنتج موجودًا في السلة، عرض رسالة
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((_) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        backgroundColor: ColorManager.green,
+                                        content: Text(
+                                          "تمت الإضافة إلى السلة مسبقًا",
+                                          style: StyleTextApp
+                                              .font14ColorWhiteFontWeightBold,
+                                        ),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                  });
+                                } else {
+                                  // إذا لم يكن المنتج موجودًا في السلة، إضافته
+                                  context.read<ShopCubit>().addToCart(
+                                        widget.productID.productId.toString(),
+                                      );
+
+                                  // عرض رسالة نجاح
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((_) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        backgroundColor: ColorManager.green,
+                                        content: Text(
+                                          "تمت الإضافة إلى السلة بنجاح",
+                                          style: StyleTextApp
+                                              .font14ColorWhiteFontWeightBold,
+                                        ),
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                  });
+                                }
+                                context.read<CartCubit>().getCart();
+                              },
+                            );
+                    },
+                  );
+                },
               ),
             ),
           ),

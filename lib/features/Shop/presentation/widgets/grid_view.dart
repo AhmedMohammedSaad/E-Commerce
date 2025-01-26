@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/widgets/loding_app.dart';
+import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:advanced_app/features/Shop/presentation/widgets/column_image_name_shopicon.dart';
@@ -19,9 +20,16 @@ class GridviewForWidget extends StatelessWidget {
   final String? quary;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: quary),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: quary),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
+        ),
+      ],
       child: BlocConsumer<ShopCubit, ShopState>(
         listener: (context, state) {
           if (state is ShopingFailure) {

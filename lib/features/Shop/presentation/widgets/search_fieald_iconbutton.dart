@@ -93,8 +93,6 @@ class _SearchFormIconButtonState extends State<SearchFormIconButton> {
             ),
             child: IconButton(
               onPressed: () {
-                print(
-                    " ................................ ${context.read<ShopCubit>().searchList}");
                 Navigator.push(
                     context,
                     MaterialPageRoute(

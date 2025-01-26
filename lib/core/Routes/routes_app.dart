@@ -42,7 +42,7 @@ class RouteManager {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Home(),
+          builder: (_) => NavBar(),
         );
     }
   }
