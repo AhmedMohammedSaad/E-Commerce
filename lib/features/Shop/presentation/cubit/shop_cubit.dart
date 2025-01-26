@@ -1,11 +1,14 @@
 import 'dart:developer';
 
 import 'package:advanced_app/core/api/api_consumer.dart';
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/api/error/exception.dart';
 import 'package:advanced_app/core/api/stringes_for_api.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
+import 'package:advanced_app/features/Shop/presentation/widgets/column_image_name_shopicon.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'shop_state.dart';
@@ -92,3 +95,4 @@ class ShopCubit extends Cubit<ShopState> {
     }
   }
 }
+//! search products

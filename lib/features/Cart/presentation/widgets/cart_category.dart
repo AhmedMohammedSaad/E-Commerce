@@ -12,9 +12,13 @@ class CardCategory extends StatelessWidget {
   const CardCategory({
     super.key,
     required this.cartModel,
+    required this.carts,
+    required this.index,
   });
 
   final CartModel cartModel;
+  final List<CartModel> carts;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,7 +98,10 @@ class CardCategory extends StatelessWidget {
                   price: cartModel,
                 ),
                 //! checkout and delete Buttons
-                const ChackoutAndDelete(),
+                ChackoutAndDelete(
+                  product: carts,
+                  index: index,
+                ),
               ],
             ),
           ),

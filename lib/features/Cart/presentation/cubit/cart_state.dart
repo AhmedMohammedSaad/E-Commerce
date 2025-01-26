@@ -19,3 +19,14 @@ class GetCartError extends CartState {
 
   const GetCartError({required this.error});
 }
+
+//! Delete Cart
+class DeleteCartLoding extends CartState {}
+
+class DeleteCartSuccses extends CartState {}
+
+class DeleteCartError extends CartState {
+  final String error;
+
+  const DeleteCartError({required this.error});
+}

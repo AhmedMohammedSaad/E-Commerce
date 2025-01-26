@@ -12,5 +12,5 @@ void main() async {
   );
   Bloc.observer = MyBlocObserver();
 
-  runApp(MyApp());
+  runApp(Brando());
 }

@@ -16,6 +16,7 @@ class CartCubit extends Cubit<CartState> {
   List<CartModel> carts = [];
   //! function get cart
   Future getCart() async {
+    carts = [];
     emit(GetCartLoding());
     try {
       final response = await apiConsumer
@@ -26,6 +27,20 @@ class CartCubit extends Cubit<CartState> {
       emit(GetCartSuccses());
     } on ApiExceptions catch (e) {
       emit(GetCartError(error: e.apiExceptions.message));
+    }
+  }
+
+//! delete cart
+  Future deleteCart(String pruductId) async {
+    emit(DeleteCartLoding());
+
+    try {
+      await apiConsumer.delete("cart?for_product_id=eq.$pruductId");
+
+      await getCart();
+      emit(DeleteCartSuccses());
+    } on ApiExceptions catch (e) {
+      emit(DeleteCartError(error: e.apiExceptions.message));
     }
   }
 }

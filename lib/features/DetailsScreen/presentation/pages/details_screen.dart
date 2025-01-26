@@ -10,6 +10,8 @@ import 'package:advanced_app/features/DetailsScreen/presentation/widget/devider_
 import 'package:advanced_app/features/DetailsScreen/presentation/widget/rating.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/rating.dart';
+import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
+import 'package:advanced_app/features/Shop/presentation/widgets/love_icon_button.dart';
 import 'package:advanced_app/features/home/data/models/sale_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +43,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   static const EdgeInsets padding = EdgeInsets.all(10.0);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer())
-        ..getComments(widget.productID.productId),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer())
+            ..getComments(widget.productID.productId),
+        ),
+        BlocProvider(
+            create: (context) => ShopCubit(apiConsumer: DioConsumer())),
+      ],
       child: Scaffold(
         //! App bar with product category name, back button, and share button
         appBar: AppBar(
@@ -151,10 +159,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: ClipOval(
                           child: Material(
                             color: Colors.transparent,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite_border_outlined),
-                            ),
+                            child: BlocBuilder<ShopCubit, ShopState>(
+                                builder: (context, state) {
+                              return LoveIconButton(
+                                index: widget.index,
+                                getProductData: widget.productID,
+                                isFavorte: context
+                                    .read<ShopCubit>()
+                                    .chaickIsFavorte(widget.productID),
+                              );
+                            }),
                           ),
                         ),
                       ),

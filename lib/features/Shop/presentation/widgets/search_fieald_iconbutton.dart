@@ -1,5 +1,6 @@
 import 'package:advanced_app/core/color/colors.dart';
-import 'package:advanced_app/core/widgets/text_fieald.dart';
+import 'package:advanced_app/core/textStyle/text_style.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,14 +21,16 @@ class SearchFormIconButton extends StatelessWidget {
         children: [
           Expanded(
             //!this container for add style to form fieled
-
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+              alignment: Alignment.centerLeft,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(22),
+                    bottomLeft: Radius.circular(22)),
                 color: ColorManager.white,
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Color.fromARGB(40, 0, 0, 0),
+                    color: Color.fromARGB(9, 0, 0, 0),
                     spreadRadius: 2,
                     offset: Offset(3, 2),
                     blurRadius: 15,
@@ -35,37 +38,63 @@ class SearchFormIconButton extends StatelessWidget {
                 ],
               ),
               //! this form fieald Search
-              child: TextFiealdApp(
-                  controller: controller, hintText: 'Search in here'),
+              child: TextFormField(
+                controller: controller,
+                decoration: InputDecoration(
+                  suffixIconColor: ColorManager.green,
+                  hintText: 'Search in Products',
+                  hintStyle: StyleTextApp.font14Colorgrayofwite,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: ColorManager.green,
+                    ),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(22),
+                        bottomLeft: Radius.circular(22)),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This Field is required';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
             ),
           ),
           SizedBox(
             width: 5.w,
           ),
           //! this Icons is a Button search
-          // Container(
-          //   height: 60,
-          //   decoration: const BoxDecoration(
-          //     color: ColorManager.green,
-          //     shape: BoxShape.circle,
-          //     boxShadow: [
-          //       BoxShadow(
-          //         color: Color.fromARGB(40, 0, 0, 0),
-          //         spreadRadius: 2,
-          //         offset: Offset(3, 2),
-          //         blurRadius: 15,
-          //       ),
-          //     ],
-          //   ),
-          //   child: IconButton(
-          //     onPressed: () {},
-          //     icon: const Icon(
-          //       Icons.search_sharp,
-          //       color: ColorManager.white,
-          //       size: 22,
-          //     ),
-          //   ),
-          // ),
+          Container(
+            height: 56,
+            decoration: const BoxDecoration(
+              color: ColorManager.green,
+              // shape: BoxShape.circle,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(22),
+                  bottomRight: Radius.circular(22)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(40, 0, 0, 0),
+                  spreadRadius: 2,
+                  offset: Offset(3, 2),
+                  blurRadius: 15,
+                ),
+              ],
+            ),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/search");
+              },
+              icon: const Icon(
+                Icons.search_sharp,
+                color: ColorManager.white,
+                size: 22,
+              ),
+            ),
+          ),
         ],
       ),
     );

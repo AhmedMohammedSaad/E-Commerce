@@ -12,9 +12,14 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Cart extends StatelessWidget {
+class Cart extends StatefulWidget {
   const Cart({super.key});
 
+  @override
+  State<Cart> createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +28,14 @@ class Cart extends StatelessWidget {
       body: BlocProvider(
         create: (context) => CartCubit(DioConsumer())..getCart(),
         child: BlocBuilder<CartCubit, CartState>(builder: (context, state) {
+          //! totale price
+
+          int totlePrice = 0;
           List<CartModel> cartsList = context.read<CartCubit>().carts;
+          for (int x = 0; x < cartsList.length; x++) {
+            totlePrice += int.parse(cartsList[x].products!.price.toString());
+          }
+
           return state is GetCartLoding
               ? const LodingApp()
               : Column(
@@ -37,6 +49,8 @@ class Cart extends StatelessWidget {
                           //! this container is for widget image and shop ....
                           return CardCategory(
                             cartModel: cartsList[index],
+                            carts: cartsList,
+                            index: index,
                           );
                         },
                       )
@@ -78,7 +92,7 @@ class Cart extends StatelessWidget {
                                     StyleTextApp.font14ColorblacFontWeightBold,
                               ),
                               Text(
-                                "133 LE",
+                                "$totlePrice LE",
                                 style:
                                     StyleTextApp.font16ColorblacFontWeightBold,
                               ),
