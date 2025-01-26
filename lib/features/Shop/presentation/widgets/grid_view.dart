@@ -14,12 +14,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GridviewForWidget extends StatelessWidget {
   const GridviewForWidget({
     super.key,
+    this.quary,
   });
-
+  final String? quary;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
+      create: (context) =>
+          ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: quary),
       child: BlocConsumer<ShopCubit, ShopState>(
         listener: (context, state) {
           if (state is ShopingFailure) {
@@ -29,8 +31,9 @@ class GridviewForWidget extends StatelessWidget {
         },
         builder: (context, state) {
           //! list of Product
-          List<ProductsShop> getProductData =
-              context.read<ShopCubit>().getProductsData;
+          List<ProductsShop> getProductData = quary != null
+              ? context.read<ShopCubit>().searchList
+              : context.read<ShopCubit>().getProductsData;
           // log(getProductData.toString());
           // log(getProductData.length.toString());
           return state is ShopingLoading

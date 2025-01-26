@@ -1,14 +1,11 @@
 import 'dart:developer';
 
 import 'package:advanced_app/core/api/api_consumer.dart';
-import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/api/error/exception.dart';
 import 'package:advanced_app/core/api/stringes_for_api.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
-import 'package:advanced_app/features/Shop/presentation/widgets/column_image_name_shopicon.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'shop_state.dart';
@@ -21,7 +18,7 @@ class ShopCubit extends Cubit<ShopState> {
   List<ProductsShop> getProductsData = [];
   //! get data the SaleHome from api
 
-  Future getProducts() async {
+  Future getProducts({String? quary}) async {
     emit(ShopingLoading());
 
     try {
@@ -29,6 +26,7 @@ class ShopCubit extends Cubit<ShopState> {
       for (var res in response) {
         getProductsData.add(ProductsShop.fromJson(res));
       }
+      searchProduct(quary);
       emit(ShopingSuccses());
     } on ApiExceptions catch (e) {
       emit(ShopingFailure(error: e.toString()));
@@ -94,5 +92,17 @@ class ShopCubit extends Cubit<ShopState> {
       log(e.apiExceptions.message);
     }
   }
+
+  //! new list from product list for search
+  List<ProductsShop> searchList = [];
+  //! search products
+  searchProduct(String? quary) {
+    if (quary != null) {
+      for (var item in getProductsData) {
+        if (item.productName!.toLowerCase().contains(quary.toLowerCase())) {
+          searchList.add(item);
+        }
+      }
+    }
+  }
 }
-//! search products

@@ -1,16 +1,23 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
+import 'package:advanced_app/features/Shop/presentation/pages/search.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SearchFormIconButton extends StatelessWidget {
-  const SearchFormIconButton({
+class SearchFormIconButton extends StatefulWidget {
+  SearchFormIconButton({
     super.key,
-    required this.controller,
   });
 
-  final TextEditingController controller;
+  @override
+  State<SearchFormIconButton> createState() => _SearchFormIconButtonState();
+}
+
+class _SearchFormIconButtonState extends State<SearchFormIconButton> {
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +93,12 @@ class SearchFormIconButton extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/search");
+                print(
+                    " ................................ ${context.read<ShopCubit>().searchList}");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) => Search(quary: controller.text)));
               },
               icon: const Icon(
                 Icons.search_sharp,
@@ -98,5 +110,11 @@ class SearchFormIconButton extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose;
+    super.dispose();
   }
 }

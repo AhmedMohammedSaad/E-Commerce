@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:advanced_app/features/Shop/presentation/pages/search.dart';
-import 'package:advanced_app/features/Splash_Screen/splash_screen.dart';
 import 'package:advanced_app/features/auth/presentation/screen/forgot_pass.dart';
 import 'package:advanced_app/features/auth/presentation/screen/new_pass.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_in.dart';
@@ -21,7 +19,6 @@ class RouteManager {
   static const String newPass = '/newPass';
   static const String navBar = '/navBar';
   static const String splashScreen = '/splashScreen';
-  static const String search = '/search';
 
   //! Route generator method
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -40,10 +37,9 @@ class RouteManager {
         return MaterialPageRoute(builder: (_) => Home());
       case navBar:
         return MaterialPageRoute(builder: (_) => NavBar());
-      case splashScreen:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
-      case search:
-        return MaterialPageRoute(builder: (_) => Search());
+      // case splashScreen:
+      //   return MaterialPageRoute(builder: (_) => SplashScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Home(),

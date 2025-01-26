@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 
 class Shop extends StatelessWidget {
   Shop({super.key});
-  final TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
-          SearchFormIconButton(controller: controller),
+          SearchFormIconButton(),
           //! Text title the shop
           SaleText('Shop'),
           //! this is gridVie
