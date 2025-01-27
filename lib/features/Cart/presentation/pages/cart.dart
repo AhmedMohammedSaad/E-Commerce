@@ -31,6 +31,7 @@ class _CartState extends State<Cart> {
           //! totale price
 
           int totlePrice = 0;
+          //!list of carts
           List<CartModel> cartsList = context.read<CartCubit>().carts;
           for (int x = 0; x < cartsList.length; x++) {
             totlePrice += int.parse(cartsList[x].products!.price.toString());
@@ -38,79 +39,88 @@ class _CartState extends State<Cart> {
 
           return state is GetCartLoding
               ? const LodingAppList()
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: cartsList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          //! this container is for widget image and shop ....
-                          return CardCategory(
-                            cartModel: cartsList[index],
-                            carts: cartsList,
-                            index: index,
-                          );
-                        },
-                      )
-                          .animate()
-                          // .fadeIn(duration: 600.ms)
-                          .then(delay: 200.ms)
-                          .slide(
-                            begin:
-                                const Offset(1.1, 1.1), // Start from the right
-                            end: Offset.zero, // End at the original position
-                            duration: 300.ms,
-                          ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(
-                                47, 0, 0, 0), // لون أسود مع شفافية
-                            offset: Offset(-10, -13), // اتجاه ومسافة الظل
-                            blurStyle:
-                                BlurStyle.normal, // تأثير طبيعي على الحواف
-                            spreadRadius: 1, // عرض الظل
-                            blurRadius: 7, // نعومة الظل
-                          ),
-                        ],
-                        color: ColorManager.white,
-                      ),
-                      padding: EdgeInsets.all(20.h),
-                      height: 140.h,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Total",
-                                style:
-                                    StyleTextApp.font14ColorblacFontWeightBold,
+              : cartsList.isNotEmpty
+                  ? Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: cartsList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              //! this container is for widget image and shop ....
+                              return CardCategory(
+                                cartModel: cartsList[index],
+                                carts: cartsList,
+                                index: index,
+                              );
+                            },
+                          )
+                              .animate()
+                              // .fadeIn(duration: 600.ms)
+                              .then(delay: 200.ms)
+                              .slide(
+                                begin: const Offset(
+                                    1.1, 1.1), // Start from the right
+                                end:
+                                    Offset.zero, // End at the original position
+                                duration: 300.ms,
                               ),
-                              Text(
-                                "$totlePrice LE",
-                                style:
-                                    StyleTextApp.font16ColorblacFontWeightBold,
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(
+                                    47, 0, 0, 0), // لون أسود مع شفافية
+                                offset: Offset(-10, -13), // اتجاه ومسافة الظل
+                                blurStyle:
+                                    BlurStyle.normal, // تأثير طبيعي على الحواف
+                                spreadRadius: 1, // عرض الظل
+                                blurRadius: 7, // نعومة الظل
+                              ),
+                            ],
+                            color: ColorManager.white,
+                          ),
+                          padding: EdgeInsets.all(20.h),
+                          height: 140.h,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Total",
+                                    style: StyleTextApp
+                                        .font14ColorblacFontWeightBold,
+                                  ),
+                                  Text(
+                                    "$totlePrice LE",
+                                    style: StyleTextApp
+                                        .font16ColorblacFontWeightBold,
+                                  ),
+                                ],
+                              ),
+                              const Divider(),
+                              const Spacer(),
+                              const BottonAPP(
+                                nameBotton: 'Checkout',
+                                colorBotton: ColorManager.green,
+                                colorText: ColorManager.white,
+                                width: double.infinity,
                               ),
                             ],
                           ),
-                          const Divider(),
-                          const Spacer(),
-                          const BottonAPP(
-                            nameBotton: 'Checkout',
-                            colorBotton: ColorManager.green,
-                            colorText: ColorManager.white,
-                            width: double.infinity,
-                          ),
-                        ],
-                      ),
+                        )
+                      ],
                     )
-                  ],
-                );
+                  : Center(
+                      child: Text(
+                        "No Cart",
+                        style: StyleTextApp.font14ColorblacFontWeightBold,
+                      ),
+                    );
         }),
       ),
     );
