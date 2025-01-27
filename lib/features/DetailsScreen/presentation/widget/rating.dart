@@ -19,7 +19,7 @@ class RatingStar extends StatelessWidget {
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
-      itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+      itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
       itemBuilder: (context, _) => const Icon(
         Icons.star,
         color: Colors.amber,

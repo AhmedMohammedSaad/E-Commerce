@@ -35,6 +35,7 @@ class _SignInState extends State<SignIn> {
           final cubit = context.read<AuthCubit>();
 
           if (state is LoginFailure) {
+            // ignore: use_build_context_synchronously
             Future.microtask(() => snackBarError(context, state.error));
           } else if (state is LoginSuccess) {
             Future.microtask(() async {

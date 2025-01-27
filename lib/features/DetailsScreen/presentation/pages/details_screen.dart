@@ -3,7 +3,6 @@
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/core/widgets/loding_app.dart';
 import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
 import 'package:advanced_app/features/DetailsScreen/data/models/comments/comments.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/cubit/detailsscreen_cubit.dart';

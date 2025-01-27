@@ -6,7 +6,7 @@ import 'package:advanced_app/features/home/presentation/widgets/sale_text.dart';
 import 'package:flutter/material.dart';
 
 class Shop extends StatelessWidget {
-  Shop({super.key});
+  const Shop({super.key});
 
   @override
   Widget build(BuildContext context) {

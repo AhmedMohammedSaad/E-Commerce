@@ -37,7 +37,7 @@ class _CartState extends State<Cart> {
           }
 
           return state is GetCartLoding
-              ? const LodingApp()
+              ? const LodingAppList()
               : Column(
                   children: [
                     Expanded(

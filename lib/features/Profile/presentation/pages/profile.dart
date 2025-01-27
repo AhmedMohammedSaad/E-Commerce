@@ -129,6 +129,7 @@ class ProfilePage extends StatelessWidget {
 
                         await supabase.auth.signOut();
                         Navigator.pushNamedAndRemoveUntil(
+                          // ignore: use_build_context_synchronously
                           context,
                           '/signIn',
                           (route) => false,

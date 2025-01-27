@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/widgets/botton.dart';

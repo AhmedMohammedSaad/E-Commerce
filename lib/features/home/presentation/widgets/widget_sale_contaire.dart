@@ -1,13 +1,11 @@
 import 'package:advanced_app/core/api/dio_consumer.dart';
-import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/core/widgets/loding_app.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
 import 'package:advanced_app/features/Shop/data/models/products_shop/products_shop.dart';
 import 'package:advanced_app/features/home/presentation/widgets/home_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Shop/presentation/cubit/shop_cubit.dart';
 
@@ -37,12 +35,7 @@ class SlaleWidgetContainer extends StatelessWidget {
                 //     ),
                 //   ),
                 // );
-                Center(
-              child: LoadingAnimationWidget.dotsTriangle(
-                size: 90,
-                color: ColorManager.green,
-              ),
-            );
+                LodingAppList();
           } else if (state is ShopingSuccses) {
             return ListView.builder(
               shrinkWrap: true,
@@ -73,16 +66,7 @@ class SlaleWidgetContainer extends StatelessWidget {
                             ),
                           );
                         },
-                        child: HomWidget(context, getProductSale, index)
-                            .animate()
-                            // .fadeIn(duration: 600.ms)
-                            .then(delay: 200.ms)
-                            .slide(
-                              begin: const Offset(
-                                  0.1, 1.0), // Start from the right
-                              end: Offset.zero, // End at the original position
-                              duration: 200.ms,
-                            ),
+                        child: HomWidget(context, getProductSale, index),
                       );
                     },
                   );

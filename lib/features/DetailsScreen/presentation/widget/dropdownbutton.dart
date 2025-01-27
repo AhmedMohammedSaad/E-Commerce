@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropdownButton2 extends StatefulWidget {
-  const DropdownButton2({Key? key}) : super(key: key);
+  const DropdownButton2({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _DropdownButton2State createState() => _DropdownButton2State();
 }
 
@@ -26,6 +27,7 @@ class _DropdownButton2State extends State<DropdownButton2> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.2), // ظل خفيف لإبراز الكونتينر
             spreadRadius: 2,
             blurRadius: 5,
@@ -74,9 +76,11 @@ class _DropdownButton2State extends State<DropdownButton2> {
 }
 
 class DropdownButton1 extends StatefulWidget {
+  // ignore: use_super_parameters
   const DropdownButton1({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DropdownButton1State createState() => _DropdownButton1State();
 }
 
@@ -98,6 +102,7 @@ class _DropdownButton1State extends State<DropdownButton1> {
         borderRadius: BorderRadius.circular(12), // زوايا دائرية ناعمة
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.2), // ظل خفيف لإبراز الكونتينر
             spreadRadius: 2,
             blurRadius: 5,

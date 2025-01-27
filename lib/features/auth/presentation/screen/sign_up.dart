@@ -38,6 +38,7 @@ class _SingUPState extends State<SingUP> {
         builder: (context, state) {
           if (state is SignUpFailure) {
             Future.microtask(() {
+              // ignore: use_build_context_synchronously
               snackBarError(context, state.error);
             });
           }
