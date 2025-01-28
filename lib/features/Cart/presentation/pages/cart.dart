@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:advanced_app/core/api/dio_consumer.dart';
+import 'package:advanced_app/core/apikey.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
@@ -8,9 +11,9 @@ import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dar
 import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/cart_category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -20,6 +23,41 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  @override
+  void initState() {
+    PaymentData.initialize(
+      apiKey:
+          apiKeyForBayMob, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
+      iframeId: iframeId, // Required: Found under Developers -> iframes
+      integrationCardId:
+          integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
+      integrationMobileWalletId:
+          integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
+
+      // Optional User Data
+      // userData: UserData(
+      //   email: "User Email", // Optional: Defaults to 'NA'
+      //   phone: "User Phone", // Optional: Defaults to 'NA'
+      //   name: "User First Name", // Optional: Defaults to 'NA'
+      //   lastName: "User Last Name", // Optional: Defaults to 'NA'
+      // ),
+
+      // Optional Style Customizations
+      style: Style(
+        primaryColor: ColorManager.green, // Default: Colors.blue
+        scaffoldColor: Colors.white, // Default: Colors.white
+        appBarBackgroundColor: ColorManager.green, // Default: Colors.blue
+        appBarForegroundColor: Colors.white, // Default: Colors.white
+        textStyle: const TextStyle(), // Default: TextStyle()
+        buttonStyle:
+            ElevatedButton.styleFrom(), // Default: ElevatedButton.styleFrom()
+        circleProgressColor: ColorManager.green, // Default: Colors.blue
+        unselectedColor: Colors.grey, // Default: Colors.grey
+      ),
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,30 +81,19 @@ class _CartState extends State<Cart> {
                   ? Column(
                       children: [
                         Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: cartsList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              //! this container is for widget image and shop ....
-                              return CardCategory(
-                                cartModel: cartsList[index],
-                                carts: cartsList,
-                                index: index,
-                              );
-                            },
-                          )
-                              .animate()
-                              // .fadeIn(duration: 600.ms)
-                              .then(delay: 200.ms)
-                              .slide(
-                                begin: const Offset(
-                                    1.1, 1.1), // Start from the right
-                                end:
-                                    Offset.zero, // End at the original position
-                                duration: 300.ms,
-                              ),
-                        ),
+                            child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: cartsList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            //! this container is for widget image and shop ....
+                            return CardCategory(
+                              cartModel: cartsList[index],
+                              carts: cartsList,
+                              index: index,
+                            );
+                          },
+                        )),
                         Container(
                           decoration: const BoxDecoration(
                             boxShadow: [
@@ -104,7 +131,26 @@ class _CartState extends State<Cart> {
                               ),
                               const Divider(),
                               const Spacer(),
-                              const BottonAPP(
+                              BottonAPP(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PaymentView(
+                                        onPaymentSuccess: () {
+                                          // Handle payment success
+                                          log("Succses");
+                                        },
+                                        onPaymentError: () {
+                                          // Handle payment failure
+                                          log("Error");
+                                        },
+                                        price: totlePrice
+                                            .toDouble(), // Required: Total price (e.g., 100 for 100 EGP)
+                                      ),
+                                    ),
+                                  );
+                                },
                                 nameBotton: 'Checkout',
                                 colorBotton: ColorManager.green,
                                 colorText: ColorManager.white,
