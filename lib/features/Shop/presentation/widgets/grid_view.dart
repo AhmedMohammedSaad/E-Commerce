@@ -53,14 +53,14 @@ class GridviewForWidget extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: 19.h,
                     crossAxisSpacing: 4.w,
-                    mainAxisExtent: 270.h,
+                    mainAxisExtent: 285.h,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     //! this container is for widget image and shop ....
                     return InkWell(
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 5.w),
-                        height: 240.h,
+                        height: 255.h,
                         width: 200.w,
                         decoration: BoxDecoration(
                           boxShadow: const [

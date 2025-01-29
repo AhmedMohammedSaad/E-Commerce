@@ -87,34 +87,34 @@ class ProfilePage extends StatelessWidget {
                         },
                       ),
 
-                      ListTile(
-                        leading: Icon(Icons.credit_card),
-                        title: Text('Payment Methods'),
-                        onTap: () {
-                          // Navigate to Payment Methods Page
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.location_on),
-                        title: Text('Shipping Addresses'),
-                        onTap: () {
-                          // Navigate to Shipping Addresses Page
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.notifications),
-                        title: Text('Notifications'),
-                        onTap: () {
-                          // Navigate to Notifications Settings
-                        },
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.help),
-                        title: Text('Help Center'),
-                        onTap: () {
-                          // Navigate to Help Center
-                        },
-                      ),
+                      // ListTile(
+                      //   leading: Icon(Icons.credit_card),
+                      //   title: Text('Payment Methods'),
+                      //   onTap: () {
+                      //     // Navigate to Payment Methods Page
+                      //   },
+                      // ),
+                      // ListTile(
+                      //   leading: Icon(Icons.location_on),
+                      //   title: Text('Shipping Addresses'),
+                      //   onTap: () {
+                      //     // Navigate to Shipping Addresses Page
+                      //   },
+                      // ),
+                      // ListTile(
+                      //   leading: Icon(Icons.notifications),
+                      //   title: Text('Notifications'),
+                      //   onTap: () {
+                      //     // Navigate to Notifications Settings
+                      //   },
+                      // ),
+                      // ListTile(
+                      //   leading: Icon(Icons.help),
+                      //   title: Text('Help Center'),
+                      //   onTap: () {
+                      //     // Navigate to Help Center
+                      //   },
+                      // ),
                       ListTile(
                         leading: Icon(Icons.settings),
                         title: Text('Settings'),

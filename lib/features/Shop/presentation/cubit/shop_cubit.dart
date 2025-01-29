@@ -18,7 +18,7 @@ class ShopCubit extends Cubit<ShopState> {
   List<ProductsShop> getProductsData = [];
   //! get data the SaleHome from api
 
-  Future getProducts({String? quary}) async {
+  Future getProducts({String? quary, String? categorie}) async {
     emit(ShopingLoading());
 
     try {
@@ -27,6 +27,7 @@ class ShopCubit extends Cubit<ShopState> {
         getProductsData.add(ProductsShop.fromJson(res));
       }
       searchProduct(quary);
+
       emit(ShopingSuccses());
     } on ApiExceptions catch (e) {
       emit(ShopingFailure(error: e.toString()));

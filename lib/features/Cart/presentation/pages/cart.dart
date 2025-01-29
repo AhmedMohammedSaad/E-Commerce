@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:advanced_app/core/api/dio_consumer.dart';
-import 'package:advanced_app/core/apikey.dart';
+
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
@@ -10,6 +10,7 @@ import 'package:advanced_app/core/widgets/loding_app.dart';
 import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dart';
 import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/cart_category.dart';
+import 'package:advanced_app/features/Profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,47 +25,21 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   @override
-  void initState() {
-    PaymentData.initialize(
-      apiKey:
-          apiKeyForBayMob, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
-      iframeId: iframeId, // Required: Found under Developers -> iframes
-      integrationCardId:
-          integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
-      integrationMobileWalletId:
-          integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
-
-      // Optional User Data
-      // userData: UserData(
-      //   email: "User Email", // Optional: Defaults to 'NA'
-      //   phone: "User Phone", // Optional: Defaults to 'NA'
-      //   name: "User First Name", // Optional: Defaults to 'NA'
-      //   lastName: "User Last Name", // Optional: Defaults to 'NA'
-      // ),
-
-      // Optional Style Customizations
-      style: Style(
-        primaryColor: ColorManager.green, // Default: Colors.blue
-        scaffoldColor: Colors.white, // Default: Colors.white
-        appBarBackgroundColor: ColorManager.green, // Default: Colors.blue
-        appBarForegroundColor: Colors.white, // Default: Colors.white
-        textStyle: const TextStyle(), // Default: TextStyle()
-        buttonStyle:
-            ElevatedButton.styleFrom(), // Default: ElevatedButton.styleFrom()
-        circleProgressColor: ColorManager.green, // Default: Colors.blue
-        unselectedColor: Colors.grey, // Default: Colors.grey
-      ),
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       //! AppBar
       appBar: appBar(leding: false, title: 'Cart'),
-      body: BlocProvider(
-        create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                CartCubit(apiConsumer: DioConsumer())..getCart(),
+          ),
+          BlocProvider(
+            create: (context) =>
+                ProfileCubit(apiConsumer: DioConsumer())..getDataUser(),
+          ),
+        ],
         child: BlocBuilder<CartCubit, CartState>(builder: (context, state) {
           //! totale price
 

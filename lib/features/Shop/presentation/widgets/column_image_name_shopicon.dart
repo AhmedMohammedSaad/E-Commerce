@@ -47,12 +47,12 @@ class ColumnImageNameShopIcon extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  height: 165.h,
+                  height: 170.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.black26, // لون أسود مع شفافية
+                        color: Colors.black26, // لون أسود مع شفافي ة
                         offset: Offset(5, 8), // اتجاه ومسافة الظل
                         blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
                         spreadRadius: 1, // عرض الظل

@@ -56,7 +56,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
           icon: const Icon(
             Icons.shopping_cart_outlined,
             color: ColorManager.green,
-            size: 30,
+            size: 25,
           ),
         );
       },

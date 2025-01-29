@@ -134,7 +134,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                       //! price name
                       overflow: TextOverflow.ellipsis,
 
-                      "//${favorite.products!.price.toString()} LE",
+                      "${favorite.products!.price.toString()} LE",
                       style: StyleTextApp.font14ColorblacFontWeightBold,
                     ),
                     Text(

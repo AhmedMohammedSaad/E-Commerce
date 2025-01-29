@@ -1,14 +1,17 @@
+import 'package:advanced_app/core/apikey.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/chckout_and_delete.dart';
 import 'package:advanced_app/features/Cart/presentation/widgets/counter_add_and_remove.dart';
+import 'package:advanced_app/features/Profile/data/models/get_data_user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 
-class CardCategory extends StatelessWidget {
+class CardCategory extends StatefulWidget {
   const CardCategory({
     super.key,
     required this.cartModel,
@@ -19,6 +22,50 @@ class CardCategory extends StatelessWidget {
   final CartModel cartModel;
   final List<CartModel> carts;
   final int index;
+
+  @override
+  State<CardCategory> createState() => _CardCategoryState();
+}
+
+class _CardCategoryState extends State<CardCategory> {
+  GetDataUser? userData;
+  @override
+  void initState() {
+    PaymentData.initialize(
+      apiKey:
+          apiKeyForBayMob, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
+      iframeId: iframeId, // Required: Found under Developers -> iframes
+      integrationCardId:
+          integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
+      integrationMobileWalletId:
+          integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
+
+      //  Optional User Data
+      userData: UserData(
+        email: userData?.email ?? "aaaaa", // Optional: Defaults to 'NA'
+        //   phone: "User Phone", // Optional: Defaults to 'NA'
+        name: userData?.name ?? "aaaaa", // Optional: Defaults to 'NA'
+        //   lastName: "User Last Name", // Optional: Defaults to 'NA'
+      ),
+
+      // Optional Style Customizations
+      style: Style(
+        primaryColor: ColorManager.green, // Default: Colors.blue
+        scaffoldColor: ColorManager.white, // Default: Colors.white
+        appBarBackgroundColor: ColorManager.green, // Default: Colors.blue
+        appBarForegroundColor: ColorManager.white, // Default: Colors.white
+        textStyle: const TextStyle(), // Default: TextStyle()
+        buttonStyle: ElevatedButton.styleFrom(
+          backgroundColor: ColorManager.green,
+          foregroundColor: ColorManager.white,
+        ), // Default: ElevatedButton.styleFrom()
+        circleProgressColor: ColorManager.green, // Default: Colors.blue
+        unselectedColor: ColorManager.green, // Default: Colors.grey
+      ),
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +100,7 @@ class CardCategory extends StatelessWidget {
               ),
               //! image
               child: CachedNetworkImage(
-                imageUrl: cartModel.products!.imageUrl.toString(),
+                imageUrl: widget.cartModel.products!.imageUrl.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     border: const Border.symmetric(
@@ -89,18 +136,18 @@ class CardCategory extends StatelessWidget {
                   width: 160.w,
                   child: Text(
                     overflow: TextOverflow.ellipsis,
-                    cartModel.products!.productName.toString(),
+                    widget.cartModel.products!.productName.toString(),
                     style: StyleTextApp.font14ColorblacFontWeightBold,
                   ),
                 ),
                 //! counter add and remove
                 CunterAddandRemove(
-                  price: cartModel,
+                  price: widget.cartModel,
                 ),
                 //! checkout and delete Buttons
                 ChackoutAndDelete(
-                  product: carts,
-                  index: index,
+                  product: widget.carts,
+                  index: widget.index,
                 ),
               ],
             ),

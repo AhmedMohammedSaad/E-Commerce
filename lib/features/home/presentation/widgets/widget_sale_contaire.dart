@@ -1,4 +1,3 @@
-import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/loding_app.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/pages/details_screen.dart';
@@ -15,82 +14,79 @@ class SlaleWidgetContainer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
-      child: BlocConsumer<ShopCubit, ShopState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          //! list view of Product
-          final List<ProductsShop> getProductSale =
-              context.read<ShopCubit>().getProductsData;
-          if (state is ShopingLoading) {
-            return
-                // Center(
-                //   child: HomWidget(context, getProductSale, 1).redacted(
-                //     context: context,
-                //     redact: true,
-                //     configuration: RedactedConfiguration(
-                //       animationDuration:
-                //           const Duration(milliseconds: 800), //default
-                //     ),
-                //   ),
-                // );
-                LodingAppList();
-          } else if (state is ShopingSuccses) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              primary: true,
-              itemCount: getProductSale.length,
-              itemBuilder: (BuildContext context, int index) {
-                if (getProductSale[index].isSale == true) {
-                  return BlocConsumer<ShopCubit, ShopState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      ProductDetailsScreen(
-                                index: index,
-                                products: getProductSale[index],
-                                productID: getProductSale[index],
-                                // isFavorte: context
-                                //     .read<ShopCubit>()
-                                //     .chaickIsFavorte(
-                                //         getProductSale[index].productId),
-                              ),
+    return BlocConsumer<ShopCubit, ShopState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        //! list view of Product
+        final List<ProductsShop> getProductSale =
+            context.read<ShopCubit>().getProductsData;
+        if (state is ShopingLoading) {
+          return
+              // Center(
+              //   child: HomWidget(context, getProductSale, 1).redacted(
+              //     context: context,
+              //     redact: true,
+              //     configuration: RedactedConfiguration(
+              //       animationDuration:
+              //           const Duration(milliseconds: 800), //default
+              //     ),
+              //   ),
+              // );
+              const LodingAppList();
+        } else if (state is ShopingSuccses) {
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            primary: true,
+            itemCount: getProductSale.length,
+            itemBuilder: (BuildContext context, int index) {
+              if (getProductSale[index].isSale == true) {
+                return BlocConsumer<ShopCubit, ShopState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    ProductDetailsScreen(
+                              index: index,
+                              products: getProductSale[index],
+                              productID: getProductSale[index],
+                              // isFavorte: context
+                              //     .read<ShopCubit>()
+                              //     .chaickIsFavorte(
+                              //         getProductSale[index].productId),
                             ),
-                          );
-                        },
-                        child: HomWidget(context, getProductSale, index),
-                      );
-                    },
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            );
-          } else {
-            return Center(
-              child: Column(
-                children: [
-                  const Icon(Icons
-                      .signal_wifi_statusbar_connected_no_internet_4_sharp),
-                  Text(
-                    'No Internet Connection',
-                    style: StyleTextApp.font16ColorblacFontWeightBold,
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-      ),
+                          ),
+                        );
+                      },
+                      child: HomWidget(context, getProductSale, index),
+                    );
+                  },
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
+          );
+        } else {
+          return Center(
+            child: Column(
+              children: [
+                const Icon(
+                    Icons.signal_wifi_statusbar_connected_no_internet_4_sharp),
+                Text(
+                  'No Internet Connection',
+                  style: StyleTextApp.font16ColorblacFontWeightBold,
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 

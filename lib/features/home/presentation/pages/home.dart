@@ -1,10 +1,13 @@
+import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/widgets/appbar.dart';
+import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 
 import 'package:advanced_app/features/home/presentation/widgets/carousel_slider.dart';
 import 'package:advanced_app/features/home/presentation/widgets/categores.dart';
 import 'package:advanced_app/features/home/presentation/widgets/sale_text.dart';
 import 'package:advanced_app/features/home/presentation/widgets/widget_sale_contaire.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatefulWidget {
@@ -19,24 +22,28 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(title: 'Welcome in Brando', leding: false),
-      body: ListView(
-        children: [
-          //! Carousel Slider Containers
-          const CarouselSliderWidget(),
+      body: BlocProvider(
+        create: (context) =>
+            ShopCubit(apiConsumer: DioConsumer())..getProducts(),
+        child: ListView(
+          children: [
+            //! Carousel Slider Containers
+            const CarouselSliderWidget(),
 
-          //! Sale widget text
-          SaleText('Categories'),
-          //! Categories widgets
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: const ListCategorys(),
-          ),
-          //! Sale widget text
-          SaleText('Sale'),
-          //! Widgets image Sale Container
+            //! Sale widget text
+            SaleText('Categories'),
+            //! Categories widgets
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              child: const ListCategorys(),
+            ),
+            //! Sale widget text
+            SaleText('Sale'),
+            //! Widgets image Sale Container
 
-          const SlaleWidgetContainer(),
-        ],
+            const SlaleWidgetContainer(),
+          ],
+        ),
       ),
     );
   }
