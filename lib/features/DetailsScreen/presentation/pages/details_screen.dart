@@ -33,7 +33,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final Rating rating = Rating();
-
+//  final TextEditingController controller = TextEditingController();
   //! Constant padding used across the widgets
   static const EdgeInsets padding = EdgeInsets.all(10.0);
   @override
