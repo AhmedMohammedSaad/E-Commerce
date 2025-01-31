@@ -40,20 +40,18 @@ class CategoriesDetalse extends StatelessWidget {
         },
         builder: (context, state) {
           var data = context.read<ShopCubit>().getProductsData;
-          //! new list from product list for search
+//! new list from product list for search
           List<ProductsShop> filterList = [];
-          //! search products
 
+//! search products
           if (categorieName != null) {
             for (var x in data) {
-              if (x.productCategory!
-                  .toLowerCase()
-                  .contains(categorieName!.toLowerCase())) {
+              if (x.productCategory!.toLowerCase().trim() ==
+                  categorieName!.toLowerCase().trim()) {
                 filterList.add(x);
               }
             }
           }
-
           //! list of Product
           List<ProductsShop> getProductData = categorieName != null
               ? filterList
@@ -69,7 +67,7 @@ class CategoriesDetalse extends StatelessWidget {
                         crossAxisCount: 2,
                         mainAxisSpacing: 19.h,
                         crossAxisSpacing: 4.w,
-                        mainAxisExtent: 270.h,
+                        mainAxisExtent: 290.h,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         //! this container is for widget image and shop ....
@@ -77,7 +75,7 @@ class CategoriesDetalse extends StatelessWidget {
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 5.w),
                             height: 240.h,
-                            width: 200.w,
+                            width: 215.w,
                             decoration: BoxDecoration(
                               boxShadow: const [
                                 BoxShadow(

@@ -49,6 +49,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
                     duration: const Duration(seconds: 2),
                   ),
                 );
+                context.read<CartCubit>().getCart();
               });
             }
             context.read<CartCubit>().getCart();

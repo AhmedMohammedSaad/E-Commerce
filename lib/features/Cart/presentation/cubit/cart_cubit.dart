@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:advanced_app/core/api/api_consumer.dart';
 import 'package:advanced_app/core/api/error/exception.dart';
 import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dart';
@@ -38,9 +40,51 @@ class CartCubit extends Cubit<CartState> {
       await apiConsumer.delete("cart?for_product_id=eq.$pruductId");
 
       await getCart();
+
       emit(DeleteCartSuccses());
     } on ApiExceptions catch (e) {
       emit(DeleteCartError(error: e.apiExceptions.message));
+    }
+  }
+
+//!   Post Product To DataBase
+  Future postProductToDataBase({
+    required String name,
+    required String address,
+    required String phone,
+    required String detalsePluss,
+  }) async {
+    emit(PostProductToDataBaseLoading());
+    try {
+      final response = await apiConsumer
+          .get("cart?for_user_id=eq.$userId&select=*,products(*)");
+      await apiConsumer.post("user_detalse_purtchease", data: {
+        "name": name,
+        "address": address,
+        "phone": phone,
+        "detalse_pluss": detalsePluss,
+        "for_user": userId,
+        "for_product": null,
+        "for_purtchease": null,
+        "product_purtchease": response
+      });
+      emit(PostProductToDataBaseSuccess());
+    } on ApiExceptions catch (e) {
+      emit(PostProductToDataBaseError(error: e.apiExceptions.message));
+    }
+  }
+
+  //! counter
+  int counterNumber = 0;
+  void counterAdd() {
+    counterNumber++;
+    emit(CounterNumberAdd());
+  }
+
+  void counterdelete() {
+    if (counterNumber > 0) {
+      counterNumber--;
+      emit(CounterDelete());
     }
   }
 }

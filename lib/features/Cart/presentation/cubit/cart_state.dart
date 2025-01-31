@@ -30,3 +30,18 @@ class DeleteCartError extends CartState {
 
   const DeleteCartError({required this.error});
 }
+
+//! add and delete counter
+class CounterNumberAdd extends CartState {}
+
+class CounterDelete extends CartState {}
+
+//! post products for user_detalse_purtchease
+class PostProductToDataBaseSuccess extends CartState {}
+
+class PostProductToDataBaseLoading extends CartState {}
+
+class PostProductToDataBaseError extends CartState {
+  final String error;
+  const PostProductToDataBaseError({required this.error});
+}
