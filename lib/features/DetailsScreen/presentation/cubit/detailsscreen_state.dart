@@ -21,12 +21,23 @@ class CommentError extends DetailsscreenState {
 }
 
 //! the stats for handel the post comments and rating
-class AddCommentesAndRatLoading extends DetailsscreenState {}
+class AddCommentesLoading extends DetailsscreenState {}
 
-class AddCommentesAndRatSuccses extends DetailsscreenState {}
+class AddCommentesSuccses extends DetailsscreenState {}
 
-class AddCommentesAndRatError extends DetailsscreenState {
+class AddCommentesError extends DetailsscreenState {
   final String message;
 
-  const AddCommentesAndRatError(this.message);
+  const AddCommentesError(this.message);
+}
+
+//! the stats for handel the post comments and rating
+class AddRatLoading extends DetailsscreenState {}
+
+class AddRatSuccses extends DetailsscreenState {}
+
+class AddRatError extends DetailsscreenState {
+  final String message;
+
+  const AddRatError(this.message);
 }

@@ -8,7 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-Container addToCartBottn(BuildContext context, productID) {
+Container addToCartBottn(
+  BuildContext context,
+  productID,
+) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 112.h,

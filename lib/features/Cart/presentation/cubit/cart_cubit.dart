@@ -71,18 +71,4 @@ class CartCubit extends Cubit<CartState> {
       emit(PostProductToDataBaseError(error: e.apiExceptions.message));
     }
   }
-
-  //! counter
-  int counterNumber = 0;
-  void counterAdd() {
-    counterNumber++;
-    emit(CounterNumberAdd());
-  }
-
-  void counterdelete() {
-    if (counterNumber > 0) {
-      counterNumber--;
-      emit(CounterDelete());
-    }
-  }
 }

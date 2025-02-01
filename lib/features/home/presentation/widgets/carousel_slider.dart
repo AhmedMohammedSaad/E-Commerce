@@ -36,10 +36,11 @@ class CarouselSliderWidget extends StatelessWidget {
               context.read<HomeCubit>().advertisementsList;
           if (state is AdvertisementsLoading) {
             return LoadingAnimationWidget.dotsTriangle(
-              size: 80,
+              size: 66,
               color: ColorManager.green,
             );
-          } else if (state is AdvertisementsSuccses) {
+          } else if (state is AdvertisementsSuccses &&
+              advertisements.isNotEmpty) {
             return CarouselSlider.builder(
               options: CarouselOptions(
                 height: 135.h,
@@ -155,6 +156,19 @@ class CarouselSliderWidget extends StatelessWidget {
                   ),
                 );
               },
+            );
+          } else if (advertisements.isEmpty) {
+            return Center(
+              child: Column(
+                children: [
+                  const Icon(Icons
+                      .signal_wifi_statusbar_connected_no_internet_4_sharp),
+                  Text(
+                    'No advertisements',
+                    style: StyleTextApp.font16ColorblacFontWeightBold,
+                  ),
+                ],
+              ),
             );
           } else {
             return Center(

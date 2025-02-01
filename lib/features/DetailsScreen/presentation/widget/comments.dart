@@ -42,7 +42,7 @@ class ProductComments extends StatelessWidget {
 
               if (comment.comments != null && comment.comments!.isNotEmpty) {
                 // استخدام الفهرس 0 للوصول إلى أول تعليق (أو أي index آخر إذا كنت تريد عنصرًا محددًا)
-                final innerComment = comment.comments![0];
+                final innerComment = comment.comments![index];
                 final user = innerComment.users?.name ?? ""; // قيمة افتراضية
                 final comm = innerComment.comment ?? ""; // قيمة افتراضية
 

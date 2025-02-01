@@ -32,27 +32,38 @@ class DetailsscreenCubit extends Cubit<DetailsscreenState> {
   }
 
   //! add rating and comment
-  addRateAndComment(
-      {required int ratNum,
-      required productID,
-      required String comment}) async {
-    emit(AddCommentesAndRatLoading());
+  addComment({required String productID, required String comment}) async {
+    emit(AddCommentesLoading());
     try {
       //! comments
       await apiConsumer.post("comments", data: {
         "comment": comment,
         "for_user_id": userID,
-        "for_producte_id": productID
+        "for_product_id": productID
       });
+
+      emit(AddCommentesSuccses());
+    } on ApiExceptions catch (e) {
+      emit(AddCommentesError(e.apiExceptions.message));
+    }
+  }
+
+  addRating({
+    required int ratNum,
+    required String productID,
+  }) async {
+    emit(AddRatLoading());
+    try {
       //! rating
       await apiConsumer.post("rating", data: {
         "rating_num": ratNum,
         "for_user_id": userID,
         "for_producte_id": productID
       });
-      emit(AddCommentesAndRatSuccses());
+
+      emit(AddRatSuccses());
     } on ApiExceptions catch (e) {
-      emit(AddCommentesAndRatError(e.apiExceptions.message));
+      emit(AddRatError(e.apiExceptions.message));
     }
   }
 
