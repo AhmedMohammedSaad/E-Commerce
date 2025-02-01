@@ -4,12 +4,14 @@ import 'package:advanced_app/core/api/stringes_for_api.dart';
 import 'package:advanced_app/features/DetailsScreen/data/models/comments/comments.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'detailsscreen_state.dart';
 
 class DetailsscreenCubit extends Cubit<DetailsscreenState> {
   DetailsscreenCubit({required this.apiConsumer})
       : super(DetailsscreenInitial());
+  final userID = Supabase.instance.client.auth.currentUser!.id;
   //! dio
   final ApiConsumer apiConsumer;
   //! List of data
@@ -26,6 +28,31 @@ class DetailsscreenCubit extends Cubit<DetailsscreenState> {
       emit(CommentSuccses());
     } on ApiExceptions catch (e) {
       emit(CommentError(e.toString()));
+    }
+  }
+
+  //! add rating and comment
+  addRateAndComment(
+      {required int ratNum,
+      required productID,
+      required String comment}) async {
+    emit(AddCommentesAndRatLoading());
+    try {
+      //! comments
+      await apiConsumer.post("comments", data: {
+        "comment": comment,
+        "for_user_id": userID,
+        "for_producte_id": productID
+      });
+      //! rating
+      await apiConsumer.post("rating", data: {
+        "rating_num": ratNum,
+        "for_user_id": userID,
+        "for_producte_id": productID
+      });
+      emit(AddCommentesAndRatSuccses());
+    } on ApiExceptions catch (e) {
+      emit(AddCommentesAndRatError(e.apiExceptions.message));
     }
   }
 

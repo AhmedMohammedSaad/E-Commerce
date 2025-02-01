@@ -19,3 +19,14 @@ class CommentError extends DetailsscreenState {
 
   const CommentError(this.message);
 }
+
+//! the stats for handel the post comments and rating
+class AddCommentesAndRatLoading extends DetailsscreenState {}
+
+class AddCommentesAndRatSuccses extends DetailsscreenState {}
+
+class AddCommentesAndRatError extends DetailsscreenState {
+  final String message;
+
+  const AddCommentesAndRatError(this.message);
+}

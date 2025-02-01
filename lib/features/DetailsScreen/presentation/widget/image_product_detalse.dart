@@ -10,6 +10,7 @@ class ImageProductDetalse extends StatelessWidget {
     super.key,
     required this.products,
   });
+  // ignore: prefer_typing_uninitialized_variables
   final products;
   @override
   Widget build(BuildContext context) {

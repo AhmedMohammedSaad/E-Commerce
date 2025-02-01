@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:advanced_app/core/api/dio_consumer.dart';
 
 import 'package:advanced_app/core/color/colors.dart';

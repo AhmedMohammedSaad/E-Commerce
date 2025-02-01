@@ -2,11 +2,13 @@
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:advanced_app/features/DetailsScreen/presentation/cubit/detailsscreen_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:advanced_app/core/widgets/text_fieald.dart';
 
-Future<dynamic> addCommentAndRatingDialog(BuildContext context) {
+Future<dynamic> addCommentAndRatingDialog(BuildContext context, productID) {
   final TextEditingController controller = TextEditingController();
   double rating = 0;
 
@@ -54,19 +56,25 @@ Future<dynamic> addCommentAndRatingDialog(BuildContext context) {
               style: StyleTextApp.font14ColorblacFontWeightBold,
             ),
           ),
-          TextButton(
-            onPressed: () {
-              // Handle the submit action here
-              String comment = controller.text;
-              print('Comment: $comment');
-              print('Rating: ${rating.toInt()}');
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'Submit',
-              style: StyleTextApp.font20ColorManColor,
-            ),
-          ),
+          BlocBuilder<DetailsscreenCubit, DetailsscreenState>(
+              builder: (context, stat) {
+            return TextButton(
+              onPressed: () {
+                // Handle the submit action here
+                String comment = controller.text;
+                context.read<DetailsscreenCubit>().addRateAndComment(
+                    ratNum: rating.toInt(),
+                    productID: productID,
+                    comment: comment);
+
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Submit',
+                style: StyleTextApp.font20ColorManColor,
+              ),
+            );
+          }),
         ],
       );
     },

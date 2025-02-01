@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:developer';
 import 'package:advanced_app/core/api/dio_consumer.dart';
@@ -137,7 +137,6 @@ class ProfilePage extends StatelessWidget {
 
                           await supabase.auth.signOut();
                           Navigator.pushNamedAndRemoveUntil(
-                            // ignore: use_build_context_synchronously
                             context,
                             '/signIn',
                             (route) => false,

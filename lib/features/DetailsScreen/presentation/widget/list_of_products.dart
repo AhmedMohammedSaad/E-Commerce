@@ -93,9 +93,7 @@ ListView listOfProductNameAndImageAndPrice(
             ),
             BottonAPP(
               onTap: () {
-                addCommentAndRatingDialog(
-                  context,
-                );
+                addCommentAndRatingDialog(context, productID);
               },
               nameBotton: "Add Comment & Rat",
               colorBotton: ColorManager.green,
