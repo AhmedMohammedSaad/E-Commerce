@@ -8,6 +8,7 @@ import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
 import 'package:advanced_app/features/onboarding/presentation/screen/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:advanced_app/features/dashboard/presentation/pages/dashboard_page.dart';
 
 class RouteManager {
   //! Route names
@@ -19,6 +20,7 @@ class RouteManager {
   static const String newPass = '/newPass';
   static const String navBar = '/navBar';
   static const String splashScreen = '/splashScreen';
+  static const String dashboard = '/dashboard';
 
   //! Route generator method
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -37,6 +39,8 @@ class RouteManager {
         return MaterialPageRoute(builder: (_) => Home());
       case navBar:
         return MaterialPageRoute(builder: (_) => NavBar());
+      case dashboard:
+        return MaterialPageRoute(builder: (_) => const DashboardPage());
       // case splashScreen:
       //   return MaterialPageRoute(builder: (_) => SplashScreen());
 

@@ -116,6 +116,13 @@ class ProfilePage extends StatelessWidget {
                       //   },
                       // ),
                       ListTile(
+                        leading: Icon(Icons.dashboard),
+                        title: Text('Dashboard'),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/dashboard');
+                        },
+                      ),
+                      ListTile(
                         leading: Icon(Icons.settings),
                         title: Text('Settings'),
                         onTap: () {

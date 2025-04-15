@@ -1,4 +1,4 @@
-import 'package:advanced_app/core/color/colors.dart';
+
 import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/Cart/data/models/cart_model/cart_model.dart';
 import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
