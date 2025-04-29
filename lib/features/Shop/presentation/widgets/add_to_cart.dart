@@ -22,7 +22,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: ColorManager.green,
+                    backgroundColor: AppColors.primaryColor,
                     content: Text(
                       "تمت الإضافة إلى السلة مسبقًا",
                       style: StyleTextApp.font14ColorWhiteFontWeightBold,
@@ -41,7 +41,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: ColorManager.green,
+                    backgroundColor: AppColors.primaryColor,
                     content: Text(
                       "تمت الإضافة إلى السلة بنجاح",
                       style: StyleTextApp.font14ColorWhiteFontWeightBold,
@@ -56,7 +56,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
           },
           icon: const Icon(
             Icons.shopping_cart_outlined,
-            color: ColorManager.green,
+            color: AppColors.primaryColor,
             size: 25,
           ),
         );

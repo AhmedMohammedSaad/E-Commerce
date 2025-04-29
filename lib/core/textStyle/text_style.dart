@@ -8,30 +8,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class StyleTextApp {
   //!
   static final font10Colorblack = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 10.sp,
   );
   //!
 
   static final font12ColorblacFontWeightBold = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 12.sp,
     fontWeight: FontWeight.bold,
   );
   //!
   static final font12Colorgray = TextStyle(
-    color: ColorManager.grey,
+    color: AppColors.grey,
     fontSize: 12.sp,
   );
   //!
   static final font12ColorgrayTextDecorationlineThrough = TextStyle(
-    color: ColorManager.grey,
+    color: AppColors.grey,
     fontSize: 12.sp,
     decoration: TextDecoration.lineThrough,
   );
   //!
   static final font13ColorblacFontWeightBold = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 13.sp,
     fontWeight: FontWeight.bold,
   );
@@ -42,26 +42,26 @@ class StyleTextApp {
   );
   //!
   static final font14Colorblac = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 14.sp,
   );
   //!
   static final font14ColorgrayTextDecorationlineThrough = TextStyle(
-    color: ColorManager.grey,
+    color: AppColors.grey,
     fontSize: 14.sp,
     decoration: TextDecoration.lineThrough,
   );
   //!
 
   static final font14ColorblacFontWeightBold = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
   );
 
   //!
   static final font14ColorWhiteFontWeightBold = TextStyle(
-    color: ColorManager.white,
+    color: AppColors.white,
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
   );
@@ -72,18 +72,18 @@ class StyleTextApp {
   );
 //!
   static final font16ColorblacFontWeightBold = TextStyle(
-    color: ColorManager.black,
+    color: AppColors.black,
     fontSize: 16.sp,
     fontWeight: FontWeight.bold,
   );
 //!
 
   static final font20ColorManColor = TextStyle(
-    color: ColorManager.green,
+    color: AppColors.primaryColor,
     fontSize: 20.sp,
   );
   static final font13ColorManColor = TextStyle(
-    color: ColorManager.green,
+    color: AppColors.primaryColor,
     fontSize: 13.sp,
   );
   //!
@@ -93,12 +93,12 @@ class StyleTextApp {
     fontWeight: FontWeight.bold,
   );
   static final font22ColorblueColorFontWeightBolde = TextStyle(
-    color: ColorManager.blue,
+    color: AppColors.blue,
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
   );
   static final font22ColorblueColorFontWeightMancolor = TextStyle(
-    color: ColorManager.green,
+    color: AppColors.primaryColor,
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
   );

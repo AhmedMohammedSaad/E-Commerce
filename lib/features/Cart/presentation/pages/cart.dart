@@ -80,7 +80,7 @@ class _CartState extends State<Cart> {
                                   blurRadius: 7, // نعومة الظل
                                 ),
                               ],
-                              color: ColorManager.white,
+                              color: AppColors.white,
                             ),
                             padding: EdgeInsets.all(20.h),
                             height: 140.h,

@@ -2,16 +2,10 @@
 
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/functions/snack_bar_error.dart';
-import 'package:advanced_app/core/textStyle/text_style.dart';
-import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:advanced_app/features/auth/presentation/screen/sign_in.dart';
-import 'package:advanced_app/features/auth/presentation/widget/divider.dart';
 
-import 'package:advanced_app/features/auth/presentation/widget/signup_text_filed_and_button.dart';
-import 'package:advanced_app/features/auth/presentation/widget/signup_whithe_google_and_faceboock.dart';
 import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +24,13 @@ class _SingUPState extends State<SingUP> {
   final TextEditingController controllerPassword = TextEditingController();
   final TextEditingController controllerName = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+
+  // Purple theme colors
+  final Color primaryPurple = AppColors.primaryColor;
+  final Color lightPurple = AppColors.primaryColor.withOpacity(0.2);
+  final Color accentPurple = const Color.fromARGB(255, 194, 190, 231);
+  final Color backgroundPurple = const Color.fromARGB(255, 231, 229, 245);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -48,7 +49,7 @@ class _SingUPState extends State<SingUP> {
             Future.microtask(() {
               LoadingAnimationWidget.dotsTriangle(
                 size: 80,
-                color: ColorManager.green,
+                color: primaryPurple,
               );
             });
           }
@@ -76,11 +77,12 @@ class _SingUPState extends State<SingUP> {
             });
           }
           return Scaffold(
+            backgroundColor: backgroundPurple,
             body: state is SignUpLoading
                 ? Center(
                     child: LoadingAnimationWidget.dotsTriangle(
                       size: 80,
-                      color: ColorManager.green,
+                      color: primaryPurple,
                     ),
                   )
                 : SingleChildScrollView(
@@ -89,92 +91,331 @@ class _SingUPState extends State<SingUP> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Purple curved header
                           Container(
-                            color: ColorManager.green,
                             width: double.infinity,
-                            height: 130.h,
+                            height: 200.h,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [primaryPurple, lightPurple],
+                              ),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(40.r),
+                                bottomRight: Radius.circular(40.r),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 5,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.person_add_outlined,
+                                    size: 60.sp,
+                                    color: Colors.white,
+                                  ).animate().fadeIn(duration: 600.ms),
+                                  SizedBox(height: 10.h),
+                                  Text(
+                                    "Create Account",
+                                    style: TextStyle(
+                                      fontSize: 28.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ).animate().fadeIn(duration: 800.ms),
+                                ],
+                              ),
+                            ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 25.w, vertical: 20.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 10.h,
                               children: [
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Sing UP",
-                                      style: StyleTextApp
-                                          .font24ColorblacColorFontWeightBolde,
-                                    ),
-                                    //! text button skip
-                                    // TextButton(
-                                    //   onPressed: () {
-                                    //     Navigator.pushNamedAndRemoveUntil(
-                                    //       context,
-                                    //       '/navBar',
-                                    //       (route) => false,
-                                    //     );
-                                    //   },
-                                    //   child: Text(
-                                    //     "Skip",
-                                    //     style: StyleTextApp.font20ColorManColor,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
                                 Text(
-                                  "Welcome back! Your create an account?",
-                                  style: StyleTextApp.font14Colorblac,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      '/signIn',
-                                    );
-                                  },
-                                  child: Text(
-                                    "Sign In",
-                                    style: StyleTextApp.font20ColorManColor,
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    fontSize: 26.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryPurple,
                                   ),
-                                ),
-                                //! Text Feild using name and email and password
-                                TextFieldandButtonSignup(
-                                  controllerName: controllerName,
-                                  controllerGemail: controllerGemail,
-                                  controllerPassword: controllerPassword,
-                                ),
-                                // DividerOR(),
-                                // SingUPWhitheGoogleandFaceBook(),
-                                BottonAPP(
-                                  onTap: () {
-                                    if (_key.currentState!.validate()) {
-                                      cubit.signup(
-                                        controllerName.text,
-                                        controllerGemail.text,
-                                        controllerPassword.text,
-                                      );
-                                    }
-                                  },
-                                  nameBotton: 'Sign UP',
-                                  colorBotton: ColorManager.green,
-                                  colorText: ColorManager.white,
-                                  width: double.infinity.w,
                                 )
                                     .animate()
-                                    .then(duration: 1000.ms) // تأخير قبل العودة
-                                    .fadeIn(
-                                        duration: 1000.ms), // الظهور التدريجي
-                                DividerOR(),
-                                SingUPWhitheGoogleandFaceBook(
-                                  onTap: () => cubit.nativeGoogleSignIn(),
-                                ),
+                                    .fadeIn(delay: 200.ms)
+                                    .moveY(begin: 20, end: 0),
+                                SizedBox(height: 8.h),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Already have an account? ",
+                                      style: TextStyle(
+                                        fontSize: 15.sp,
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/signIn',
+                                        );
+                                      },
+                                      child: Text(
+                                        "Sign In",
+                                        style: TextStyle(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: primaryPurple,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ).animate().fadeIn(delay: 400.ms),
+                                SizedBox(height: 30.h),
+
+                                // Name Field
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextFormField(
+                                    controller: controllerName,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please enter your name";
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Full Name",
+                                      prefixIcon: Icon(Icons.person_outline,
+                                          color: primaryPurple),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(
+                                            color: primaryPurple, width: 1.5),
+                                      ),
+                                    ),
+                                  ),
+                                ).animate().fadeIn(delay: 600.ms),
+                                SizedBox(height: 15.h),
+
+                                // Email Field
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextFormField(
+                                    controller: controllerGemail,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please enter your email";
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Email",
+                                      prefixIcon: Icon(Icons.email_outlined,
+                                          color: primaryPurple),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(
+                                            color: primaryPurple, width: 1.5),
+                                      ),
+                                    ),
+                                  ),
+                                ).animate().fadeIn(delay: 800.ms),
+                                SizedBox(height: 15.h),
+
+                                // Password Field
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextFormField(
+                                    controller: controllerPassword,
+                                    obscureText: true,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Please enter your password";
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Password",
+                                      prefixIcon: Icon(Icons.lock_outline,
+                                          color: primaryPurple),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(
+                                            color: primaryPurple, width: 1.5),
+                                      ),
+                                    ),
+                                  ),
+                                ).animate().fadeIn(delay: 1000.ms),
+                                SizedBox(height: 25.h),
+
+                                // Sign Up Button
+                                Container(
+                                  width: double.infinity,
+                                  height: 55.h,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_key.currentState!.validate()) {
+                                        cubit.signup(
+                                          controllerName.text,
+                                          controllerGemail.text,
+                                          controllerPassword.text,
+                                        );
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: primaryPurple,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
+                                      ),
+                                      elevation: 5,
+                                    ),
+                                    child: Text(
+                                      "SIGN UP",
+                                      style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 1200.ms)
+                                    .moveY(begin: 20, end: 0),
+
+                                SizedBox(height: 25.h),
+
+                                // OR divider
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Divider(
+                                        thickness: 1,
+                                        color: Colors.grey[400],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w),
+                                      child: Text(
+                                        "OR",
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Divider(
+                                        thickness: 1,
+                                        color: Colors.grey[400],
+                                      ),
+                                    ),
+                                  ],
+                                ).animate().fadeIn(delay: 1400.ms),
+
+                                SizedBox(height: 25.h),
+
+                                // Google Sign Up Button
+                                Container(
+                                  width: double.infinity,
+                                  height: 45.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    border:
+                                        Border.all(color: Colors.grey[400]!),
+                                    color: Colors.white,
+                                  ),
+                                  child: InkWell(
+                                    onTap: () => cubit.nativeGoogleSignIn(),
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/googleIcon.png',
+                                          width: 25.w,
+                                        ),
+                                        SizedBox(width: 15.w),
+                                        Text(
+                                          "Continue with Google",
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black87,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 1600.ms)
+                                    .moveY(begin: 20, end: 0),
                               ],
                             ),
                           ),

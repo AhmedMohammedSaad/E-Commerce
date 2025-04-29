@@ -43,7 +43,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
         return Column(
           spacing: 4,
           children: [
-            //! container image
             Stack(
               children: [
                 Container(
@@ -52,15 +51,13 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.black26, // لون أسود مع شفافي ة
-                        offset: Offset(5, 8), // اتجاه ومسافة الظل
-                        blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
-                        spreadRadius: 1, // عرض الظل
-                        blurRadius: 7, // نعومة الظل
+                        color: Colors.black26,
+                        offset: Offset(5, 8),
+                        blurStyle: BlurStyle.normal,
+                        spreadRadius: 1,
+                        blurRadius: 7,
                       ),
                     ],
-                    //! image
-
                     borderRadius: BorderRadius.circular(14.r),
                   ),
                   child: InkWell(
@@ -72,8 +69,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                             index: index,
                             products: getProductData[index],
                             productID: getProductData[index],
-                            // isFavorte: coubitData.chaickIsFavorte(
-                            //     getProductData[index].productId!),
                           ),
                         ),
                       );
@@ -96,7 +91,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                           child: Card(
                             child: LoadingAnimationWidget.dotsTriangle(
                               size: 90,
-                              color: ColorManager.green,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                         ),
@@ -111,7 +106,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                 Positioned(
                   bottom: 5.h,
                   right: 5.w,
-                  //! love icon
                   child: BlocConsumer<ShopCubit, ShopState>(
                     listener: (context, state) {},
                     builder: (context, state) {
@@ -124,7 +118,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                     },
                   ),
                 ),
-                //! container reting
                 Positioned(
                   bottom: 5.h,
                   left: 5.w,
@@ -136,7 +129,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            //! product  name
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.w),
               child: Text(
@@ -152,7 +144,6 @@ class ColumnImageNameShopIcon extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                //! text for  price
                 SizedBox(
                   width: 55.w,
                   child: Column(
@@ -160,12 +151,9 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                     spacing: 5,
                     children: [
                       Text(
-                        //! price name
-                        //  overflow: TextOverflow.ellipsis,
                         "${getProductData[index].price.toString()} LE",
                         style: StyleTextApp.font13ColorblacFontWeightBold,
                       ),
-                      //! old price
                       Text(
                         getProductData[index].oldPrice == null
                             ? ""

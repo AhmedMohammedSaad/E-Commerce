@@ -90,7 +90,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: ColorManager.green),
+                          border: Border.all(color: AppColors.primaryColor),
                           borderRadius: BorderRadius.circular(10)),
                       width: MediaQuery.of(context).size.width / 1,
                       child: ClipRRect(
@@ -111,7 +111,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             child: Card(
                               child: LoadingAnimationWidget.dotsTriangle(
                                 size: 90,
-                                color: ColorManager.green,
+                                color: AppColors.primaryColor,
                               ),
                             ),
                           ),
@@ -252,7 +252,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     return Center(
                       child: LoadingAnimationWidget.dotsTriangle(
                         size: 80,
-                        color: ColorManager.green,
+                        color: AppColors.primaryColor,
                       ),
                     );
                   } else if (state is CommentSuccses) {
@@ -332,7 +332,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ? Center(
                               child: LoadingAnimationWidget.dotsTriangle(
                                 size: 60,
-                                color: ColorManager.green,
+                                color: AppColors.primaryColor,
                               ),
                             )
                           : BottonReviews(
@@ -352,7 +352,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        backgroundColor: ColorManager.green,
+                                        backgroundColor: AppColors.primaryColor,
                                         content: Text(
                                           "تمت الإضافة إلى السلة مسبقًا",
                                           style: StyleTextApp
@@ -373,7 +373,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        backgroundColor: ColorManager.green,
+                                        backgroundColor: AppColors.primaryColor,
                                         content: Text(
                                           "تمت الإضافة إلى السلة بنجاح",
                                           style: StyleTextApp

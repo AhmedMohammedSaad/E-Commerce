@@ -6,14 +6,14 @@ class LightTheme {
   static ThemeData get theme {
     return ThemeData(
       appBarTheme: const AppBarTheme(
-        color: ColorManager.white,
+        color: AppColors.white,
       ),
       brightness: Brightness.light,
-      primaryColor: ColorManager.green,
-      scaffoldBackgroundColor: ColorManager.white,
+      primaryColor: AppColors.primaryColor,
+      scaffoldBackgroundColor: AppColors.white,
       textTheme: const TextTheme(),
       buttonTheme: const ButtonThemeData(
-        buttonColor: ColorManager.green,
+        buttonColor: AppColors.primaryColor,
         textTheme: ButtonTextTheme.primary,
       ),
       // Add more customization for light mode here

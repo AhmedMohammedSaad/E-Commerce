@@ -10,14 +10,17 @@ AppBar appBar({
     automaticallyImplyLeading: leding,
     // leading: const Icon(Icons.arrow_back_ios_new_rounded),
     title: Text(
-      title,
-      style: StyleTextApp.font14ColorblacFontWeightBold,
+      "Code Shop",
+      style: StyleTextApp.font14ColorblacFontWeightBold.copyWith(
+        fontWeight: FontWeight.bold,
+        fontSize: 20.sp,
+      ),
     ),
     actions: [
       Image(
-          width: 140.w,
+          width: 100.w,
           image: const AssetImage(
-            'assets/images/logo png.png',
+            'assets/images/code_shop_logo.jpeg',
           ))
     ],
   );

@@ -150,8 +150,8 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                         nameBotton: 'Logout',
-                        colorBotton: ColorManager.red,
-                        colorText: ColorManager.white,
+                        colorBotton: AppColors.red,
+                        colorText: AppColors.white,
                         width: double.infinity,
                       )
                     ],

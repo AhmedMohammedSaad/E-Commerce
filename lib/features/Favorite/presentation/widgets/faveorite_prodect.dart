@@ -76,7 +76,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                         child: Card(
                           child: LoadingAnimationWidget.dotsTriangle(
                             size: 90,
-                            color: ColorManager.green,
+                            color: AppColors.primaryColor,
                           ),
                         ),
                       ),
@@ -163,7 +163,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                           WidgetsBinding.instance.addPostFrameCallback((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: ColorManager.green,
+                                backgroundColor: AppColors.primaryColor,
                                 content: Text(
                                   "تمت الإضافة إلى السلة مسبقًا",
                                   style: StyleTextApp
@@ -186,7 +186,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                           WidgetsBinding.instance.addPostFrameCallback((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                backgroundColor: ColorManager.green,
+                                backgroundColor: AppColors.primaryColor,
                                 content: Text(
                                   "تمت الإضافة إلى السلة بنجاح",
                                   style: StyleTextApp
@@ -201,7 +201,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.shopping_cart_outlined,
-                        color: ColorManager.green,
+                        color: AppColors.primaryColor,
                         size: 30,
                       ),
                     );

@@ -72,7 +72,7 @@ class _DetallesCheckoutState extends State<DetallesCheckout> {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              backgroundColor: ColorManager.green,
+                              backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت العملية بنجاح",
                                 style:
@@ -96,8 +96,8 @@ class _DetallesCheckoutState extends State<DetallesCheckout> {
                           }
                         },
                         nameBotton: "Checkout  ${widget.totleProduct} LE",
-                        colorBotton: ColorManager.green,
-                        colorText: ColorManager.white,
+                        colorBotton: AppColors.primaryColor,
+                        colorText: AppColors.white,
                         width: double.infinity,
                       );
                     },

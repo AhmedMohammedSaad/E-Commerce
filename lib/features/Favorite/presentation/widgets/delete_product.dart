@@ -62,7 +62,7 @@ class _ButtonDeleteState extends State<ButtonDelete> {
             },
             icon: const Icon(
               Icons.delete_forever,
-              color: ColorManager.red,
+              color: AppColors.red,
             ));
       }),
     );

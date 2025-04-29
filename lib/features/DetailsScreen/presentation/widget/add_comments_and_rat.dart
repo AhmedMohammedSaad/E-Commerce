@@ -20,7 +20,7 @@ Future<dynamic> addCommentAndRatingDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: ColorManager.white,
+        backgroundColor: AppColors.white,
         title: Text(
           'Add Comment and Rating',
           style: StyleTextApp.font14ColorblacFontWeightBold,
@@ -71,7 +71,7 @@ Future<dynamic> addCommentAndRatingDialog(
               return stat is AddCommentesLoading
                   ? CircularProgressIndicator(
                       strokeWidth: 3,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     )
                   : TextButton(
                       onPressed: () {

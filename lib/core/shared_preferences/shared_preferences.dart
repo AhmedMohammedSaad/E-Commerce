@@ -9,10 +9,17 @@ class SharedPreferencesHelper {
     _preferences = await SharedPreferences.getInstance();
   }
 
+  static Future<void> _ensureInitialized() async {
+    if (_preferences == null) {
+      throw Exception(
+          "SharedPreferences not initialized. Call SharedPreferencesHelper.init() first.");
+    }
+  }
+
   // Save data to SharedPreferences
   static Future<void> saveData(
       {required String key, required dynamic value}) async {
-    if (_preferences == null) return;
+    await _ensureInitialized();
 
     if (value is String) {
       await _preferences!.setString(key, value);

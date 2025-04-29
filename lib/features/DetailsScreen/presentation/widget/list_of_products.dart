@@ -116,7 +116,7 @@ class _ListOfProductsState extends State<ListOfProducts> {
                     },
                     icon: const Icon(
                       Icons.remove_circle_outline,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                   //! عرض العداد
@@ -131,7 +131,7 @@ class _ListOfProductsState extends State<ListOfProducts> {
                     },
                     icon: const Icon(
                       Icons.add_circle_outline_sharp,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                 ],
@@ -174,8 +174,8 @@ class _ListOfProductsState extends State<ListOfProducts> {
                   addCommentAndRatingDialog(context, widget.productID);
                 },
                 nameBotton: "Add Comment & Rat",
-                colorBotton: ColorManager.green,
-                colorText: ColorManager.white,
+                colorBotton: AppColors.primaryColor,
+                colorText: AppColors.white,
                 width: 195.w,
               ),
             ],

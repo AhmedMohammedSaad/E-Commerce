@@ -24,7 +24,7 @@ class ProductComments extends StatelessWidget {
           return Center(
             child: LoadingAnimationWidget.dotsTriangle(
               size: 80,
-              color: ColorManager.green,
+              color: AppColors.primaryColor,
             ),
           );
         } else if (state is CommentSuccses) {

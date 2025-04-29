@@ -20,7 +20,7 @@ class ImageProductDetalse extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(color: ColorManager.green),
+                border: Border.all(color: AppColors.primaryColor),
                 borderRadius: BorderRadius.circular(10)),
             width: MediaQuery.of(context).size.width / 1,
             child: ClipRRect(
@@ -41,7 +41,7 @@ class ImageProductDetalse extends StatelessWidget {
                   child: Card(
                     child: LoadingAnimationWidget.dotsTriangle(
                       size: 90,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                 ),

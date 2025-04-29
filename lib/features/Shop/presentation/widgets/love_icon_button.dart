@@ -55,7 +55,7 @@ class _LoveIconButtonState extends State<LoveIconButton> {
             blurRadius: 10,
           ),
         ],
-        color: ColorManager.white,
+        color: AppColors.white,
         shape: BoxShape.circle,
       ),
       child: IconButton(
@@ -76,7 +76,7 @@ class _LoveIconButtonState extends State<LoveIconButton> {
               id.toString(), _favoriteManager.favoriteBoll);
         },
         icon: _favoriteManager.favoriteBoll
-            ? const Icon(Icons.favorite, color: ColorManager.red)
+            ? const Icon(Icons.favorite, color: AppColors.red)
             : const Icon(Icons.favorite_border),
       ),
     );

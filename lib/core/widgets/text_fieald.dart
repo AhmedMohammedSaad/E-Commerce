@@ -19,7 +19,7 @@ class TextFiealdApp extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        suffixIconColor: ColorManager.green,
+        suffixIconColor: AppColors.primaryColor,
         hintText: hintText,
         hintStyle: StyleTextApp.font14Colorgrayofwite,
         border: OutlineInputBorder(
@@ -73,7 +73,7 @@ class _TextFiealdPasswordState extends State<TextFiealdPassword> {
               ? Icon(Icons.visibility_off_outlined)
               : Icon(Icons.visibility_outlined),
         ),
-        suffixIconColor: ColorManager.green,
+        suffixIconColor: AppColors.primaryColor,
         hintText: widget.hintText,
         hintStyle: StyleTextApp.font14Colorgrayofwite,
         border: OutlineInputBorder(

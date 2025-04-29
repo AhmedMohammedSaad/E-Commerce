@@ -45,12 +45,12 @@ class _NavBarState extends State<NavBar> {
                 onTabChange: (index) {
                   context.read<NavebarsdCubit>().changeCourntIndex(index);
                 },
-                backgroundColor: ColorManager.white,
+                backgroundColor: AppColors.white,
                 duration: Duration(milliseconds: 400),
                 gap: 3,
-                color: ColorManager.grey,
-                tabBackgroundColor: ColorManager.green,
-                activeColor: ColorManager.white, // selected icon and text color
+                color: AppColors.grey,
+                tabBackgroundColor: AppColors.primaryColor,
+                activeColor: AppColors.white, // selected icon and text color
                 iconSize: 24,
                 tabMargin:
                     EdgeInsets.symmetric(vertical: 18.h, horizontal: 3.w),

@@ -28,7 +28,7 @@ class ContainerReting extends StatelessWidget {
             blurRadius: 10,
           ),
         ],
-        color: ColorManager.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(15.r),
       ),
       //! this icon is star teting
@@ -36,7 +36,7 @@ class ContainerReting extends StatelessWidget {
         children: [
           const Icon(
             Icons.star_rate_rounded,
-            color: ColorManager.gold,
+            color: AppColors.gold,
           ),
           //! this text is  reting
           Text(

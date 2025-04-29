@@ -64,7 +64,6 @@ class AuthCubit extends Cubit<AuthState> {
 
     if (accessToken == null || idToken == null) {
       emit(SignInWithGoogleFailure('No Access Token found.'));
-      emit(SignInWithGoogleFailure('No ID Token found.'));
     }
 
     AuthResponse authResponse = await supabase.auth.signInWithIdToken(

@@ -24,7 +24,7 @@ Container addToCartBottn(
                 ? Center(
                     child: LoadingAnimationWidget.dotsTriangle(
                       size: 60,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                   )
                 : BottonReviews(
@@ -42,7 +42,7 @@ Container addToCartBottn(
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              backgroundColor: ColorManager.green,
+                              backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت الإضافة إلى السلة مسبقًا",
                                 style:
@@ -62,7 +62,7 @@ Container addToCartBottn(
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              backgroundColor: ColorManager.green,
+                              backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت الإضافة إلى السلة بنجاح",
                                 style:

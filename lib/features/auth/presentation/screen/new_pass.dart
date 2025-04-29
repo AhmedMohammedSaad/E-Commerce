@@ -31,8 +31,8 @@ class NewPass extends StatelessWidget {
               ),
               BottonAPP(
                   nameBotton: 'New Password',
-                  colorBotton: ColorManager.green,
-                  colorText: ColorManager.white,
+                  colorBotton: AppColors.primaryColor,
+                  colorText: AppColors.white,
                   width: double.infinity)
             ],
           ),

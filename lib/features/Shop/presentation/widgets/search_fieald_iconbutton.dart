@@ -32,7 +32,7 @@ class _SearchFormIconButtonState extends State<SearchFormIconButton> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(22),
                     bottomLeft: Radius.circular(22)),
-                color: ColorManager.white,
+                color: AppColors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Color.fromARGB(9, 0, 0, 0),
@@ -46,12 +46,12 @@ class _SearchFormIconButtonState extends State<SearchFormIconButton> {
               child: TextFormField(
                 controller: controller,
                 decoration: InputDecoration(
-                  suffixIconColor: ColorManager.green,
+                  suffixIconColor: AppColors.primaryColor,
                   hintText: 'Search in Products',
                   hintStyle: StyleTextApp.font14Colorgrayofwite,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(22),
@@ -75,7 +75,7 @@ class _SearchFormIconButtonState extends State<SearchFormIconButton> {
           Container(
             height: 56,
             decoration: const BoxDecoration(
-              color: ColorManager.green,
+              color: AppColors.primaryColor,
               // shape: BoxShape.circle,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(22),
@@ -98,7 +98,7 @@ class _SearchFormIconButtonState extends State<SearchFormIconButton> {
               },
               icon: const Icon(
                 Icons.search_sharp,
-                color: ColorManager.white,
+                color: AppColors.white,
                 size: 22,
               ),
             ),

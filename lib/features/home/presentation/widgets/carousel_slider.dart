@@ -26,7 +26,7 @@ class CarouselSliderWidget extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.error),
-                backgroundColor: ColorManager.red,
+                backgroundColor: AppColors.red,
               ),
             );
           }
@@ -37,7 +37,7 @@ class CarouselSliderWidget extends StatelessWidget {
           if (state is AdvertisementsLoading) {
             return LoadingAnimationWidget.dotsTriangle(
               size: 66,
-              color: ColorManager.green,
+              color: AppColors.primaryColor,
             );
           } else if (state is AdvertisementsSuccses &&
               advertisements.isNotEmpty) {
@@ -58,7 +58,7 @@ class CarouselSliderWidget extends StatelessWidget {
                   margin:
                       EdgeInsets.symmetric(horizontal: 5.0.h, vertical: 15.h),
                   decoration: BoxDecoration(
-                    color: ColorManager.white,
+                    color: AppColors.white,
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black26, // لون أسود مع شفافية
@@ -143,7 +143,7 @@ class CarouselSliderWidget extends StatelessWidget {
                               child: Card(
                                 child: LoadingAnimationWidget.dotsTriangle(
                                   size: 90,
-                                  color: ColorManager.green,
+                                  color: AppColors.primaryColor,
                                 ),
                               ),
                             ),

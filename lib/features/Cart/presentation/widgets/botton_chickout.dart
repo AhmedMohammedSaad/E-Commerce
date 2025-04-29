@@ -27,7 +27,7 @@ class BottonCheckout extends StatelessWidget {
           context: context,
           builder: (context) {
             return Container(
-              color: ColorManager.white,
+              color: AppColors.white,
               child: Column(
                 spacing: 20.h,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,8 +49,8 @@ class BottonCheckout extends StatelessWidget {
                       );
                     },
                     nameBotton: "عند التوصيل ",
-                    colorBotton: ColorManager.green,
-                    colorText: ColorManager.white,
+                    colorBotton: AppColors.primaryColor,
+                    colorText: AppColors.white,
                     width: 250.w,
                   ),
                   BottonAPP(
@@ -74,8 +74,8 @@ class BottonCheckout extends StatelessWidget {
                       );
                     },
                     nameBotton: "Visa",
-                    colorBotton: ColorManager.green,
-                    colorText: ColorManager.white,
+                    colorBotton: AppColors.primaryColor,
+                    colorText: AppColors.white,
                     width: 250.w,
                   ),
                   //! viesa
@@ -86,8 +86,8 @@ class BottonCheckout extends StatelessWidget {
         );
       },
       nameBotton: 'Checkout',
-      colorBotton: ColorManager.green,
-      colorText: ColorManager.white,
+      colorBotton: AppColors.primaryColor,
+      colorText: AppColors.white,
       width: double.infinity,
     );
   }

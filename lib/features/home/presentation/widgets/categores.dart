@@ -43,8 +43,8 @@ class ListCategorys extends StatelessWidget {
               height: 61.h,
               width: 100.w,
               decoration: BoxDecoration(
-                color: ColorManager.white,
-                border: Border.all(color: ColorManager.green),
+                color: AppColors.white,
+                border: Border.all(color: AppColors.primaryColor),
                 boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(47, 0, 0, 0), // لون أسود مع شفافية

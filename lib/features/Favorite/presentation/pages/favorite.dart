@@ -61,8 +61,8 @@ class Favorite extends StatelessWidget {
                                 blurRadius: 7, // نعومة الظل
                               ),
                             ],
-                            border: Border.all(color: ColorManager.green),
-                            color: ColorManager.white,
+                            border: Border.all(color: AppColors.primaryColor),
+                            color: AppColors.white,
                             borderRadius: BorderRadius.circular(15.r),
                           ),
                           child:

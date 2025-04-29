@@ -7,8 +7,10 @@ import 'package:advanced_app/features/auth/presentation/screen/sign_up.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
 import 'package:advanced_app/features/onboarding/presentation/screen/onboarding.dart';
+import 'package:advanced_app/features/onboarding/presentation/screens/boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:advanced_app/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:advanced_app/core/animations/page_transitions.dart';
 
 class RouteManager {
   //! Route names
@@ -26,27 +28,52 @@ class RouteManager {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case onboarding:
-        return MaterialPageRoute(builder: (_) => Onboarding());
+        return CustomPageTransition(
+          child: BoardingScreen(),
+          transitionType: TransitionType.fade,
+        );
       case signIn:
-        return MaterialPageRoute(builder: (_) => SignIn());
+        return CustomPageTransition(
+          child: SignIn(),
+          transitionType: TransitionType.slideRight,
+        );
       case singUP:
-        return MaterialPageRoute(builder: (_) => SingUP());
+        return CustomPageTransition(
+          child: SingUP(),
+          transitionType: TransitionType.slideRight,
+        );
       case forgotPass:
-        return MaterialPageRoute(builder: (_) => ForgotPass());
+        return CustomPageTransition(
+          child: ForgotPass(),
+          transitionType: TransitionType.slideUp,
+        );
       case newPass:
-        return MaterialPageRoute(builder: (_) => NewPass());
+        return CustomPageTransition(
+          child: NewPass(),
+          transitionType: TransitionType.slideUp,
+        );
       case home:
-        return MaterialPageRoute(builder: (_) => Home());
+        return CustomPageTransition(
+          child: Home(),
+          transitionType: TransitionType.fade,
+        );
       case navBar:
-        return MaterialPageRoute(builder: (_) => NavBar());
+        return CustomPageTransition(
+          child: NavBar(),
+          transitionType: TransitionType.fade,
+        );
       case dashboard:
-        return MaterialPageRoute(builder: (_) => const DashboardPage());
+        return CustomPageTransition(
+          child: const DashboardPage(),
+          transitionType: TransitionType.slideRight,
+        );
       // case splashScreen:
       //   return MaterialPageRoute(builder: (_) => SplashScreen());
 
       default:
-        return MaterialPageRoute(
-          builder: (_) => NavBar(),
+        return CustomPageTransition(
+          child: BoardingScreen(),
+          transitionType: TransitionType.fade,
         );
     }
   }

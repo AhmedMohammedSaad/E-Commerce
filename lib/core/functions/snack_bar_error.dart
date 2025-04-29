@@ -10,7 +10,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackBarError(
         text,
         style: StyleTextApp.font14ColorWhiteFontWeightBold,
       ),
-      backgroundColor: ColorManager.red,
+      backgroundColor: AppColors.red,
     ),
   );
 }

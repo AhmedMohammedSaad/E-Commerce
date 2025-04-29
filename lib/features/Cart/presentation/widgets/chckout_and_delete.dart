@@ -25,7 +25,7 @@ class ChackoutAndDelete extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: ColorManager.red,
+            color: AppColors.red,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.r),
               bottomRight: Radius.circular(20.r),

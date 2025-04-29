@@ -50,17 +50,17 @@ class _CardCategoryState extends State<CardCategory> {
 
       // Optional Style Customizations
       style: Style(
-        primaryColor: ColorManager.green, // Default: Colors.blue
-        scaffoldColor: ColorManager.white, // Default: Colors.white
-        appBarBackgroundColor: ColorManager.green, // Default: Colors.blue
-        appBarForegroundColor: ColorManager.white, // Default: Colors.white
+        primaryColor: AppColors.primaryColor, // Default: Colors.blue
+        scaffoldColor: AppColors.white, // Default: Colors.white
+        appBarBackgroundColor: AppColors.primaryColor, // Default: Colors.blue
+        appBarForegroundColor: AppColors.white, // Default: Colors.white
         textStyle: const TextStyle(), // Default: TextStyle()
         buttonStyle: ElevatedButton.styleFrom(
-          backgroundColor: ColorManager.green,
-          foregroundColor: ColorManager.white,
+          backgroundColor: AppColors.primaryColor,
+          foregroundColor: AppColors.white,
         ), // Default: ElevatedButton.styleFrom()
-        circleProgressColor: ColorManager.green, // Default: Colors.blue
-        unselectedColor: ColorManager.green, // Default: Colors.grey
+        circleProgressColor: AppColors.primaryColor, // Default: Colors.blue
+        unselectedColor: AppColors.primaryColor, // Default: Colors.grey
       ),
     );
     super.initState();
@@ -81,8 +81,8 @@ class _CardCategoryState extends State<CardCategory> {
             blurRadius: 7, // نعومة الظل
           ),
         ],
-        border: Border.all(color: ColorManager.green),
-        color: ColorManager.white,
+        border: Border.all(color: AppColors.primaryColor),
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(15.r),
       ),
       //!
@@ -104,7 +104,7 @@ class _CardCategoryState extends State<CardCategory> {
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     border: const Border.symmetric(
-                        vertical: BorderSide(color: ColorManager.green)),
+                        vertical: BorderSide(color: AppColors.primaryColor)),
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
@@ -117,7 +117,7 @@ class _CardCategoryState extends State<CardCategory> {
                   child: Card(
                     child: LoadingAnimationWidget.dotsTriangle(
                       size: 90,
-                      color: ColorManager.green,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                 ),

@@ -34,8 +34,8 @@ class BottonReviews extends StatelessWidget {
                 child: BottonAPP(
                   onTap: onPressedToCart,
                   nameBotton: 'ADD TO CART',
-                  colorBotton: ColorManager.green,
-                  colorText: ColorManager.white,
+                  colorBotton: AppColors.primaryColor,
+                  colorText: AppColors.white,
                   width: MediaQuery.of(context).size.width / 1,
                 ))
             .animate()

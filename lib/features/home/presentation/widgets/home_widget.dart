@@ -46,7 +46,7 @@ Stack HomWidget(
                 var card = Card(
                   child: LoadingAnimationWidget.dotsTriangle(
                     size: 80,
-                    color: ColorManager.green,
+                    color: AppColors.primaryColor,
                   ),
                 );
                 return SizedBox(
@@ -80,7 +80,7 @@ Stack HomWidget(
                 blurRadius: 8, // نعومة الظل
               ),
             ],
-            color: ColorManager.green, // لون الشريط
+            color: AppColors.primaryColor, // لون الشريط
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(7.r),
               bottomRight: Radius.circular(7.r),
@@ -105,7 +105,7 @@ Stack HomWidget(
           width: MediaQuery.of(context).size.width * 0.91,
           decoration: BoxDecoration(
             // ignore: deprecated_member_use
-            color: ColorManager.black.withOpacity(0.5),
+            color: AppColors.black.withOpacity(0.5),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(14.r),
               bottomRight: Radius.circular(14.r),

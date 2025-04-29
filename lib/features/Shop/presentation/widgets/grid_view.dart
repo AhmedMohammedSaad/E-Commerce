@@ -30,64 +30,66 @@ class GridviewForWidget extends StatelessWidget {
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
         ),
       ],
-      child: BlocConsumer<ShopCubit, ShopState>(
-        listener: (context, state) {
-          if (state is ShopingFailure) {
-          } else if (state is ShopingSuccses) {
-            log("get data the SaleHome from api");
-          }
-        },
-        builder: (context, state) {
-          //! list of Product
-          List<ProductsShop> getProductData = quary != null
-              ? context.read<ShopCubit>().searchList
-              : context.read<ShopCubit>().getProductsData;
-          // log(getProductData.toString());
-          // log(getProductData.length.toString());
-          return state is ShopingLoading
-              ? const LodingApp()
-              : GridView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: getProductData.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 19.h,
-                    crossAxisSpacing: 4.w,
-                    mainAxisExtent: 285.h,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    //! this container is for widget image and shop ....
-                    return InkWell(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5.w),
-                        height: 255.h,
-                        width: 200.w,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26, // لون أسود مع شفافية
-                              offset: Offset(1, 1), // اتجاه ومسافة الظل
-                              blurStyle:
-                                  BlurStyle.normal, // تأثير طبيعي على الحواف
-                              spreadRadius: 1, // عرض الظل
-                              blurRadius: 7, // نعومة الظل
-                            ),
-                          ],
-                          border: Border.all(color: ColorManager.green),
-                          color: ColorManager.white,
-                          borderRadius: BorderRadius.circular(15.r),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ShopCubit, ShopState>(
+            listener: (context, state) {
+              if (state is ShopingFailure) {
+                // Handle failure
+              } else if (state is ShopingSuccses) {
+                log("get data the SaleHome from api");
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<ShopCubit, ShopState>(
+          builder: (context, state) {
+            //! list of Product
+            List<ProductsShop> getProductData = quary != null
+                ? context.read<ShopCubit>().searchList
+                : context.read<ShopCubit>().getProductsData;
+            return state is ShopingLoading
+                ? const LodingApp()
+                : GridView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: getProductData.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 19.h,
+                      crossAxisSpacing: 4.w,
+                      mainAxisExtent: 285.h,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5.w),
+                          height: 255.h,
+                          width: 200.w,
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26, // لون أسود مع شفافية
+                                offset: Offset(1, 1), // اتجاه ومسافة الظل
+                                blurStyle:
+                                    BlurStyle.normal, // تأثير طبيعي على الحواف
+                                spreadRadius: 1, // عرض الظل
+                                blurRadius: 7, // نعومة الظل
+                              ),
+                            ],
+                            border: Border.all(color: AppColors.primaryColor),
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+                          child: ColumnImageNameShopIcon(
+                            index: index,
+                            getProductData: getProductData,
+                          ),
                         ),
-                        child:
-                            //! column for image and text price and shop icon
-                            ColumnImageNameShopIcon(
-                          index: index,
-                          getProductData: getProductData,
-                        ),
-                      ),
-                    );
-                  },
-                );
-        },
+                      );
+                    },
+                  );
+          },
+        ),
       ),
     );
   }
