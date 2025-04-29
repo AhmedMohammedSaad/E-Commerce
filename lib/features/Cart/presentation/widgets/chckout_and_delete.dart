@@ -12,34 +12,71 @@ class ChackoutAndDelete extends StatelessWidget {
     required this.product,
     required this.index,
   });
+
   final List<CartModel> product;
   final int index;
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, CartState>(builder: (context, state) {
-      return InkWell(
-        onTap: () {
-          context
-              .read<CartCubit>()
-              .deleteCart(product[index].products!.productId.toString());
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.red,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.r),
-              bottomRight: Radius.circular(20.r),
-            ),
+    return BlocBuilder<CartCubit, CartState>(
+      builder: (context, state) {
+        return IconButton(
+          icon: Icon(
+            Icons.delete_outline_rounded,
+            color: Colors.red.shade400,
+            size: 30.sp,
           ),
-          alignment: Alignment.center,
-          height: 30.h,
-          width: 167.w,
-          child: Text(
-            "Delete",
-            style: StyleTextApp.font14ColorWhiteFontWeightBold,
-          ),
-        ),
-      );
-    });
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  title: Text(
+                    "Remove from cart",
+                    style: StyleTextApp.font16ColorblacFontWeightBold,
+                  ),
+                  content: Text(
+                    "Are you sure you want to remove this item from your cart?",
+                    style: StyleTextApp.font14Colorblac,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(dialogContext),
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<CartCubit>().deleteCart(
+                              product[index].forProductId.toString(),
+                            );
+                        Navigator.pop(dialogContext);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                      ),
+                      child: const Text(
+                        "Remove",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }

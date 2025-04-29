@@ -1,4 +1,3 @@
-import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,20 +7,20 @@ AppBar appBar({
 }) {
   return AppBar(
     automaticallyImplyLeading: leding,
+
     // leading: const Icon(Icons.arrow_back_ios_new_rounded),
-    title: Text(
-      "Code Shop",
-      style: StyleTextApp.font14ColorblacFontWeightBold.copyWith(
-        fontWeight: FontWeight.bold,
-        fontSize: 20.sp,
+    // title: Text(
+    //   "Code Shop",
+    //   style: StyleTextApp.font14ColorblacFontWeightBold.copyWith(
+    //     fontWeight: FontWeight.bold,
+    //     fontSize: 20.sp,
+    //   ),
+    // ),
+    title: Image(
+      width: 40.w,
+      image: const AssetImage(
+        'assets/images/code_shop_logo.jpeg',
       ),
     ),
-    actions: [
-      Image(
-          width: 100.w,
-          image: const AssetImage(
-            'assets/images/code_shop_logo.jpeg',
-          ))
-    ],
   );
 }

@@ -18,6 +18,8 @@ class GetCartError extends CartState {
   final String error;
 
   const GetCartError({required this.error});
+  @override
+  List<Object> get props => [error];
 }
 
 //! Delete Cart
@@ -29,6 +31,8 @@ class DeleteCartError extends CartState {
   final String error;
 
   const DeleteCartError({required this.error});
+  @override
+  List<Object> get props => [error];
 }
 
 //! add and delete counter
@@ -44,4 +48,9 @@ class PostProductToDataBaseLoading extends CartState {}
 class PostProductToDataBaseError extends CartState {
   final String error;
   const PostProductToDataBaseError({required this.error});
+  @override
+  List<Object> get props => [error];
 }
+
+//! Update Quantity
+class QuantityUpdated extends CartState {}

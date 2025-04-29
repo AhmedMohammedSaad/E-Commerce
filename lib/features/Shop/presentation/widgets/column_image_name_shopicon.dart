@@ -14,6 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:advanced_app/core/api/dio_consumer.dart';
+import 'package:advanced_app/features/Cart/presentation/cubit/cart_cubit.dart';
+import 'package:advanced_app/features/DetailsScreen/presentation/cubit/detailsscreen_cubit.dart';
 
 class ColumnImageNameShopIcon extends StatelessWidget {
   const ColumnImageNameShopIcon({
@@ -65,10 +68,24 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (ctx) => ProductDetailsScreen(
-                            index: index,
-                            products: getProductData[index],
-                            productID: getProductData[index],
+                          builder: (ctx) => MultiBlocProvider(
+                            providers: [
+                              BlocProvider(
+                                create: (context) => DetailsscreenCubit(
+                                    apiConsumer: DioConsumer()),
+                              ),
+                              BlocProvider.value(
+                                value: context.read<ShopCubit>(),
+                              ),
+                              BlocProvider.value(
+                                value: context.read<CartCubit>(),
+                              ),
+                            ],
+                            child: ProductDetailsScreen(
+                              index: index,
+                              products: getProductData[index],
+                              productID: getProductData[index],
+                            ),
                           ),
                         ),
                       );

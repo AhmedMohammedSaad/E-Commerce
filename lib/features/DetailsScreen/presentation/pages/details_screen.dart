@@ -36,11 +36,35 @@ class ProductDetailsScreen extends StatefulWidget {
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen>
+    with SingleTickerProviderStateMixin {
   final Rating rating = Rating();
+  final ScrollController _scrollController = ScrollController();
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
 
-  //! Constant padding used across the widgets
-  static const EdgeInsets padding = EdgeInsets.all(10.0);
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 400),
+    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -56,290 +80,665 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ],
       child: Scaffold(
-        //! App bar with product category name, back button, and share button
+        backgroundColor: Colors.grey[50],
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
           leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_new_rounded)),
-          title: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            child: Text(
-              overflow: TextOverflow.ellipsis,
-              widget.products.productName.toString(),
-              style: StyleTextApp.font16ColorblacFontWeightBold,
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: AppColors.primaryColor,
             ),
-          ),
+          ).animate().slideX(
+                begin: -1,
+                end: 0,
+                duration: 400.ms,
+                curve: Curves.easeOutQuad,
+              ),
+          title: Text(
+            widget.products.productName.toString(),
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+            overflow: TextOverflow.ellipsis,
+          )
+              .animate()
+              .fadeIn(
+                duration: 400.ms,
+                curve: Curves.easeOut,
+              )
+              .slideX(
+                begin: 0.2,
+                end: 0,
+                duration: 400.ms,
+              ),
           actions: [
-            Image(
-                width: 140.w,
-                image: const AssetImage(
-                  'assets/images/logo png.png',
-                ))
+            Padding(
+              padding: EdgeInsets.only(right: 8.w),
+              child: Image(
+                width: 40.w,
+                image: const AssetImage("assets/images/code_shop_logo.jpeg"),
+              ),
+            ).animate().fadeIn(
+                  delay: 100.ms,
+                  duration: 400.ms,
+                ),
           ],
         ),
-        body: Stack(children: [
-          //! ListView containing product details and images
-          ListView(
-            children: [
-              //! Widget to display product images
-              SizedBox(
-                height: 300.h,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.primaryColor),
-                          borderRadius: BorderRadius.circular(10)),
-                      width: MediaQuery.of(context).size.width / 1,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: CachedNetworkImage(
-                          imageUrl: widget.products.imageUrl.toString(),
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) => SizedBox(
-                            height: 185.h,
-                            width: 200.w,
-                            child: Card(
-                              child: LoadingAnimationWidget.dotsTriangle(
-                                size: 90,
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      )),
-                ),
-              )
-                  .animate()
-                  .fadeIn() // uses `Animate.defaultDuration`
-                  .scale() // inherits duration from fadeIn
-                  .move(delay: 20.ms, duration: 600.ms),
-              SizedBox(height: 20),
-              //! Product name section
-              Padding(
-                padding: padding,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Stack(
+          children: [
+            // Main content with hero effect
+            Hero(
+              tag: 'product_${widget.productID.productId}',
+              flightShuttleBuilder: (_, animation, __, ___, ____) {
+                return Container(
+                  color: Colors.transparent,
+                );
+              },
+              child: Material(
+                color: Colors.transparent,
+                child: ListView(
+                  controller: _scrollController,
+                  padding: EdgeInsets.only(bottom: 120.h),
                   children: [
-                    //! name product
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      child: Text(
-                        overflow: TextOverflow.ellipsis,
-                        widget.products.productName.toString(),
-                        style: StyleTextApp.font16ColorblacFontWeightBold,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(
-                          8.0), //! Padding around the favorite button
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              spreadRadius: 2,
-                              color: Colors.grey,
-                              blurRadius: 10,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        //! IconButton for marking product as favorite
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: BlocBuilder<ShopCubit, ShopState>(
-                                builder: (context, state) {
-                              return LoveIconButton(
-                                index: widget.index,
-                                getProductData: widget.productID,
-                                isFavorte: context
-                                    .read<ShopCubit>()
-                                    .chaickIsFavorte(widget.productID),
-                              );
-                            }),
+                    // Product image with parallax effect
+                    Container(
+                      height: 373.h,
+                      width: double.infinity,
+                      margin: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 1,
+                            blurRadius: 15,
+                            offset: Offset(0, 5),
                           ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.r),
+                        child: AnimatedBuilder(
+                          animation: _scrollController,
+                          builder: (context, child) {
+                            final double parallaxOffset =
+                                _scrollController.hasClients
+                                    ? (_scrollController.offset / 500)
+                                        .clamp(-1.0, 1.0)
+                                    : 0.0;
+
+                            return CachedNetworkImage(
+                              imageUrl: widget.products.imageUrl.toString(),
+                              fit: BoxFit.cover,
+                              alignment: Alignment(0, parallaxOffset),
+                              placeholder: (context, url) => Center(
+                                child: LoadingAnimationWidget.dotsTriangle(
+                                  size: 50,
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Icon(
+                                Icons.error,
+                                size: 40.sp,
+                                color: Colors.red[300],
+                              ),
+                            );
+                          },
                         ),
                       ),
                     )
-                  ],
-                ),
-              ),
-              //!  price section
-              Padding(
-                padding: padding,
-                child: Row(
-                  spacing: 20.w,
-                  children: [
-                    //! price
-                    Text(
-                      "${widget.products.price.toString()} LE",
-                      style: StyleTextApp.font14ColorblacFontWeightBold,
-                    ),
-
-                    //! old price
-                    Text(
-                      "${widget.products.oldPrice.toString()} LE",
-                      style:
-                          StyleTextApp.font14ColorgrayTextDecorationlineThrough,
-                    ),
-                  ],
-                ),
-              ),
-              //! Product detalse section
-              Padding(
-                padding: padding,
-                child: Text(widget.products.discription.toString(),
-                    style: StyleTextApp.font14Colorblac),
-              ),
-              //! Product rating section with animations
-              Padding(
-                padding: padding,
-                child: Row(
-                  children: [
-                    RatingStar(
-                      rating: double.parse(widget.products.rating != null &&
-                              widget.products.rating!.isNotEmpty
-                          ? widget.products.rating![0].ratingNum.toString()
-                          : "0"),
-                    ),
-                    // widget.products.rating?[widget.index].ratingNum
-                    //         ?.toDouble() ??
-
-                    Text("(${widget.products.rating != null && widget.products.rating!.isNotEmpty ? widget.products.rating!.length : 0})")
                         .animate()
-                        .fadeIn()
-                        .scale()
-                        .move(
-                          delay: 20.ms,
-                          duration: 600.ms,
+                        .fadeIn(duration: 600.ms, curve: Curves.easeOut)
+                        .slideY(
+                            begin: 0.2,
+                            end: 0,
+                            duration: 700.ms,
+                            curve: Curves.easeOutQuint)
+                        .scale(
+                          begin: Offset(0.9, 0.9),
+                          end: Offset(1.0, 1.0),
+                          duration: 700.ms,
+                          curve: Curves.easeOut,
                         ),
+
+                    // Product info card with staggered animations for children
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16.w),
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Product name and favorite button
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Text(
+                                  widget.products.productName.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                    height: 1.3,
+                                  ),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 200.ms, duration: 400.ms)
+                                    .slideX(
+                                        begin: -0.2,
+                                        end: 0,
+                                        delay: 200.ms,
+                                        duration: 400.ms,
+                                        curve: Curves.easeOutQuad),
+                              ),
+                              BlocBuilder<ShopCubit, ShopState>(
+                                builder: (context, state) {
+                                  return Container(
+                                    height: 46.h,
+                                    width: 46.h,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.3),
+                                          spreadRadius: 1,
+                                          blurRadius: 8,
+                                          offset: Offset(0, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: LoveIconButton(
+                                      index: widget.index,
+                                      getProductData: widget.productID,
+                                      isFavorte: context
+                                          .read<ShopCubit>()
+                                          .chaickIsFavorte(widget.productID),
+                                    ),
+                                  )
+                                      .animate()
+                                      .fadeIn(delay: 300.ms, duration: 400.ms)
+                                      .scale(
+                                          delay: 300.ms,
+                                          duration: 400.ms,
+                                          curve: Curves.elasticOut);
+                                },
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: 16.h),
+
+                          // Rating section with sequential fade ins
+                          Row(
+                            children: [
+                              RatingStar(
+                                rating: double.parse(
+                                    widget.products.rating != null &&
+                                            widget.products.rating!.isNotEmpty
+                                        ? widget.products.rating![0].ratingNum
+                                            .toString()
+                                        : "0"),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 400.ms, duration: 400.ms)
+                                  .slideX(
+                                      begin: -0.2,
+                                      end: 0,
+                                      delay: 400.ms,
+                                      duration: 400.ms),
+                              SizedBox(width: 6.w),
+                              Text(
+                                "(${widget.products.rating != null && widget.products.rating!.isNotEmpty ? widget.products.rating!.length : 0} reviews)",
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Colors.grey[600],
+                                ),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 500.ms, duration: 400.ms)
+                                  .slideX(
+                                      begin: -0.2,
+                                      end: 0,
+                                      delay: 500.ms,
+                                      duration: 400.ms),
+                            ],
+                          ),
+
+                          SizedBox(height: 16.h),
+
+                          // Price section with shimmer effect
+                          Row(
+                            children: [
+                              Text(
+                                "${widget.products.price.toString()} LE",
+                                style: TextStyle(
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primaryColor,
+                                ),
+                              ).animate().custom(
+                                    duration: 600.ms,
+                                    delay: 600.ms,
+                                    begin: 0,
+                                    end: 1,
+                                    builder: (context, value, child) {
+                                      return ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) {
+                                          return LinearGradient(
+                                            colors: [
+                                              AppColors.primaryColor,
+                                              Colors.purple.shade300,
+                                              AppColors.primaryColor,
+                                            ],
+                                            stops: [0, value, 1],
+                                          ).createShader(
+                                            Rect.fromLTWH(
+                                              -bounds.width +
+                                                  (bounds.width * 2 * value),
+                                              0,
+                                              bounds.width * 2,
+                                              bounds.height,
+                                            ),
+                                          );
+                                        },
+                                        child: child,
+                                      );
+                                    },
+                                  ),
+                              SizedBox(width: 12.w),
+                              if (widget.products.oldPrice != null)
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8.w, vertical: 4.h),
+                                  decoration: BoxDecoration(
+                                    color: Colors.red[50],
+                                    borderRadius: BorderRadius.circular(8.r),
+                                  ),
+                                  child: Text(
+                                    "${widget.products.oldPrice.toString()} LE",
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.red[400],
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
+                                  ),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 700.ms, duration: 400.ms)
+                                    .scale(
+                                        begin: Offset(0.8, 0.8),
+                                        end: Offset(1.0, 1.0),
+                                        delay: 700.ms,
+                                        duration: 400.ms),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ).animate().fadeIn(delay: 200.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 200.ms, duration: 500.ms),
+
+                    // Description section with typing text effect
+                    Container(
+                      margin: EdgeInsets.all(16.w),
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Description",
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          )
+                              .animate()
+                              .fadeIn(delay: 800.ms, duration: 400.ms)
+                              .slideX(
+                                  begin: -0.2,
+                                  end: 0,
+                                  delay: 800.ms,
+                                  duration: 400.ms),
+                          SizedBox(height: 12.h),
+                          Text(
+                            widget.products.discription.toString(),
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              color: Colors.black54,
+                              height: 1.5,
+                            ),
+                          ).animate().custom(
+                                delay: 900.ms,
+                                duration: 1200.ms,
+                                builder: (context, value, child) {
+                                  return Text(
+                                    widget.products.discription
+                                        .toString()
+                                        .substring(
+                                            0,
+                                            (widget.products.discription
+                                                        .toString()
+                                                        .length *
+                                                    value)
+                                                .toInt()),
+                                    style: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: Colors.black54,
+                                      height: 1.5,
+                                    ),
+                                  );
+                                },
+                              ),
+                        ],
+                      ),
+                    ).animate().fadeIn(delay: 800.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 800.ms, duration: 500.ms),
+
+                    // Reviews section with flip card animations
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16.w),
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Reviews",
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          )
+                              .animate()
+                              .fadeIn(delay: 1000.ms, duration: 400.ms)
+                              .slideX(
+                                  begin: -0.2,
+                                  end: 0,
+                                  delay: 1000.ms,
+                                  duration: 400.ms),
+                          SizedBox(height: 16.h),
+                          BlocConsumer<DetailsscreenCubit, DetailsscreenState>(
+                            listener: (context, state) {},
+                            builder: (context, state) {
+                              List<Comments> comments = context
+                                  .read<DetailsscreenCubit>()
+                                  .commentsList;
+
+                              if (state is CommentLoading) {
+                                return Center(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 20.h),
+                                    child: LoadingAnimationWidget.dotsTriangle(
+                                      size: 40,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                );
+                              } else if (state is CommentSuccses) {
+                                if (comments.isEmpty) {
+                                  return Center(
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.chat_bubble_outline,
+                                            size: 40.sp,
+                                            color: Colors.grey[400],
+                                          ),
+                                          SizedBox(height: 8.h),
+                                          Text(
+                                            "No Reviews Yet",
+                                            style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                          .animate()
+                                          .fadeIn(
+                                              delay: 1200.ms, duration: 600.ms)
+                                          .scale(
+                                              begin: Offset(0.8, 0.8),
+                                              end: Offset(1.0, 1.0),
+                                              delay: 1200.ms,
+                                              duration: 600.ms),
+                                    ),
+                                  );
+                                }
+
+                                return ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: comments.length,
+                                  separatorBuilder: (context, index) => Divider(
+                                    color: Colors.grey[200],
+                                    height: 20.h,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    final comment = comments[index];
+
+                                    if (comment.comments != null &&
+                                        comment.comments!.isNotEmpty) {
+                                      final innerComment = comment.comments![0];
+                                      final user = innerComment.users?.name ??
+                                          "Unknown User";
+                                      final comm =
+                                          innerComment.comment ?? "No comment";
+
+                                      return Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 8.h),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  radius: 20.r,
+                                                  backgroundColor: AppColors
+                                                      .primaryColor
+                                                      .withOpacity(0.2),
+                                                  child: Text(
+                                                    user.isNotEmpty
+                                                        ? user[0].toUpperCase()
+                                                        : "U",
+                                                    style: TextStyle(
+                                                      color: AppColors
+                                                          .primaryColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                )
+                                                    .animate(
+                                                      delay: 1100.ms +
+                                                          (index * 200).ms,
+                                                      onPlay: (controller) =>
+                                                          controller.repeat(
+                                                              reverse: true),
+                                                    )
+                                                    .shimmer(
+                                                        duration: 1800.ms,
+                                                        delay: 1100.ms +
+                                                            (index * 100).ms),
+                                                SizedBox(width: 12.w),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      user,
+                                                      style: TextStyle(
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black87,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ).animate().fadeIn(
+                                                  delay: 1100.ms +
+                                                      (index * 100).ms,
+                                                  duration: 500.ms,
+                                                ),
+                                            SizedBox(height: 8.h),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 52.w),
+                                              child: Text(
+                                                comm,
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.black54,
+                                                  height: 1.4,
+                                                ),
+                                              ),
+                                            ).animate().fadeIn(
+                                                  delay: 1200.ms +
+                                                      (index * 100).ms,
+                                                  duration: 500.ms,
+                                                ),
+                                          ],
+                                        ),
+                                      ).animate().flipV(
+                                            delay: 1100.ms + (index * 100).ms,
+                                            duration: 600.ms,
+                                            begin: -0.1,
+                                            end: 0,
+                                            curve: Curves.easeOutBack,
+                                          );
+                                    } else {
+                                      return SizedBox.shrink();
+                                    }
+                                  },
+                                );
+                              }
+
+                              return Center(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                                  child: Text(
+                                    "Failed to load reviews",
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 1100.ms, duration: 400.ms);
+                            },
+                          ),
+                        ],
+                      ),
+                    ).animate().fadeIn(delay: 1000.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 1000.ms, duration: 500.ms),
+
+                    SizedBox(height: 24.h),
                   ],
                 ),
               ),
-              //! Product description section with animations
-              // Padding(
-              //   padding: padding,
-              //   child: Text(
-              //     SaleModel.salleSliderList[widget.index].title,
-              //     textAlign: TextAlign.start,
-              //   ).animate().fadeIn().scale().move(delay: 20.ms, duration: 600.ms),
-              // ),
+            ),
 
-              //! Divider widget for comments
-              DivideWidgetComments(),
-              //! product Comments
-              BlocConsumer<DetailsscreenCubit, DetailsscreenState>(
-                listener: (BuildContext context, state) {},
-                builder: (BuildContext context, state) {
-                  List<Comments> comments =
-                      context.read<DetailsscreenCubit>().commentsList;
-                  if (state is CommentLoading) {
-                    return Center(
-                      child: LoadingAnimationWidget.dotsTriangle(
-                        size: 80,
-                        color: AppColors.primaryColor,
-                      ),
+            // Bottom "Add to Cart" bar with hover animation and pulse effect
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTapDown: (_) => _animationController.forward(),
+                onTapUp: (_) => _animationController.reverse(),
+                onTapCancel: () => _animationController.reverse(),
+                child: AnimatedBuilder(
+                  animation: _scaleAnimation,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _scaleAnimation.value,
+                      child: child,
                     );
-                  } else if (state is CommentSuccses) {
-                    if (comments.isEmpty) {
-                      return Center(child: Text("No Comments Available"));
-                    }
+                  },
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 10,
+                          offset: Offset(0, -5),
+                        ),
+                      ],
+                    ),
+                    child: BlocBuilder<ShopCubit, ShopState>(
+                      builder: (context, state) {
+                        return BlocBuilder<CartCubit, CartState>(
+                          builder: (context, state) {
+                            if (state is GetCartLoding) {
+                              return Center(
+                                child: LoadingAnimationWidget.dotsTriangle(
+                                  size: 40,
+                                  color: AppColors.primaryColor,
+                                ),
+                              );
+                            }
 
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: comments.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final comment = comments[index];
-                        // طباعة التعليق
-
-                        if (comment.comments != null &&
-                            comment.comments!.isNotEmpty) {
-                          // استخدام الفهرس 0 للوصول إلى أول تعليق (أو أي index آخر إذا كنت تريد عنصرًا محددًا)
-                          final innerComment = comment.comments![0];
-                          final user = innerComment.users?.name ??
-                              "Unknown User"; // قيمة افتراضية
-                          final comm = innerComment.comment ??
-                              "No comment"; // قيمة افتراضية
-
-                          return ListTile(
-                            title: Text(
-                              user.toString(),
-                              style: StyleTextApp.font14ColorblacFontWeightBold,
-                            ),
-                            subtitle: Text(
-                              comm.toString(),
-                              style: StyleTextApp.font14Colorblac,
-                            ),
-                          );
-                        } else {
-                          return ListTile(
-                            title: Text(
-                              "Name",
-                              style: StyleTextApp.font14ColorblacFontWeightBold,
-                            ),
-                            subtitle: Text(
-                              "No comment available",
-                              style: StyleTextApp.font14Colorblac,
-                            ),
-                          );
-                        }
-                      },
-                    );
-                  }
-
-                  return Center(child: Text("No Internet"));
-                },
-              ),
-              SizedBox(height: 200),
-            ].animate().fadeIn().scale().move(
-                  delay: 20.ms,
-                  duration: 600.ms,
-                ),
-          ).animate().fadeIn().scale().move(
-                delay: 20.ms,
-                duration: 600.ms,
-              ),
-          //! Positioned widget for the bottom section containing the "Add to Cart" button
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 112.h,
-              color: Colors.white,
-              child: BlocBuilder<ShopCubit, ShopState>(
-                builder: (context, state) {
-                  return BlocBuilder<CartCubit, CartState>(
-                    builder: (context, state) {
-                      return state is GetCartLoding
-                          ? Center(
-                              child: LoadingAnimationWidget.dotsTriangle(
-                                size: 60,
-                                color: AppColors.primaryColor,
-                              ),
-                            )
-                          : BottonReviews(
+                            return BottonReviews(
                               onPressedToCart: () {
                                 final carts = context.read<CartCubit>().carts;
-
-                                // التحقق من وجود المنتج في السلة
                                 final isProductInCart = carts.any(
                                   (cart) =>
                                       cart.products!.productId ==
@@ -347,39 +746,48 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 );
 
                                 if (isProductInCart) {
-                                  // إذا كان المنتج موجودًا في السلة، عرض رسالة
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
-                                          "تمت الإضافة إلى السلة مسبقًا",
+                                          "Product already in cart",
                                           style: StyleTextApp
                                               .font14ColorWhiteFontWeightBold,
                                         ),
                                         duration: const Duration(seconds: 2),
+                                        behavior: SnackBarBehavior.floating,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
+                                        ),
+                                        margin: EdgeInsets.all(16),
                                       ),
                                     );
                                   });
                                 } else {
-                                  // إذا لم يكن المنتج موجودًا في السلة، إضافته
                                   context.read<ShopCubit>().addToCart(
                                         widget.productID.productId.toString(),
                                       );
 
-                                  // عرض رسالة نجاح
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
-                                          "تمت الإضافة إلى السلة بنجاح",
+                                          "Added to cart successfully",
                                           style: StyleTextApp
                                               .font14ColorWhiteFontWeightBold,
                                         ),
                                         duration: const Duration(seconds: 2),
+                                        behavior: SnackBarBehavior.floating,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
+                                        ),
+                                        margin: EdgeInsets.all(16),
                                       ),
                                     );
                                   });
@@ -387,13 +795,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 context.read<CartCubit>().getCart();
                               },
                             );
-                    },
-                  );
-                },
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ]),
+            ).animate().fadeIn(delay: 1200.ms, duration: 500.ms).moveY(
+                begin: 50,
+                end: 0,
+                delay: 1200.ms,
+                duration: 800.ms,
+                curve: Curves.elasticOut),
+          ],
+        ),
       ),
     );
   }

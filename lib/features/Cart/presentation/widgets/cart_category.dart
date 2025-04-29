@@ -32,35 +32,26 @@ class _CardCategoryState extends State<CardCategory> {
   @override
   void initState() {
     PaymentData.initialize(
-      apiKey:
-          apiKeyForBayMob, // Required: Found under Dashboard -> Settings -> Account Info -> API Key
-      iframeId: iframeId, // Required: Found under Developers -> iframes
-      integrationCardId:
-          integrationCardId, // Required: Found under Developers -> Payment Integrations -> Online Card ID
-      integrationMobileWalletId:
-          integrationMobileWalletId, // Required: Found under Developers -> Payment Integrations -> Mobile Wallet ID
-
-      //  Optional User Data
+      apiKey: apiKeyForBayMob,
+      iframeId: iframeId,
+      integrationCardId: integrationCardId,
+      integrationMobileWalletId: integrationMobileWalletId,
       userData: UserData(
-        email: userData?.email ?? "aaaaa", // Optional: Defaults to 'NA'
-        //   phone: "User Phone", // Optional: Defaults to 'NA'
-        name: userData?.name ?? "aaaaa", // Optional: Defaults to 'NA'
-        //   lastName: "User Last Name", // Optional: Defaults to 'NA'
+        email: userData?.email ?? "aaaaa",
+        name: userData?.name ?? "aaaaa",
       ),
-
-      // Optional Style Customizations
       style: Style(
-        primaryColor: AppColors.primaryColor, // Default: Colors.blue
-        scaffoldColor: AppColors.white, // Default: Colors.white
-        appBarBackgroundColor: AppColors.primaryColor, // Default: Colors.blue
-        appBarForegroundColor: AppColors.white, // Default: Colors.white
-        textStyle: const TextStyle(), // Default: TextStyle()
+        primaryColor: AppColors.primaryColor,
+        scaffoldColor: AppColors.white,
+        appBarBackgroundColor: AppColors.primaryColor,
+        appBarForegroundColor: AppColors.white,
+        textStyle: const TextStyle(),
         buttonStyle: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
           foregroundColor: AppColors.white,
-        ), // Default: ElevatedButton.styleFrom()
-        circleProgressColor: AppColors.primaryColor, // Default: Colors.blue
-        unselectedColor: AppColors.primaryColor, // Default: Colors.grey
+        ),
+        circleProgressColor: AppColors.primaryColor,
+        unselectedColor: AppColors.primaryColor,
       ),
     );
     super.initState();
@@ -69,90 +60,93 @@ class _CardCategoryState extends State<CardCategory> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-      height: 150.h,
+      margin: EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
-        boxShadow: const [
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
           BoxShadow(
-            color: Colors.black26, // لون أسود مع شفافية
-            offset: Offset(1, 1), // اتجاه ومسافة الظل
-            blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
-            spreadRadius: 1, // عرض الظل
-            blurRadius: 7, // نعومة الظل
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
         ],
-        border: Border.all(color: AppColors.primaryColor),
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(15.r),
       ),
-      //!
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //! this sizdBox is for size image and style
-          SizedBox(
-            height: 150.h,
-            width: 150.w,
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(14.r),
-                bottomLeft: Radius.circular(14.r),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.r),
+        child: Row(
+          children: [
+            Container(
+              width: 110.w,
+              height: 120.h,
+              decoration: const BoxDecoration(
+                color: Color(0xFFF8F8F8),
               ),
-              //! image
               child: CachedNetworkImage(
                 imageUrl: widget.cartModel.products!.imageUrl.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
-                    border: const Border.symmetric(
-                        vertical: BorderSide(color: AppColors.primaryColor)),
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                placeholder: (context, url) => SizedBox(
-                  height: 185.h,
-                  width: 200.w,
-                  child: Card(
-                    child: LoadingAnimationWidget.dotsTriangle(
-                      size: 90,
-                      color: AppColors.primaryColor,
-                    ),
+                placeholder: (context, url) => Center(
+                  child: LoadingAnimationWidget.dotsTriangle(
+                    size: 40,
+                    color: AppColors.primaryColor,
                   ),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 10.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 13.h,
-              children: [
-                //! prodoct name
-                SizedBox(
-                  width: 160.w,
-                  child: Text(
-                    overflow: TextOverflow.ellipsis,
-                    widget.cartModel.products!.productName.toString(),
-                    style: StyleTextApp.font14ColorblacFontWeightBold,
-                  ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(12.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.cartModel.products!.productName.toString(),
+                            style: StyleTextApp.font14ColorblacFontWeightBold,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12.h),
+                    // CunterAddandRemove(
+                    //   price: widget.cartModel,
+                    // ),
+                    Row(
+                      children: [
+                        SizedBox(width: 12.w),
+                        Text(
+                          "${int.parse(widget.cartModel.products!.price.toString())} LE",
+                          style: StyleTextApp.font14ColorblacFontWeightBold
+                              .copyWith(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const Spacer(),
+                        ChackoutAndDelete(
+                          product: widget.carts,
+                          index: widget.index,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                //! counter add and remove
-                CunterAddandRemove(
-                  price: widget.cartModel,
-                ),
-                //! checkout and delete Buttons
-                ChackoutAndDelete(
-                  product: widget.carts,
-                  index: widget.index,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pay_with_paymob/pay_with_paymob.dart';
 import 'package:advanced_app/features/Cart/presentation/pages/detalles_chackout.dart';
-import 'package:advanced_app/core/widgets/botton.dart';
 
 class BottonCheckout extends StatelessWidget {
   const BottonCheckout({
@@ -21,23 +20,45 @@ class BottonCheckout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottonAPP(
-      onTap: () {
-        showDialog(
+    return ElevatedButton(
+      onPressed: () {
+        showModalBottomSheet(
           context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
           builder: (context) {
             return Container(
-              color: AppColors.white,
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(24.r),
+                  topRight: Radius.circular(24.r),
+                ),
+              ),
+              padding: EdgeInsets.all(20.sp),
               child: Column(
-                spacing: 20.h,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    "طرق الدفع",
-                    style: StyleTextApp.font24ColorblacColorFontWeightBolde,
+                  Container(
+                    width: 40.w,
+                    height: 4.h,
+                    margin: EdgeInsets.only(bottom: 20.h),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
                   ),
-                  BottonAPP(
+                  Text(
+                    "Payment Methods",
+                    style: StyleTextApp.font16ColorblacFontWeightBold,
+                  ),
+                  SizedBox(height: 24.h),
+                  _buildPaymentOption(
+                    context: context,
+                    icon: Icons.local_shipping_outlined,
+                    title: "Cash on Delivery",
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -48,47 +69,95 @@ class BottonCheckout extends StatelessWidget {
                         ),
                       );
                     },
-                    nameBotton: "عند التوصيل ",
-                    colorBotton: AppColors.primaryColor,
-                    colorText: AppColors.white,
-                    width: 250.w,
                   ),
-                  BottonAPP(
+                  SizedBox(height: 12.h),
+                  _buildPaymentOption(
+                    context: context,
+                    icon: Icons.credit_card,
+                    title: "Credit/Debit Card",
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => PaymentView(
                             onPaymentSuccess: () {
-                              // Handle payment success
-                              log("Succses");
+                              log("Success");
                             },
                             onPaymentError: () {
-                              // Handle payment failure
                               log("Error");
                             },
-                            price: totlePrice
-                                .toDouble(), // Required: Total price (e.g., 100 for 100 EGP)
+                            price: totlePrice.toDouble(),
                           ),
                         ),
                       );
                     },
-                    nameBotton: "Visa",
-                    colorBotton: AppColors.primaryColor,
-                    colorText: AppColors.white,
-                    width: 250.w,
                   ),
-                  //! viesa
+                  SizedBox(height: 24.h),
                 ],
               ),
             );
           },
         );
       },
-      nameBotton: 'Checkout',
-      colorBotton: AppColors.primaryColor,
-      colorText: AppColors.white,
-      width: double.infinity,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: AppColors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 15.h),
+        elevation: 0,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Proceed to Checkout',
+            style: StyleTextApp.font14ColorWhiteFontWeightBold,
+          ),
+          SizedBox(width: 8.w),
+          Icon(Icons.arrow_forward_rounded, size: 18.sp),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPaymentOption({
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade200),
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: AppColors.primaryColor,
+              size: 24.sp,
+            ),
+            SizedBox(width: 16.w),
+            Text(
+              title,
+              style: StyleTextApp.font14ColorblacFontWeightBold,
+            ),
+            Spacer(),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+              size: 16.sp,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

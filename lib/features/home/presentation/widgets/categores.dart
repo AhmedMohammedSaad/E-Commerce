@@ -13,7 +13,7 @@ class ListCategorys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110.h,
+      height: 120.h,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         primary: true,
@@ -41,7 +41,7 @@ class ListCategorys extends StatelessWidget {
                 horizontal: 3.w,
               ),
               height: 61.h,
-              width: 100.w,
+              width: 120.w,
               decoration: BoxDecoration(
                 color: AppColors.white,
                 border: Border.all(color: AppColors.primaryColor),
@@ -60,11 +60,10 @@ class ListCategorys extends StatelessWidget {
                 spacing: 5.h,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundImage: AssetImage(
-                      CategoryModel.categrys[index].urlImage,
-                    ),
+                  Image.asset(
+                    CategoryModel.categrys[index].urlImage,
+                    width: 70.w,
+                    height: 70.h,
                   ),
                   Text(
                     CategoryModel.categrys[index].nameCategory,

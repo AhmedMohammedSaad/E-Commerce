@@ -1,7 +1,5 @@
 import 'package:advanced_app/core/color/colors.dart';
-import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/search.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,102 +13,117 @@ class SearchFormIconButton extends StatefulWidget {
 }
 
 class _SearchFormIconButtonState extends State<SearchFormIconButton> {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _handleSearch(BuildContext context) {
+    final query = _searchController.text.trim();
+    if (query.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Search(quary: query),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 12.h),
-      //! this row for search  and icon search
-      child: Row(
-        children: [
-          Expanded(
-            //!this container for add style to form fieled
-            child: Container(
-              alignment: Alignment.centerLeft,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22),
-                    bottomLeft: Radius.circular(22)),
-                color: AppColors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(9, 0, 0, 0),
-                    spreadRadius: 2,
-                    offset: Offset(3, 2),
-                    blurRadius: 15,
-                  ),
-                ],
-              ),
-              //! this form fieald Search
-              child: TextFormField(
-                controller: controller,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        height: 50.h,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.search,
+              color: Colors.grey[400],
+            ),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: TextField(
+                controller: _searchController,
                 decoration: InputDecoration(
-                  suffixIconColor: AppColors.primaryColor,
-                  hintText: 'Search in Products',
-                  hintStyle: StyleTextApp.font14Colorgrayofwite,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.primaryColor,
-                    ),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(22),
-                        bottomLeft: Radius.circular(22)),
+                  hintText: 'Search products...',
+                  hintStyle: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 14.sp,
                   ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 15.h),
+                  suffixIcon: _searchController.text.isNotEmpty
+                      ? IconButton(
+                          icon: Icon(Icons.clear, color: Colors.grey[400]),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() {});
+                          },
+                        )
+                      : null,
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'This Field is required';
-                  } else {
-                    return null;
-                  }
+                onSubmitted: (_) => _handleSearch(context),
+                onChanged: (value) {
+                  setState(() {});
                 },
               ),
             ),
-          ),
-          SizedBox(
-            width: 5.w,
-          ),
-          //! this Icons is a Button search
-          Container(
-            height: 56,
-            decoration: const BoxDecoration(
-              color: AppColors.primaryColor,
-              // shape: BoxShape.circle,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(22),
-                  bottomRight: Radius.circular(22)),
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(40, 0, 0, 0),
-                  spreadRadius: 2,
-                  offset: Offset(3, 2),
-                  blurRadius: 15,
+            if (_searchController.text.isEmpty)
+              GestureDetector(
+                onTap: () => _handleSearch(context),
+                child: Container(
+                  height: 34.h,
+                  width: 34.w,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 20,
+                  ),
                 ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (ctx) => Search(quary: controller.text)));
-              },
-              icon: const Icon(
-                Icons.search_sharp,
-                color: AppColors.white,
-                size: 22,
               ),
-            ),
-          ),
-        ],
+            if (_searchController.text.isNotEmpty) ...[
+              SizedBox(width: 5.w),
+              GestureDetector(
+                onTap: () => _handleSearch(context),
+                child: Container(
+                  height: 34.h,
+                  width: 34.w,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    controller.dispose;
-    super.dispose();
   }
 }

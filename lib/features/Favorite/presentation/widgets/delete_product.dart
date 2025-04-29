@@ -41,7 +41,7 @@ class _ButtonDeleteState extends State<ButtonDelete> {
             blurRadius: 10,
           ),
         ],
-        color: const Color.fromARGB(170, 255, 255, 255),
+        color: const Color.fromARGB(163, 255, 255, 255),
         borderRadius: BorderRadius.circular(14.r),
       ),
       //!delete button
@@ -51,7 +51,6 @@ class _ButtonDeleteState extends State<ButtonDelete> {
             onPressed: () {
               context.read<FavoriteCubit>().deleteFavorite(
                   widget.favoriteId.products!.productId.toString());
-
               //! delete for cash
 
               _favoritesService.deleteFavorite(
@@ -61,8 +60,9 @@ class _ButtonDeleteState extends State<ButtonDelete> {
               _favoriteManager.toggleFavorite();
             },
             icon: const Icon(
-              Icons.delete_forever,
+              Icons.heart_broken_sharp,
               color: AppColors.red,
+              size: 30,
             ));
       }),
     );

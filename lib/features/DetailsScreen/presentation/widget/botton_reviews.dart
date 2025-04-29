@@ -14,38 +14,25 @@ class BottonReviews extends StatelessWidget {
   final Function() onPressedToCart;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-                width: MediaQuery.of(context).size.width / 1,
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2), // لون الظل
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: BottonAPP(
-                  onTap: onPressedToCart,
-                  nameBotton: 'ADD TO CART',
-                  colorBotton: AppColors.primaryColor,
-                  colorText: AppColors.white,
-                  width: MediaQuery.of(context).size.width / 1,
-                ))
-            .animate()
-            .fadeIn() // uses `Animate.defaultDuration`
-            .scale() // inherits duration from fadeIn
-            .move(
-              delay: 20.ms,
-              duration: 600.ms,
-            ),
-      ],
-    );
+    return Container(
+      width: double.infinity,
+      child: BottonAPP(
+        onTap: onPressedToCart,
+        nameBotton: 'ADD TO CART',
+        colorBotton: AppColors.primaryColor,
+        colorText: AppColors.white,
+        width: MediaQuery.of(context).size.width - 40.w,
+      ),
+    )
+        .animate()
+        .fadeIn()
+        .scale(
+          begin: Offset(0.95, 0.95),
+          end: Offset(1.0, 1.0),
+        )
+        .move(
+          delay: 20.ms,
+          duration: 600.ms,
+        );
   }
 }

@@ -14,6 +14,9 @@ class CartCubit extends Cubit<CartState> {
   final ApiConsumer apiConsumer;
   //! list of cart
   List<CartModel> carts = [];
+  //! map to store quantities for each cart item
+  Map<String, int> quantities = {};
+
   //! function get cart
   Future getCart() async {
     carts = [];
@@ -22,12 +25,48 @@ class CartCubit extends Cubit<CartState> {
       final response = await apiConsumer
           .get("cart?for_user_id=eq.$userId&select=*,products(*)");
       for (var elment in response) {
-        carts.add(CartModel.fromJson(elment));
+        final cartItem = CartModel.fromJson(elment);
+        carts.add(cartItem);
+        // Initialize quantity to 1 for each cart item
+        quantities[cartItem.forProductId ?? ''] = 1;
       }
       emit(GetCartSuccses());
     } on ApiExceptions catch (e) {
       emit(GetCartError(error: e.apiExceptions.message));
     }
+  }
+
+  //! increment quantity
+  void incrementQuantity(String productId) {
+    if (quantities.containsKey(productId)) {
+      quantities[productId] = (quantities[productId] ?? 1) + 1;
+      emit(QuantityUpdated());
+    }
+  }
+
+  //! decrement quantity
+  void decrementQuantity(String productId) {
+    if (quantities.containsKey(productId) && quantities[productId]! > 1) {
+      quantities[productId] = quantities[productId]! - 1;
+      emit(QuantityUpdated());
+    }
+  }
+
+  //! get quantity for a product
+  int getQuantity(String productId) {
+    return quantities[productId] ?? 1;
+  }
+
+  //! calculate total price
+  double calculateTotalPrice() {
+    double total = 0;
+    for (var cart in carts) {
+      if (cart.products?.price != null && cart.forProductId != null) {
+        int quantity = quantities[cart.forProductId] ?? 1;
+        total += double.parse(cart.products!.price!) * quantity;
+      }
+    }
+    return total;
   }
 
 //! delete cart

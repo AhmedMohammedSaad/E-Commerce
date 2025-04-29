@@ -24,8 +24,8 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //! AppBar
-      appBar: appBar(leding: false, title: 'Cart'),
+      backgroundColor: Colors.grey[50],
+      appBar: appBar(leding: false, title: 'My Cart'),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -39,85 +39,153 @@ class _CartState extends State<Cart> {
         ],
         child: BlocBuilder<CartCubit, CartState>(
           builder: (context, state) {
-            //! totale price
-
-            int totlePrice = 0;
-            //!list of carts
+            // Get cart list from cubit
             List<CartModel> cartsList = context.read<CartCubit>().carts;
-            for (int x = 0; x < cartsList.length; x++) {
-              totlePrice += int.parse(cartsList[x].products!.price.toString());
+
+            // Calculate total from cubit with quantities
+            final totalPrice = context.read<CartCubit>().calculateTotalPrice();
+
+            if (state is GetCartLoding) {
+              return const LodingAppList();
             }
 
-            return state is GetCartLoding
-                ? const LodingAppList()
-                : cartsList.isNotEmpty
-                    ? Column(
-                        children: [
-                          Expanded(
-                              child: ListView.builder(
-                            shrinkWrap: true,
+            if (cartsList.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.shopping_cart_outlined,
+                      size: 80.sp,
+                      color: AppColors.primaryColor.withOpacity(0.5),
+                    ),
+                    SizedBox(height: 16.h),
+                    Text(
+                      "Your cart is empty",
+                      style: StyleTextApp.font16ColorblacFontWeightBold,
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      "Add items to get started",
+                      style: StyleTextApp.font14Colorgrayofwite,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            return Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 8.w, bottom: 10.h),
+                          child: Text(
+                            "Products (${cartsList.length})",
+                            style: StyleTextApp.font14ColorblacFontWeightBold,
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             itemCount: cartsList.length,
                             itemBuilder: (BuildContext context, int index) {
-                              //! this container is for widget image and shop ....
                               return CardCategory(
                                 cartModel: cartsList[index],
                                 carts: cartsList,
                                 index: index,
                               );
                             },
-                          )),
-                          Container(
-                            decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromARGB(
-                                      47, 0, 0, 0), // لون أسود مع شفافية
-                                  offset: Offset(-10, -13), // اتجاه ومسافة الظل
-                                  blurStyle: BlurStyle
-                                      .normal, // تأثير طبيعي على الحواف
-                                  spreadRadius: 1, // عرض الظل
-                                  blurRadius: 7, // نعومة الظل
-                                ),
-                              ],
-                              color: AppColors.white,
-                            ),
-                            padding: EdgeInsets.all(20.h),
-                            height: 140.h,
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Total",
-                                      style: StyleTextApp
-                                          .font14ColorblacFontWeightBold,
-                                    ),
-                                    Text(
-                                      "$totlePrice LE",
-                                      style: StyleTextApp
-                                          .font16ColorblacFontWeightBold,
-                                    ),
-                                  ],
-                                ),
-                                const Divider(),
-                                const Spacer(),
-                                BottonCheckout(
-                                    cartsList: cartsList,
-                                    totlePrice: totlePrice),
-                              ],
-                            ),
-                          )
-                        ],
-                      )
-                    : Center(
-                        child: Text(
-                          "No Cart",
-                          style: StyleTextApp.font14ColorblacFontWeightBold,
+                          ),
                         ),
-                      );
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24.r),
+                      topRight: Radius.circular(24.r),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        offset: const Offset(0, -3),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                  child: SafeArea(
+                    top: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Subtotal",
+                              style: StyleTextApp.font14Colorgrayofwite,
+                            ),
+                            Text(
+                              "${totalPrice.toStringAsFixed(0)} LE",
+                              style: StyleTextApp.font14ColorblacFontWeightBold,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 6.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Delivery",
+                              style: StyleTextApp.font14Colorgrayofwite,
+                            ),
+                            Text(
+                              "Free",
+                              style: StyleTextApp.font13ColorManColor,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10.h),
+                        const Divider(),
+                        SizedBox(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Total",
+                              style: StyleTextApp.font16ColorblacFontWeightBold,
+                            ),
+                            Text(
+                              "${totalPrice.toStringAsFixed(0)} LE",
+                              style: StyleTextApp.font16ColorblacFontWeightBold
+                                  .copyWith(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16.h),
+                        BottonCheckout(
+                          cartsList: cartsList,
+                          totlePrice: totalPrice.toInt(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
           },
         ),
       ),

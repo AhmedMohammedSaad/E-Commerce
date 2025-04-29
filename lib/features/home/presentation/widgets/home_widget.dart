@@ -89,8 +89,11 @@ Stack HomWidget(
           //! text Sale
           child: Text(
               '${calculateSaleOffer(
-                int.tryParse(getProductSale[index].price.toString()) ?? 0,
-                int.tryParse(getProductSale[index].oldPrice.toString()) ?? 0,
+                int.tryParse(getProductSale[index].price?.toString() ?? "0") ??
+                    0,
+                int.tryParse(
+                        getProductSale[index].oldPrice?.toString() ?? "0") ??
+                    0,
               )}% OFF',
               style: StyleTextApp.font14ColorWhiteFontWeightBold),
         ),
@@ -129,8 +132,14 @@ Stack HomWidget(
 
 //! function calculate Sale Offer
 int calculateSaleOffer(int price, int oldPrice) {
-  if (oldPrice <= 0 || price < 0 || price > oldPrice) {
-    throw ArgumentError("Invalid price or old price values.");
+  // Check if prices are valid
+  if (oldPrice <= 0 || price <= 0) {
+    return 0; // Return 0% discount instead of throwing error
+  }
+
+  // Ensure old price is greater than current price
+  if (price >= oldPrice) {
+    return 0; // No discount if current price is higher than old price
   }
 
   double discountPercentage = ((oldPrice - price) / oldPrice) * 100;
