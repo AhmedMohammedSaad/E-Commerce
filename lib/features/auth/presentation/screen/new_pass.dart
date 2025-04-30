@@ -4,6 +4,7 @@ import 'package:advanced_app/core/textStyle/text_style.dart';
 import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:advanced_app/core/widgets/text_fieald.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NewPass extends StatelessWidget {
   NewPass({super.key});
@@ -22,15 +23,15 @@ class NewPass extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Add New password",
+                "add_new_password".tr(),
                 style: StyleTextApp.font24ColorblacColorFontWeightBolde,
               ),
               TextFiealdApp(
                 controller: controller,
-                hintText: "New password",
+                hintText: "new_password".tr(),
               ),
               BottonAPP(
-                  nameBotton: 'New Password',
+                  nameBotton: 'new_password_button'.tr(),
                   colorBotton: AppColors.primaryColor,
                   colorText: AppColors.white,
                   width: double.infinity)

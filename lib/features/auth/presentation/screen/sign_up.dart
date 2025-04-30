@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SingUP extends StatefulWidget {
   const SingUP({super.key});
@@ -125,7 +126,7 @@ class _SingUPState extends State<SingUP> {
                                   ).animate().fadeIn(duration: 600.ms),
                                   SizedBox(height: 10.h),
                                   Text(
-                                    "Create Account",
+                                    "create_account".tr(),
                                     style: TextStyle(
                                       fontSize: 28.sp,
                                       fontWeight: FontWeight.bold,
@@ -143,7 +144,7 @@ class _SingUPState extends State<SingUP> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Sign Up",
+                                  "sign_up".tr(),
                                   style: TextStyle(
                                     fontSize: 26.sp,
                                     fontWeight: FontWeight.bold,
@@ -157,7 +158,7 @@ class _SingUPState extends State<SingUP> {
                                 Row(
                                   children: [
                                     Text(
-                                      "Already have an account? ",
+                                      "already_have_account".tr(),
                                       style: TextStyle(
                                         fontSize: 15.sp,
                                         color: Colors.grey[700],
@@ -171,7 +172,7 @@ class _SingUPState extends State<SingUP> {
                                         );
                                       },
                                       child: Text(
-                                        "Sign In",
+                                        "sign_in".tr(),
                                         style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.bold,
@@ -201,12 +202,12 @@ class _SingUPState extends State<SingUP> {
                                     controller: controllerName,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Please enter your name";
+                                        return "please_enter_name".tr();
                                       }
                                       return null;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Full Name",
+                                      hintText: "full_name".tr(),
                                       prefixIcon: Icon(Icons.person_outline,
                                           color: primaryPurple),
                                       border: OutlineInputBorder(
@@ -243,12 +244,12 @@ class _SingUPState extends State<SingUP> {
                                     controller: controllerGemail,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Please enter your email";
+                                        return "please_enter_email".tr();
                                       }
                                       return null;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Email",
+                                      hintText: "email".tr(),
                                       prefixIcon: Icon(Icons.email_outlined,
                                           color: primaryPurple),
                                       border: OutlineInputBorder(
@@ -286,12 +287,12 @@ class _SingUPState extends State<SingUP> {
                                     obscureText: true,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return "Please enter your password";
+                                        return "please_enter_password".tr();
                                       }
                                       return null;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Password",
+                                      hintText: "password".tr(),
                                       prefixIcon: Icon(Icons.lock_outline,
                                           color: primaryPurple),
                                       border: OutlineInputBorder(
@@ -333,7 +334,7 @@ class _SingUPState extends State<SingUP> {
                                       elevation: 5,
                                     ),
                                     child: Text(
-                                      "SIGN UP",
+                                      "signup_button".tr(),
                                       style: TextStyle(
                                         fontSize: 18.sp,
                                         fontWeight: FontWeight.bold,
@@ -361,7 +362,7 @@ class _SingUPState extends State<SingUP> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15.w),
                                       child: Text(
-                                        "OR",
+                                        "or".tr(),
                                         style: TextStyle(
                                           fontSize: 16.sp,
                                           color: Colors.grey[600],
@@ -402,7 +403,7 @@ class _SingUPState extends State<SingUP> {
                                         ),
                                         SizedBox(width: 15.w),
                                         Text(
-                                          "Continue with Google",
+                                          "continue_with_google".tr(),
                                           style: TextStyle(
                                             fontSize: 16.sp,
                                             fontWeight: FontWeight.w600,

@@ -1,149 +1,189 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:advanced_app/core/color/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DropdownButton2 extends StatefulWidget {
-  const DropdownButton2({super.key});
+class DropdownColors extends StatefulWidget {
+  final String selectedValue;
+  final ValueChanged<String> onChanged;
+
+  const DropdownColors({
+    Key? key,
+    required this.selectedValue,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _DropdownButton2State createState() => _DropdownButton2State();
+  State<DropdownColors> createState() => _DropdownColorsState();
 }
 
-class _DropdownButton2State extends State<DropdownButton2> {
-  String? selectedColor = 'Select Color'; // القيمة الافتراضية للنص
+class _DropdownColorsState extends State<DropdownColors> {
+  late String selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.selectedValue;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      width: 130.w,
-      height: 40.h,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
-            color: Colors.grey.withOpacity(0.2), // ظل خفيف لإبراز الكونتينر
-            spreadRadius: 2,
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 3), // تأثير الظل
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          isExpanded: true,
-          dropdownColor: Colors.white, // لون الخلفية للقائمة المنسدلة
-          icon: Icon(
-            Icons.keyboard_arrow_down_sharp,
+      child: DropdownButton<String>(
+        value: selectedValue,
+        isExpanded: true,
+        underline: const SizedBox(),
+        icon: const Icon(Icons.keyboard_arrow_down_rounded),
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w500,
+        ),
+        items: [
+          DropdownMenuItem<String>(
+            value: 'red',
+            child: Text("red".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
           ),
-          hint: Text(
-            selectedColor!, // عرض القيمة المختارة بدلاً من النص الثابت
-            // تغيير لون النص الافتراضي
+          DropdownMenuItem<String>(
+            value: 'green',
+            child: Text("green".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
           ),
-          items: [
-            DropdownMenuItem(
-              value: "Red",
-              child: Text("Red",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-            DropdownMenuItem(
-              value: "Green",
-              child: Text("Green",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-            DropdownMenuItem(
-              value: "Blue",
-              child: Text("Blue",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-          ],
-          onChanged: (value) {
+          DropdownMenuItem<String>(
+            value: 'blue',
+            child: Text("blue".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
+          ),
+        ],
+        onChanged: (String? newValue) {
+          if (newValue != null) {
             setState(() {
-              selectedColor =
-                  value; // تحديث القيمة المختارة وعرضها في الـ DropdownButton
+              selectedValue = newValue;
             });
-          },
+            widget.onChanged(newValue);
+          }
+        },
+      ),
+    );
+  }
+}
+
+class DropdownTitle extends StatelessWidget {
+  final String title;
+  final Color color;
+
+  const DropdownTitle({
+    super.key,
+    required this.title,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h, left: 4.w),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: color,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
   }
 }
 
-class DropdownButton1 extends StatefulWidget {
-  // ignore: use_super_parameters
-  const DropdownButton1({Key? key}) : super(key: key);
+class DropdownSizes extends StatefulWidget {
+  final String selectedValue;
+  final ValueChanged<String> onChanged;
+
+  const DropdownSizes({
+    Key? key,
+    required this.selectedValue,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _DropdownButton1State createState() => _DropdownButton1State();
+  State<DropdownSizes> createState() => _DropdownSizesState();
 }
 
-class _DropdownButton1State extends State<DropdownButton1> {
-  String? selectedSize = 'Select Size'; // القيمة الافتراضية
+class _DropdownSizesState extends State<DropdownSizes> {
+  late String selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.selectedValue;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      width: 130.w,
-      height: 40.h,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(
-          color: Color(0xffF01F0E),
-        ),
-        borderRadius: BorderRadius.circular(12), // زوايا دائرية ناعمة
+        borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
-            color: Colors.grey.withOpacity(0.2), // ظل خفيف لإبراز الكونتينر
-            spreadRadius: 2,
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 3), // تأثير الظل
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          isExpanded: true, // أخذ العرض بالكامل
-          dropdownColor: Colors.white, // لون الخلفية للقائمة المنسدلة
-          icon: Icon(Icons.keyboard_arrow_down_sharp,
-              color: Color(0xffF01F0E)), // أيقونة السهم المنسدل بلون الحدود
-          hint: Text(
-            selectedSize!, // عرض القيمة المحددة بدلاً من النص الثابت
-            style: TextStyle(color: Colors.black54), // تغيير لون النص الافتراضي
-          ),
-          items: [
-            DropdownMenuItem(
-              value: "Small",
-              child: Text("Small",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-            DropdownMenuItem(
-              value: "Medium",
-              child: Text("Medium",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-            DropdownMenuItem(
-              value: "Large",
-              child: Text("Large",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
-            ),
-          ],
-          onChanged: (value) {
-            setState(() {
-              selectedSize =
-                  value; // تحديث القيمة المختارة وعرضها في الـ DropdownButton
-            });
-          },
+      child: DropdownButton<String>(
+        value: selectedValue,
+        isExpanded: true,
+        underline: const SizedBox(),
+        icon: const Icon(Icons.keyboard_arrow_down_rounded),
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w500,
         ),
+        items: [
+          DropdownMenuItem<String>(
+            value: 'S',
+            child: Text("small".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
+          ),
+          DropdownMenuItem<String>(
+            value: 'M',
+            child: Text("medium".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
+          ),
+          DropdownMenuItem<String>(
+            value: 'L',
+            child: Text("large".tr(),
+                style: const TextStyle(color: AppColors.primaryColor)),
+          ),
+        ],
+        onChanged: (String? newValue) {
+          if (newValue != null) {
+            setState(() {
+              selectedValue = newValue;
+            });
+            widget.onChanged(newValue);
+          }
+        },
       ),
     );
   }

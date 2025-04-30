@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:developer';
+import 'package:advanced_app/core/Routes/routes_app.dart';
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/features/Profile/presentation/cubit/profile_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -30,7 +33,7 @@ class ProfilePage extends StatelessWidget {
             log(state.error);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Failed to load profile: ${state.error}'),
+                content: Text('failed_load_profile'.tr() + state.error),
                 backgroundColor: Colors.red,
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
@@ -51,8 +54,9 @@ class ProfilePage extends StatelessWidget {
             backgroundColor: backgroundPurple,
             body: isLoading
                 ? Center(
-                    child: CircularProgressIndicator(
-                      color: primaryPurple,
+                    child: LoadingAnimationWidget.dotsTriangle(
+                      size: 40,
+                      color: AppColors.primaryColor,
                     ),
                   )
                 : CustomScrollView(
@@ -85,7 +89,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                           child: FlexibleSpaceBar(
                             title: Text(
-                              'Profile',
+                              'profile'.tr(),
                               style: TextStyle(
                                 fontSize: 22.sp,
                                 fontWeight: FontWeight.bold,
@@ -136,7 +140,7 @@ class ProfilePage extends StatelessWidget {
 
                               // User name
                               Text(
-                                user?.name ?? 'User Name',
+                                user?.name ?? 'user_name'.tr(),
                                 style: TextStyle(
                                   fontSize: 24.sp,
                                   fontWeight: FontWeight.bold,
@@ -161,7 +165,7 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 6.w),
                                   Text(
-                                    user?.email ?? 'email@example.com',
+                                    user?.email ?? 'email_example'.tr(),
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.grey[600],
@@ -207,7 +211,7 @@ class ProfilePage extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                   label: Text(
-                                    'LOGOUT',
+                                    'logout'.tr(),
                                     style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
@@ -257,7 +261,7 @@ class ProfilePage extends StatelessWidget {
         children: [
           _buildProfileOption(
             icon: Icons.history,
-            title: 'Order History',
+            title: 'order_history'.tr(),
             onTap: () {},
             color: primaryColor,
             delay: 500,
@@ -265,7 +269,7 @@ class ProfilePage extends StatelessWidget {
           Divider(height: 1),
           _buildProfileOption(
             icon: Icons.dashboard_rounded,
-            title: 'Dashboard',
+            title: 'dashboard'.tr(),
             onTap: () => Navigator.pushNamed(context, '/dashboard'),
             color: primaryColor,
             delay: 600,
@@ -273,7 +277,7 @@ class ProfilePage extends StatelessWidget {
           Divider(height: 1),
           _buildProfileOption(
             icon: Icons.favorite_outline,
-            title: 'My Favorites',
+            title: 'my_favorites'.tr(),
             onTap: () {},
             color: primaryColor,
             delay: 700,
@@ -281,15 +285,15 @@ class ProfilePage extends StatelessWidget {
           Divider(height: 1),
           _buildProfileOption(
             icon: Icons.settings,
-            title: 'Settings',
-            onTap: () {},
+            title: 'settings'.tr(),
+            onTap: () => Navigator.pushNamed(context, RouteManager.settings),
             color: primaryColor,
             delay: 800,
           ),
           Divider(height: 1),
           _buildProfileOption(
             icon: Icons.help_outline,
-            title: 'Help & Support',
+            title: 'help_support'.tr(),
             onTap: () {},
             color: primaryColor,
             delay: 900,
@@ -340,17 +344,17 @@ class ProfilePage extends StatelessWidget {
     final bool confirm = await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Logout'),
-            content: Text('Are you sure you want to logout?'),
+            title: Text('logout'.tr()),
+            content: Text('logout_confirmation'.tr()),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: Text('Cancel'),
+                child: Text('cancel'.tr()),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(
-                  'Logout',
+                  'logout'.tr(),
                   style: TextStyle(color: Colors.red),
                 ),
               ),
