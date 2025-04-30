@@ -5,8 +5,8 @@ import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/search.dart';
 import 'package:advanced_app/features/home/presentation/widgets/carousel_slider.dart';
 import 'package:advanced_app/features/home/presentation/widgets/categores.dart';
-import 'package:advanced_app/features/home/presentation/widgets/sale_text.dart';
 import 'package:advanced_app/features/home/presentation/widgets/widget_sale_contaire.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,14 +63,14 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello,',
+                            'hello'.tr(),
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.grey[600],
                             ),
                           ),
                           Text(
-                            'Welcome to Code Shop',
+                            'welcome_to_shop'.tr(),
                             style: TextStyle(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
                           child: TextField(
                             controller: _searchController,
                             decoration: InputDecoration(
-                              hintText: 'Search products...',
+                              hintText: 'search_products'.tr(),
                               hintStyle: TextStyle(
                                 color: Colors.grey[400],
                                 fontSize: 14.sp,
@@ -212,7 +212,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Categories',
+                        'categories'.tr(),
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -232,7 +232,7 @@ class _HomeState extends State<Home> {
                           );
                         },
                         child: Text(
-                          'See All',
+                          'see_all'.tr(),
                           style: TextStyle(
                             color: AppColors.primaryColor,
                             fontSize: 14.sp,
@@ -261,7 +261,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Special Offers',
+                        'special_offers'.tr(),
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -279,7 +279,7 @@ class _HomeState extends State<Home> {
                           );
                         },
                         child: Text(
-                          'See All',
+                          'see_all'.tr(),
                           style: TextStyle(
                             color: AppColors.primaryColor,
                             fontSize: 14.sp,
@@ -308,7 +308,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'New Arrivals',
+                        'new_arrivals'.tr(),
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -320,7 +320,7 @@ class _HomeState extends State<Home> {
                           // Navigate to new products screen
                         },
                         child: Text(
-                          'See All',
+                          'see_all'.tr(),
                           style: TextStyle(
                             color: AppColors.primaryColor,
                             fontSize: 14.sp,
@@ -350,7 +350,7 @@ class _HomeState extends State<Home> {
                   ),
                   child: Center(
                     child: Text(
-                      'Coming Soon',
+                      'coming_soon'.tr(),
                       style: TextStyle(
                         color: Colors.grey[400],
                         fontSize: 16.sp,
@@ -391,7 +391,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Filter Products',
+                'filter_products'.tr(),
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
@@ -408,7 +408,7 @@ class _HomeState extends State<Home> {
 
           // Categories filter
           Text(
-            'Categories',
+            'categories'.tr(),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -418,19 +418,19 @@ class _HomeState extends State<Home> {
           Wrap(
             spacing: 10.w,
             children: [
-              _buildFilterChip('All'),
-              _buildFilterChip('Electronics'),
-              _buildFilterChip('Clothing'),
-              _buildFilterChip('Home & Kitchen'),
-              _buildFilterChip('Sports'),
-              _buildFilterChip('Toys'),
+              _buildFilterChip('all'.tr()),
+              _buildFilterChip('electronics'.tr()),
+              _buildFilterChip('clothing'.tr()),
+              _buildFilterChip('home_kitchen'.tr()),
+              _buildFilterChip('sports'.tr()),
+              _buildFilterChip('toys'.tr()),
             ],
           ),
           SizedBox(height: 20.h),
 
           // Price Range filter
           Text(
-            'Price Range',
+            'price_range'.tr(),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -449,7 +449,7 @@ class _HomeState extends State<Home> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Min',
+                      hintText: 'min'.tr(),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
                     ),
@@ -468,7 +468,7 @@ class _HomeState extends State<Home> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Max',
+                      hintText: 'max'.tr(),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
                     ),
@@ -482,7 +482,7 @@ class _HomeState extends State<Home> {
 
           // Sort By filter
           Text(
-            'Sort By',
+            'sort_by'.tr(),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -492,10 +492,10 @@ class _HomeState extends State<Home> {
           Wrap(
             spacing: 10.w,
             children: [
-              _buildFilterChip('Newest'),
-              _buildFilterChip('Price: Low to High'),
-              _buildFilterChip('Price: High to Low'),
-              _buildFilterChip('Popularity'),
+              _buildFilterChip('newest'.tr()),
+              _buildFilterChip('price_low_high'.tr()),
+              _buildFilterChip('price_high_low'.tr()),
+              _buildFilterChip('popularity'.tr()),
             ],
           ),
 
@@ -517,7 +517,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               child: Text(
-                'Apply Filters',
+                'apply_filters'.tr(),
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,

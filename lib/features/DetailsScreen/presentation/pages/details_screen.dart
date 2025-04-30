@@ -19,6 +19,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 //! Main screen to display product details
 class ProductDetailsScreen extends StatefulWidget {
@@ -417,7 +418,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Description",
+                            "description".tr(),
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
@@ -486,7 +487,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Reviews",
+                            "reviews".tr(),
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
@@ -534,7 +535,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                           ),
                                           SizedBox(height: 8.h),
                                           Text(
-                                            "No Reviews Yet",
+                                            "no_reviews_yet".tr(),
                                             style: TextStyle(
                                               fontSize: 16.sp,
                                               color: Colors.grey[600],
@@ -569,9 +570,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                         comment.comments!.isNotEmpty) {
                                       final innerComment = comment.comments![0];
                                       final user = innerComment.users?.name ??
-                                          "Unknown User";
-                                      final comm =
-                                          innerComment.comment ?? "No comment";
+                                          "unknown_user".tr();
+                                      final comm = innerComment.comment ??
+                                          "no_comment".tr();
 
                                       return Padding(
                                         padding:
@@ -669,7 +670,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(vertical: 20.h),
                                   child: Text(
-                                    "Failed to load reviews",
+                                    "failed_load_reviews".tr(),
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.grey[600],
@@ -752,7 +753,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
-                                          "Product already in cart",
+                                          "product_already_in_cart".tr(),
                                           style: StyleTextApp
                                               .font14ColorWhiteFontWeightBold,
                                         ),
@@ -777,7 +778,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
-                                          "Added to cart successfully",
+                                          "added_to_cart_successfully".tr(),
                                           style: StyleTextApp
                                               .font14ColorWhiteFontWeightBold,
                                         ),

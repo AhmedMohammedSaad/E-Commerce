@@ -9,6 +9,7 @@ abstract class DashboardState extends Equatable {
 
 class DashboardInitial extends DashboardState {}
 
+// ===== Advertisement States =====
 // Get Advertisements States
 class GetAdvertisementsLoading extends DashboardState {}
 
@@ -62,6 +63,94 @@ class DeleteAdvertisementSuccess extends DashboardState {}
 class DeleteAdvertisementFailure extends DashboardState {
   final String error;
   const DeleteAdvertisementFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+// ===== Product States =====
+// Get Products States
+class GetProductsLoading extends DashboardState {}
+
+class GetProductsSuccess extends DashboardState {
+  final List<Product> products;
+  const GetProductsSuccess(this.products);
+
+  @override
+  List<Object> get props => [products];
+}
+
+class GetProductsFailure extends DashboardState {
+  final String error;
+  const GetProductsFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+// Add Product States
+class AddProductLoading extends DashboardState {}
+
+class AddProductSuccess extends DashboardState {}
+
+class AddProductFailure extends DashboardState {
+  final String error;
+  const AddProductFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+// Update Product States
+class UpdateProductLoading extends DashboardState {}
+
+class UpdateProductSuccess extends DashboardState {}
+
+class UpdateProductFailure extends DashboardState {
+  final String error;
+  const UpdateProductFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+// Delete Product States
+class DeleteProductLoading extends DashboardState {}
+
+class DeleteProductSuccess extends DashboardState {}
+
+class DeleteProductFailure extends DashboardState {
+  final String error;
+  const DeleteProductFailure(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+// ===== Analytics States =====
+class GetAnalyticsLoading extends DashboardState {}
+
+class GetAnalyticsSuccess extends DashboardState {
+  final int totalProducts;
+  final int totalAdvertisements;
+  final int totalSales;
+  final double totalRevenue;
+
+  const GetAnalyticsSuccess({
+    required this.totalProducts,
+    required this.totalAdvertisements,
+    required this.totalSales,
+    required this.totalRevenue,
+  });
+
+  @override
+  List<Object> get props =>
+      [totalProducts, totalAdvertisements, totalSales, totalRevenue];
+}
+
+class GetAnalyticsFailure extends DashboardState {
+  final String error;
+  const GetAnalyticsFailure(this.error);
 
   @override
   List<Object> get props => [error];

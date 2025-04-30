@@ -1,5 +1,6 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/textStyle/text_style.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:advanced_app/features/DetailsScreen/data/models/comments/comments.dart';
 import 'package:advanced_app/features/DetailsScreen/presentation/cubit/detailsscreen_cubit.dart';
@@ -29,7 +30,7 @@ class ProductComments extends StatelessWidget {
           );
         } else if (state is CommentSuccses) {
           if (comments.isEmpty) {
-            return const Center(child: Text("No Comments"));
+            return Center(child: Text("no_comments".tr()));
           }
 
           return ListView.builder(
@@ -72,7 +73,7 @@ class ProductComments extends StatelessWidget {
           );
         }
 
-        return const Center(child: Text("No Internet"));
+        return Center(child: Text("no_internet".tr()));
       },
     );
   }

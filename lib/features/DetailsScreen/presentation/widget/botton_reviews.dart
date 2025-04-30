@@ -5,6 +5,7 @@ import 'package:advanced_app/core/widgets/botton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BottonReviews extends StatelessWidget {
   const BottonReviews({
@@ -18,7 +19,7 @@ class BottonReviews extends StatelessWidget {
       width: double.infinity,
       child: BottonAPP(
         onTap: onPressedToCart,
-        nameBotton: 'ADD TO CART',
+        nameBotton: 'add_to_cart'.tr(),
         colorBotton: AppColors.primaryColor,
         colorText: AppColors.white,
         width: MediaQuery.of(context).size.width - 40.w,

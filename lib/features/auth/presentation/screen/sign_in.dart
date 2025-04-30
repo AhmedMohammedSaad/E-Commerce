@@ -14,6 +14,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -124,7 +125,7 @@ class _SignInState extends State<SignIn> {
                                     ).animate().fadeIn(duration: 600.ms),
                                     SizedBox(height: 10.h),
                                     Text(
-                                      "Welcome Back",
+                                      "welcome_back".tr(),
                                       style: TextStyle(
                                         fontSize: 28.sp,
                                         fontWeight: FontWeight.bold,
@@ -142,7 +143,7 @@ class _SignInState extends State<SignIn> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Sign In",
+                                    "sign_in".tr(),
                                     style: TextStyle(
                                       fontSize: 26.sp,
                                       fontWeight: FontWeight.bold,
@@ -156,7 +157,7 @@ class _SignInState extends State<SignIn> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Don't have an account? ",
+                                        "dont_have_account".tr(),
                                         style: TextStyle(
                                           fontSize: 15.sp,
                                           color: Colors.grey[700],
@@ -170,7 +171,7 @@ class _SignInState extends State<SignIn> {
                                           );
                                         },
                                         child: Text(
-                                          "Sign Up",
+                                          "signup".tr(),
                                           style: TextStyle(
                                             fontSize: 15.sp,
                                             fontWeight: FontWeight.bold,
@@ -200,12 +201,12 @@ class _SignInState extends State<SignIn> {
                                       controller: controllerGemail,
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please enter your email";
+                                          return "please_enter_email".tr();
                                         }
                                         return null;
                                       },
                                       decoration: InputDecoration(
-                                        hintText: "Email",
+                                        hintText: "email".tr(),
                                         prefixIcon: Icon(Icons.email_outlined,
                                             color: primaryPurple),
                                         border: OutlineInputBorder(
@@ -243,12 +244,12 @@ class _SignInState extends State<SignIn> {
                                       obscureText: true,
                                       validator: (value) {
                                         if (value!.isEmpty) {
-                                          return "Please enter your password";
+                                          return "please_enter_password".tr();
                                         }
                                         return null;
                                       },
                                       decoration: InputDecoration(
-                                        hintText: "Password",
+                                        hintText: "password".tr(),
                                         prefixIcon: Icon(Icons.lock_outline,
                                             color: primaryPurple),
                                         border: OutlineInputBorder(
@@ -275,7 +276,7 @@ class _SignInState extends State<SignIn> {
                                             context, '/forgotPass');
                                       },
                                       child: Text(
-                                        "Forgot password?",
+                                        "forgot_password".tr(),
                                         style: TextStyle(
                                           fontSize: 14.sp,
                                           color: primaryPurple,
@@ -308,7 +309,7 @@ class _SignInState extends State<SignIn> {
                                         elevation: 5,
                                       ),
                                       child: Text(
-                                        "LOGIN",
+                                        "login_button".tr(),
                                         style: TextStyle(
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.bold,
@@ -336,7 +337,7 @@ class _SignInState extends State<SignIn> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 15.w),
                                         child: Text(
-                                          "OR",
+                                          "or".tr(),
                                           style: TextStyle(
                                             fontSize: 16.sp,
                                             color: Colors.grey[600],
@@ -377,7 +378,7 @@ class _SignInState extends State<SignIn> {
                                           ),
                                           SizedBox(width: 15.w),
                                           Text(
-                                            "Continue with Google",
+                                            "continue_with_google".tr(),
                                             style: TextStyle(
                                               fontSize: 16.sp,
                                               fontWeight: FontWeight.w600,

@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ForgotPass extends StatefulWidget {
   const ForgotPass({super.key});
@@ -41,7 +42,7 @@ class _ForgotPassState extends State<ForgotPass> {
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Reset link sent to your email'),
+                content: Text('reset_link_sent'.tr()),
                 backgroundColor: primaryPurple,
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
@@ -99,7 +100,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                 ).animate().fadeIn(duration: 600.ms),
                                 SizedBox(height: 10.h),
                                 Text(
-                                  "Reset Password",
+                                  "reset_password".tr(),
                                   style: TextStyle(
                                     fontSize: 28.sp,
                                     fontWeight: FontWeight.bold,
@@ -118,7 +119,7 @@ class _ForgotPassState extends State<ForgotPass> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Forgot Password?",
+                                "forgot_password".tr(),
                                 style: TextStyle(
                                   fontSize: 26.sp,
                                   fontWeight: FontWeight.bold,
@@ -132,7 +133,7 @@ class _ForgotPassState extends State<ForgotPass> {
                               SizedBox(height: 15.h),
 
                               Text(
-                                "Enter your email address and we'll send you a link to reset your password.",
+                                "forgot_password_message".tr(),
                                 style: TextStyle(
                                   fontSize: 15.sp,
                                   color: Colors.grey[700],
@@ -160,12 +161,12 @@ class _ForgotPassState extends State<ForgotPass> {
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Please enter your email";
+                                      return "please_enter_email".tr();
                                     }
                                     return null;
                                   },
                                   decoration: InputDecoration(
-                                    hintText: "Email",
+                                    hintText: "email".tr(),
                                     prefixIcon: Icon(
                                       Icons.email_outlined,
                                       color: primaryPurple,
@@ -210,7 +211,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                     elevation: 5,
                                   ),
                                   child: Text(
-                                    "SEND RESET LINK",
+                                    "send_reset_link".tr(),
                                     style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
@@ -232,7 +233,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                     Navigator.pop(context);
                                   },
                                   child: Text(
-                                    "Back to Sign In",
+                                    "back_to_sign_in".tr(),
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w500,

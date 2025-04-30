@@ -1,4 +1,5 @@
 import 'package:advanced_app/core/color/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,31 +37,28 @@ class _BoardingScreenState extends State<BoardingScreen> {
             children: [
               BoardingPage(
                 image: 'assets/images/onpording.jpg',
-                title: 'Shop with Ease',
-                description:
-                    'Discover thousands of products right at your fingertips.',
+                title: 'onboarding_title_1'.tr(),
+                description: 'onboarding_desc_1'.tr(),
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording3.jpg',
-                title: 'Fast Delivery',
-                description: 'Get your orders delivered quickly and securely.',
+                title: 'onboarding_title_2'.tr(),
+                description: 'onboarding_desc_2'.tr(),
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording2.jpg',
-                title: 'Secure Payments',
-                description:
-                    'Multiple payment options with secure transaction processing.',
+                title: 'onboarding_title_3'.tr(),
+                description: 'onboarding_desc_3'.tr(),
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording4.jpg',
-                title: '24/7 Support',
-                description:
-                    'Our support team is always available to help you.',
+                title: 'onboarding_title_4'.tr(),
+                description: 'onboarding_desc_4'.tr(),
                 onPressed: () => _navigateToNextScreen(),
-                buttonText: 'Get Started',
+                buttonText: 'get_started'.tr(),
               ),
             ],
           ),
@@ -98,7 +96,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 ? TextButton(
                     onPressed: _navigateToNextScreen,
                     child: Text(
-                      'Skip',
+                      'skip'.tr(),
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -142,7 +140,7 @@ class BoardingPage extends StatelessWidget {
     required this.title,
     required this.description,
     required this.onPressed,
-    this.buttonText = 'Next',
+    this.buttonText = 'next',
   });
 
   @override
