@@ -16,19 +16,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class GridviewForWidget extends StatelessWidget {
+class GridviewForWidget extends StatefulWidget {
   const GridviewForWidget({
     super.key,
     this.quary,
   });
   final String? quary;
+
+  @override
+  State<GridviewForWidget> createState() => _GridviewForWidgetState();
+}
+
+class _GridviewForWidgetState extends State<GridviewForWidget> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: quary),
+          create: (context) => ShopCubit(apiConsumer: DioConsumer())
+            ..getProducts(quary: widget.quary),
         ),
         BlocProvider(
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
@@ -49,7 +55,7 @@ class GridviewForWidget extends StatelessWidget {
         child: BlocBuilder<ShopCubit, ShopState>(
           builder: (context, state) {
             //! list of Product
-            List<ProductsShop> getProductData = quary != null
+            List<ProductsShop> getProductData = widget.quary != null
                 ? context.read<ShopCubit>().searchList
                 : context.read<ShopCubit>().getProductsData;
 
@@ -310,16 +316,19 @@ class GridviewForWidget extends StatelessWidget {
             onTap: () {
               if (isProductInCart) {
                 // If product already in cart, show message
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: AppColors.primaryColor,
-                    content: Text(
-                      "This product is already in your cart",
-                      style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                if (mounted) {
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  scaffoldMessenger.showSnackBar(
+                    SnackBar(
+                      backgroundColor: AppColors.primaryColor,
+                      content: Text(
+                        "This product is already in your cart",
+                        style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                      ),
+                      // duration: const Duration(seconds: 2),
                     ),
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
+                  );
+                }
               } else {
                 // Add to cart
                 context.read<ShopCubit>().addToCart(
@@ -327,16 +336,19 @@ class GridviewForWidget extends StatelessWidget {
                     );
 
                 // Show success message
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: AppColors.primaryColor,
-                    content: Text(
-                      "Product added to cart successfully",
-                      style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                if (mounted) {
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  scaffoldMessenger.showSnackBar(
+                    SnackBar(
+                      backgroundColor: AppColors.primaryColor,
+                      content: Text(
+                        "Product added to cart successfully",
+                        style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                      ),
+                      duration: const Duration(seconds: 2),
                     ),
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
+                  );
+                }
                 context.read<CartCubit>().getCart();
               }
             },

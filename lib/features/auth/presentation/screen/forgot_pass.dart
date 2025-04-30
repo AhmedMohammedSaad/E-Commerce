@@ -2,6 +2,7 @@
 import 'package:advanced_app/core/color/colors.dart';
 import 'package:advanced_app/core/functions/snack_bar_error.dart';
 import 'package:advanced_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:advanced_app/features/auth/presentation/screen/new_pass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -165,8 +166,10 @@ class _ForgotPassState extends State<ForgotPass> {
                                   },
                                   decoration: InputDecoration(
                                     hintText: "Email",
-                                    prefixIcon: Icon(Icons.email_outlined,
-                                        color: primaryPurple),
+                                    prefixIcon: Icon(
+                                      Icons.email_outlined,
+                                      color: primaryPurple,
+                                    ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.r),
                                       borderSide: BorderSide.none,
@@ -183,13 +186,20 @@ class _ForgotPassState extends State<ForgotPass> {
                               SizedBox(height: 30.h),
 
                               // Reset Button
-                              Container(
+                              SizedBox(
                                 width: double.infinity,
                                 height: 55.h,
                                 child: ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     if (_key.currentState!.validate()) {
-                                      cubit.resetPassword(controller.text);
+                                      await cubit
+                                          .resetPassword(controller.text);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => NewPass(),
+                                        ),
+                                      );
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(

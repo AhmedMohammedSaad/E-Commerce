@@ -226,6 +226,7 @@ class ProfilePage extends StatelessWidget {
                                   .animate()
                                   .fadeIn(delay: 1000.ms)
                                   .moveY(begin: 20, end: 0),
+                              SizedBox(height: 100.h),
                             ],
                           ),
                         ),
