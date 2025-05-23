@@ -2,6 +2,32 @@ C/C++ Structured LogK
 I
 GC:\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txtC
 A
+<<<<<<< HEAD
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	â‹‰çï2§ ‡úÍñä2†
+ƒ
+€D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\additional_project_files.txt	â‹‰çï2 Æ¨±‘è2
+
+}D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\android_gradle_build.json	â‹‰çï2à Ì¨±‘è2ˆ
+…
+‚D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\android_gradle_build_mini.json	â‹‰çï2» Ï¨±‘è2s
+q
+oD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\build.ninja	â‹‰çï2àM ³§±‘è2w
+u
+sD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\build.ninja.txt	â‹‰çï2|
+z
+xD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\build_file_index.txt	â‹‰çï2G Šõ”¢Ü2}
+{
+yD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\compile_commands.json	â‹‰çï2	
+
+}D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\compile_commands.json.bin	â‹‰çï2
+‰
+†
+ƒD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\metadata_generation_command.txt	â‹‰çï2þ ˆõ”¢Ü2z
+x
+vD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\prefab_config.json	â‹‰çï2( ‰õ”¢Ü2
+}
+{D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\symbol_folder_index.txt	â‹‰çï2r ‰õ”¢Ü2
+=======
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ñÝ¯¼è2§ ‡úÍñä2†
 ƒ
 €D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\additional_project_files.txt	ñÝ¯¼è2 Æ¨±‘è2
@@ -26,3 +52,4 @@ x
 vD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\prefab_config.json	ñÝ¯¼è2( ‰õ”¢Ü2
 }
 {D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\x86\symbol_folder_index.txt	ñÝ¯¼è2r ‰õ”¢Ü2
+>>>>>>> 2b4773d99e26b943838e3426dc68e3f7a3f06bea

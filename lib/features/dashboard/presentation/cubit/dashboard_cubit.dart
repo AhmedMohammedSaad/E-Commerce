@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../domain/models/product_model.dart';
 
 part 'dashboard_state.dart';
 
@@ -96,9 +95,8 @@ class DashboardCubit extends Cubit<DashboardState> {
           .order('created_at', ascending: false);
 
       // Convert the raw data to Product objects
-      final products = response.map((json) => Product.fromJson(json)).toList();
 
-      emit(GetProductsSuccess(products));
+      emit(GetProductsSuccess(response));
     } catch (e) {
       emit(GetProductsFailure(e.toString()));
     }

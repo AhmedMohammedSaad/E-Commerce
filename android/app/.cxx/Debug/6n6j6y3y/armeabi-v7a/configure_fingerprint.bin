@@ -2,6 +2,32 @@ C/C++ Structured LogK
 I
 GC:\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txtC
 A
+<<<<<<< HEAD
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	É‹‰çï2§ ‡úÍñä2Ž
+‹
+ˆD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\additional_project_files.txt	É‹‰çï2 ²¥±‘è2‹
+ˆ
+…D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\android_gradle_build.json	É‹‰çï2ð µ¥±‘è2
+
+ŠD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\android_gradle_build_mini.json	É‹‰çï2Ë ¸¥±‘è2{
+y
+wD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\build.ninja	É‹‰çï2ˆN ”¤±‘è2
+}
+{D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\build.ninja.txt	É‹‰çï2†
+ƒ
+€D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\build_file_index.txt	É‹‰çï2G «Ö”¢Ü2‡
+„
+D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\compile_commands.json	É‹‰çï2	‹
+ˆ
+…D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\compile_commands.json.bin	É‹‰çï2
+‘
+Ž
+‹D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\metadata_generation_command.txt	É‹‰çï2¦	 ©Ö”¢Ü2ƒ
+€
+~D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\prefab_config.json	É‹‰çï2( ªÖ”¢Ü2‰
+†
+ƒD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\symbol_folder_index.txt	É‹‰çï2z ªÖ”¢Ü2
+=======
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	ÊÝ¯¼è2§ ‡úÍñä2Ž
 ‹
 ˆD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\additional_project_files.txt	ÊÝ¯¼è2 ²¥±‘è2‹
@@ -26,3 +52,4 @@ wD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cx
 ~D:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\prefab_config.json	ÊÝ¯¼è2( ªÖ”¢Ü2‰
 †
 ƒD:\old_hardeDesk\flutter\apps flutter\flutter_2024\advanced_app\android\app\.cxx\Debug\6n6j6y3y\armeabi-v7a\symbol_folder_index.txt	ÊÝ¯¼è2z ªÖ”¢Ü2
+>>>>>>> 2b4773d99e26b943838e3426dc68e3f7a3f06bea

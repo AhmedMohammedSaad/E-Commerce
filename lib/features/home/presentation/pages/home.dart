@@ -274,7 +274,9 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Shop(),
+                              builder: (context) => const Scaffold(
+                                body: Shop(),
+                              ),
                             ),
                           );
                         },
@@ -403,7 +405,7 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          Divider(),
+          const Divider(),
           SizedBox(height: 10.h),
 
           // Categories filter

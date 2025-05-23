@@ -65,9 +65,19 @@ class RouteManager {
           child: NavBar(),
           transitionType: TransitionType.fade,
         );
-      case dashboard:
+      // case dashboard:
+      //   return CustomPageTransition(
+      //     child: const DashboardPage(),
+      //     transitionType: TransitionType.slideRight,
+      //   );
+      case RouteManager.settings:
         return CustomPageTransition(
-          child: const DashboardPage(),
+          child: const SettingsPage(),
+          transitionType: TransitionType.slideUp,
+        );
+      case shop:
+        return CustomPageTransition(
+          child: const Shop(),
           transitionType: TransitionType.slideRight,
         );
       case RouteManager.settings:
