@@ -73,7 +73,11 @@ class DeleteAdvertisementFailure extends DashboardState {
 class GetProductsLoading extends DashboardState {}
 
 class GetProductsSuccess extends DashboardState {
+<<<<<<< HEAD
   final List products;
+=======
+  final List<Product> products;
+>>>>>>> 2b4773d99e26b943838e3426dc68e3f7a3f06bea
   const GetProductsSuccess(this.products);
 
   @override
