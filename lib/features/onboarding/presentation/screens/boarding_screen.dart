@@ -37,26 +37,33 @@ class _BoardingScreenState extends State<BoardingScreen> {
             children: [
               BoardingPage(
                 image: 'assets/images/onpording.jpg',
-                title: 'onboarding_title_1'.tr(),
-                description: 'onboarding_desc_1'.tr(),
+                title: '🚀 اطلب سيستمك في دقايق!',
+                description: '''
+دلوقتي تقدر تشتري السيستم الجاهز لشغلك بسهولة، أمان، وسرعة غير مسبوقة.
+سيستم جاهز للتشغيل فورًا، سهل في الاستخدام، وقابل للتخصيص حسب احتياجك.
+كل اللي عليك تختار، وإحنا علينا الباقي!
+''',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording3.jpg',
-                title: 'onboarding_title_2'.tr(),
-                description: 'onboarding_desc_2'.tr(),
+                title: '📱 كل أنواع التطبيقات في مكان واحد!',
+                description:
+                    'تقدر تشتري أي تطبيق جاهز سواء كان   تطبيق خدمات، أو حتى E-Commerce كامل متكامل.',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording2.jpg',
-                title: 'onboarding_title_3'.tr(),
-                description: 'onboarding_desc_3'.tr(),
+                title: '🌐 اشتري موقعك الإلكتروني بسهولة',
+                description:
+                    'اختار من بين مجموعة كبيرة من المواقع الجاهزة في مختلف المجالات.من غير وجع دماغ، ولا وقت ضايع – موقعك جاهز للاستلام والتشغيل فورًا',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording4.jpg',
-                title: 'onboarding_title_4'.tr(),
-                description: 'onboarding_desc_4'.tr(),
+                title: '💡 التطبيق اللي عجبك؟ خده بسورس كوده!',
+                description:
+                    'شوف التطبيقات اللي تناسبك، واشتري السورس كود الخاص بيها بكل سهولة. ابدأ تعدل، تطور، وتطلق مشروعك الخاص بنفسك أو مع فريقك!',
                 onPressed: () => _navigateToNextScreen(),
                 buttonText: 'get_started'.tr(),
               ),

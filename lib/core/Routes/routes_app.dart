@@ -9,7 +9,6 @@ import 'package:advanced_app/features/nav_bar/page/nav_bar.dart';
 import 'package:advanced_app/features/onboarding/presentation/screens/boarding_screen.dart';
 import 'package:advanced_app/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
-import 'package:advanced_app/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/core/animations/page_transitions.dart';
 
@@ -70,6 +69,16 @@ class RouteManager {
       //     child: const DashboardPage(),
       //     transitionType: TransitionType.slideRight,
       //   );
+      case RouteManager.settings:
+        return CustomPageTransition(
+          child: const SettingsPage(),
+          transitionType: TransitionType.slideUp,
+        );
+      case shop:
+        return CustomPageTransition(
+          child: const Shop(),
+          transitionType: TransitionType.slideRight,
+        );
       case RouteManager.settings:
         return CustomPageTransition(
           child: const SettingsPage(),

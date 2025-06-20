@@ -25,7 +25,10 @@ class Brando extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-                create: (context) => ShopCubit(apiConsumer: DioConsumer())),
+              create: (context) => ShopCubit(
+                apiConsumer: DioConsumer(),
+              ),
+            ),
             BlocProvider(
                 create: (context) => LanguageCubit()..getSavedLanguage()),
           ],

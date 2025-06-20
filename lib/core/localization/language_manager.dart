@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 enum AppLanguage {
@@ -13,7 +15,7 @@ class LanguageManager {
   static const Locale ENGLISH_LOCALE = Locale('en');
   static const Locale ARABIC_LOCALE = Locale('ar');
 
-  static const Locale DEFAULT_LOCALE = ENGLISH_LOCALE;
+  static const Locale DEFAULT_LOCALE = ARABIC_LOCALE;
   static const List<Locale> SUPPORTED_LOCALES = [
     ENGLISH_LOCALE,
     ARABIC_LOCALE,
