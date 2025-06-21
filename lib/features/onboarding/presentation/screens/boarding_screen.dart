@@ -38,11 +38,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
               BoardingPage(
                 image: 'assets/images/onpording.jpg',
                 title: '🚀 Order Your System in Minutes!',
-                description: '''
-Now you can easily, securely, and quickly purchase a ready-made system for your business. 
-A system that's ready to run immediately, easy to use, and customizable to your needs. 
-All you have to do is choose, and we’ll handle the rest!
-''',
+                description:
+                    'Now you can easily, securely, and quickly purchase a ready-made system for your business. A system thats ready to run immediately, easy to use, and customizable to your needs. All you have to do is choose, and we’ll handle the rest!',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
@@ -85,7 +82,9 @@ All you have to do is choose, and we’ll handle the rest!
                   height: 8.h,
                   width: _currentPage == index ? 24.w : 8.w,
                   decoration: BoxDecoration(
-                    color: _currentPage == index ? Theme.of(context).primaryColor : Colors.grey.shade300,
+                    color: _currentPage == index
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(4.r),
                   ),
                 ),
@@ -157,16 +156,20 @@ class BoardingPage extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Image.asset(image).animate().fadeIn(duration: 600.ms).slide(begin: const Offset(0.2, 0)),
+            child: Image.asset(image)
+                .animate()
+                .fadeIn(duration: 600.ms)
+                .slide(begin: const Offset(0.2, 0)),
           ),
           Expanded(
             flex: 2,
             child: Column(
               children: [
                 Text(
+                  textAlign: TextAlign.center,
                   title,
                   style: TextStyle(
-                    fontSize: 28.sp,
+                    fontSize: 26.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ).animate().fadeIn(delay: 200.ms).moveY(begin: 20, end: 0),
@@ -203,7 +206,10 @@ class BoardingPage extends StatelessWidget {
                             color: AppColors.white,
                           ),
                         ),
-                      ).animate().fadeIn(delay: 600.ms).scale(begin: const Offset(0.8, 0.8)),
+                      )
+                          .animate()
+                          .fadeIn(delay: 600.ms)
+                          .scale(begin: const Offset(0.8, 0.8)),
                     ),
                   ],
                 ),
