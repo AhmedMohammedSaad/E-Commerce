@@ -113,8 +113,7 @@ class _ForgotPassState extends State<ForgotPass> {
                         ),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 25.w, vertical: 30.h),
+                          padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 30.h),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -125,10 +124,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                   fontWeight: FontWeight.bold,
                                   color: primaryPurple,
                                 ),
-                              )
-                                  .animate()
-                                  .fadeIn(delay: 200.ms)
-                                  .moveY(begin: 20, end: 0),
+                              ).animate().fadeIn(delay: 200.ms).moveY(begin: 20, end: 0),
 
                               SizedBox(height: 15.h),
 
@@ -177,8 +173,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.r),
-                                      borderSide: BorderSide(
-                                          color: primaryPurple, width: 1.5),
+                                      borderSide: BorderSide(color: primaryPurple, width: 1.5),
                                     ),
                                   ),
                                 ),
@@ -193,8 +188,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                 child: ElevatedButton(
                                   onPressed: () async {
                                     if (_key.currentState!.validate()) {
-                                      await cubit
-                                          .resetPassword(controller.text);
+                                      await cubit.resetPassword(controller.text);
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -219,10 +213,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                     ),
                                   ),
                                 ),
-                              )
-                                  .animate()
-                                  .fadeIn(delay: 800.ms)
-                                  .moveY(begin: 20, end: 0),
+                              ).animate().fadeIn(delay: 800.ms).moveY(begin: 20, end: 0),
 
                               SizedBox(height: 20.h),
 

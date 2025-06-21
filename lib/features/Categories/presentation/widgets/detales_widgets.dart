@@ -24,9 +24,7 @@ class CategoriesDetalse extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => ShopCubit(apiConsumer: DioConsumer())
-              ..getProducts(categorie: categorieName)),
+        BlocProvider(create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(categorie: categorieName)),
         BlocProvider(
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
         ),
@@ -46,16 +44,14 @@ class CategoriesDetalse extends StatelessWidget {
 //! search products
           if (categorieName != null) {
             for (var x in data) {
-              if (x.productCategory!.toLowerCase().trim() ==
-                  categorieName!.toLowerCase().trim()) {
+              if (x.productCategory!.toLowerCase().trim() == categorieName!.toLowerCase().trim()) {
                 filterList.add(x);
               }
             }
           }
           //! list of Product
-          List<ProductsShop> getProductData = categorieName != null
-              ? filterList
-              : context.read<ShopCubit>().getProductsData;
+          List<ProductsShop> getProductData =
+              categorieName != null ? filterList : context.read<ShopCubit>().getProductsData;
 
           return state is ShopingLoading
               ? const LodingApp()
@@ -81,8 +77,7 @@ class CategoriesDetalse extends StatelessWidget {
                                 BoxShadow(
                                   color: Colors.black26, // لون أسود مع شفافية
                                   offset: Offset(1, 1), // اتجاه ومسافة الظل
-                                  blurStyle: BlurStyle
-                                      .normal, // تأثير طبيعي على الحواف
+                                  blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
                                   spreadRadius: 1, // عرض الظل
                                   blurRadius: 7, // نعومة الظل
                                 ),

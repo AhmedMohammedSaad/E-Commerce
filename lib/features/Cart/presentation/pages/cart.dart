@@ -29,12 +29,10 @@ class _CartState extends State<Cart> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
-                CartCubit(apiConsumer: DioConsumer())..getCart(),
+            create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
           ),
           BlocProvider(
-            create: (context) =>
-                ProfileCubit(apiConsumer: DioConsumer())..getDataUser(),
+            create: (context) => ProfileCubit(apiConsumer: DioConsumer())..getDataUser(),
           ),
         ],
         child: BlocBuilder<CartCubit, CartState>(
@@ -78,8 +76,7 @@ class _CartState extends State<Cart> {
               children: [
                 Expanded(
                   child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -122,8 +119,7 @@ class _CartState extends State<Cart> {
                       ),
                     ],
                   ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                   child: SafeArea(
                     top: false,
                     child: Column(
@@ -168,8 +164,7 @@ class _CartState extends State<Cart> {
                             ),
                             Text(
                               "${totalPrice.toStringAsFixed(0)} LE",
-                              style: StyleTextApp.font16ColorblacFontWeightBold
-                                  .copyWith(
+                              style: StyleTextApp.font16ColorblacFontWeightBold.copyWith(
                                 color: AppColors.primaryColor,
                               ),
                             ),

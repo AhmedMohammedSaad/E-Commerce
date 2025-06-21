@@ -69,9 +69,7 @@ class _TextFiealdPasswordState extends State<TextFiealdPassword> {
               icon = !icon;
             });
           },
-          icon: icon
-              ? Icon(Icons.visibility_off_outlined)
-              : Icon(Icons.visibility_outlined),
+          icon: icon ? Icon(Icons.visibility_off_outlined) : Icon(Icons.visibility_outlined),
         ),
         suffixIconColor: AppColors.primaryColor,
         hintText: widget.hintText,

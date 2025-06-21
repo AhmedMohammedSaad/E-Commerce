@@ -20,8 +20,7 @@ class ImageProductDetalse extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primaryColor),
-                borderRadius: BorderRadius.circular(10)),
+                border: Border.all(color: AppColors.primaryColor), borderRadius: BorderRadius.circular(10)),
             width: MediaQuery.of(context).size.width / 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),

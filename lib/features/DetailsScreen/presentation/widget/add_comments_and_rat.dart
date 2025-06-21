@@ -10,8 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:advanced_app/core/widgets/text_fieald.dart';
 
-Future<dynamic> addCommentAndRatingDialog(
-    BuildContext context, ProductsShop productID) {
+Future<dynamic> addCommentAndRatingDialog(BuildContext context, ProductsShop productID) {
   final TextEditingController controller = TextEditingController();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
   double rating = 0;
@@ -64,10 +63,8 @@ Future<dynamic> addCommentAndRatingDialog(
             ),
           ),
           BlocProvider(
-            create: (BuildContext context) =>
-                DetailsscreenCubit(apiConsumer: DioConsumer()),
-            child: BlocBuilder<DetailsscreenCubit, DetailsscreenState>(
-                builder: (context, stat) {
+            create: (BuildContext context) => DetailsscreenCubit(apiConsumer: DioConsumer()),
+            child: BlocBuilder<DetailsscreenCubit, DetailsscreenState>(builder: (context, stat) {
               return stat is AddCommentesLoading
                   ? CircularProgressIndicator(
                       strokeWidth: 3,

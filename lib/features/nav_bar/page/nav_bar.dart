@@ -127,8 +127,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               _buildNavItem(0, Icons.home_rounded, 'Home', indexChange),
               _buildNavItem(1, Icons.shopify, 'Shop', indexChange),
               _buildCenterNavItem(indexChange),
-              _buildNavItem(
-                  3, Icons.shopping_cart_rounded, 'Cart', indexChange),
+              _buildNavItem(3, Icons.shopping_cart_rounded, 'Cart', indexChange),
               _buildNavItem(4, Icons.person_rounded, 'Profile', indexChange),
             ],
           ),
@@ -192,8 +191,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildNavItem(
-      int index, IconData icon, String label, NavebarsdCubit cubit) {
+  Widget _buildNavItem(int index, IconData icon, String label, NavebarsdCubit cubit) {
     final isSelected = cubit.courntIndex == index;
 
     return Expanded(
@@ -212,9 +210,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               height: isSelected ? 40.h : 30.h,
               width: isSelected ? 40.w : 30.w,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primaryColor.withOpacity(0.15)
-                    : Colors.transparent,
+                color: isSelected ? AppColors.primaryColor.withOpacity(0.15) : Colors.transparent,
                 borderRadius: BorderRadius.circular(isSelected ? 14.r : 8.r),
               ),
               child: Center(

@@ -29,8 +29,7 @@ class Brando extends StatelessWidget {
                 apiConsumer: DioConsumer(),
               ),
             ),
-            BlocProvider(
-                create: (context) => LanguageCubit()..getSavedLanguage()),
+            BlocProvider(create: (context) => LanguageCubit()..getSavedLanguage()),
           ],
           child: BlocBuilder<LanguageCubit, LanguageState>(
             builder: (context, state) {
@@ -41,9 +40,7 @@ class Brando extends StatelessWidget {
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
                 theme: LightTheme.theme,
-                initialRoute: supabase.auth.currentUser != null
-                    ? RouteManager.navBar
-                    : RouteManager.onboarding,
+                initialRoute: supabase.auth.currentUser != null ? RouteManager.navBar : RouteManager.onboarding,
                 onGenerateRoute: RouteManager.generateRoute,
               );
             },

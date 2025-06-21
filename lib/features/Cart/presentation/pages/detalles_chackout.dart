@@ -13,8 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetallesCheckout extends StatefulWidget {
-  const DetallesCheckout(
-      {super.key, required this.productDetalse, required this.totleProduct});
+  const DetallesCheckout({super.key, required this.productDetalse, required this.totleProduct});
   final List<CartModel> productDetalse;
   final double totleProduct;
   @override
@@ -75,8 +74,7 @@ class _DetallesCheckoutState extends State<DetallesCheckout> {
                               backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت العملية بنجاح",
-                                style:
-                                    StyleTextApp.font14ColorWhiteFontWeightBold,
+                                style: StyleTextApp.font14ColorWhiteFontWeightBold,
                               ),
                               duration: const Duration(seconds: 2),
                             ),

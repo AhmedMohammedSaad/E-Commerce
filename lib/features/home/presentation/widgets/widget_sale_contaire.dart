@@ -18,8 +18,7 @@ class SlaleWidgetContainer extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         //! list view of Product
-        final List<ProductsShop> getProductSale =
-            context.read<ShopCubit>().getProductsData;
+        final List<ProductsShop> getProductSale = context.read<ShopCubit>().getProductsData;
         if (state is ShopingLoading) {
           return
               // Center(
@@ -49,9 +48,7 @@ class SlaleWidgetContainer extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    ProductDetailsScreen(
+                            pageBuilder: (context, animation, secondaryAnimation) => ProductDetailsScreen(
                               index: index,
                               products: getProductSale[index],
                               productID: getProductSale[index],
@@ -76,8 +73,7 @@ class SlaleWidgetContainer extends StatelessWidget {
           return Center(
             child: Column(
               children: [
-                const Icon(
-                    Icons.signal_wifi_statusbar_connected_no_internet_4_sharp),
+                const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_sharp),
                 Text(
                   'No Internet Connection',
                   style: StyleTextApp.font16ColorblacFontWeightBold,

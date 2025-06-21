@@ -129,8 +129,7 @@ class _CardCategoryState extends State<CardCategory> {
                         SizedBox(width: 12.w),
                         Text(
                           "${int.parse(widget.cartModel.products!.price.toString())} LE",
-                          style: StyleTextApp.font14ColorblacFontWeightBold
-                              .copyWith(
+                          style: StyleTextApp.font14ColorblacFontWeightBold.copyWith(
                             color: AppColors.primaryColor,
                           ),
                         ),

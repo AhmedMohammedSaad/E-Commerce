@@ -46,16 +46,14 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: BlocProvider(
-          create: (context) =>
-              ShopCubit(apiConsumer: DioConsumer())..getProducts(),
+          create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               // App Bar
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -106,8 +104,7 @@ class _HomeState extends State<Home> {
               // Search Bar
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     height: 50.h,
@@ -139,12 +136,10 @@ class _HomeState extends State<Home> {
                                 fontSize: 14.sp,
                               ),
                               border: InputBorder.none,
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 15.h),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.h),
                               suffixIcon: _searchController.text.isNotEmpty
                                   ? IconButton(
-                                      icon: Icon(Icons.clear,
-                                          color: Colors.grey[400]),
+                                      icon: Icon(Icons.clear, color: Colors.grey[400]),
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {});
@@ -174,22 +169,22 @@ class _HomeState extends State<Home> {
                         ),
                         SizedBox(width: 10.w),
                         // Filter button
-                        GestureDetector(
-                          onTap: () {
-                            // Show filter options (categories, price range, etc.)
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              builder: (context) =>
-                                  _buildFilterBottomSheet(context),
-                            );
-                          },
-                          child: const Icon(
-                            Icons.tune,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     // Show filter options (categories, price range, etc.)
+                        //     showModalBottomSheet(
+                        //       context: context,
+                        //       isScrollControlled: true,
+                        //       backgroundColor: Colors.transparent,
+                        //       builder: (context) =>
+                        //           _buildFilterBottomSheet(context),
+                        //     );
+                        //   },
+                        //   child: const Icon(
+                        //     Icons.tune,
+                        //     color: AppColors.primaryColor,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -255,8 +250,7 @@ class _HomeState extends State<Home> {
               // Sales Section
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -304,8 +298,7 @@ class _HomeState extends State<Home> {
               // Recent Products Section
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -373,179 +366,179 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // Function to build the filter bottom sheet
-  Widget _buildFilterBottomSheet(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.r),
-          topRight: Radius.circular(25.r),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header with close button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'filter_products'.tr(),
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          ),
-          const Divider(),
-          SizedBox(height: 10.h),
+  // //! Function to build the filter bottom sheet
+  // Widget _buildFilterBottomSheet(BuildContext context) {
+  //   return Container(
+  //     height: MediaQuery.of(context).size.height * 0.8,
+  //     padding: EdgeInsets.all(20.w),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.only(
+  //         topLeft: Radius.circular(25.r),
+  //         topRight: Radius.circular(25.r),
+  //       ),
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         // Header with close button
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: [
+  //             Text(
+  //               'filter_products'.tr(),
+  //               style: TextStyle(
+  //                 fontSize: 18.sp,
+  //                 fontWeight: FontWeight.bold,
+  //               ),
+  //             ),
+  //             IconButton(
+  //               icon: const Icon(Icons.close),
+  //               onPressed: () => Navigator.pop(context),
+  //             ),
+  //           ],
+  //         ),
+  //         const Divider(),
+  //         SizedBox(height: 10.h),
 
-          // Categories filter
-          Text(
-            'categories'.tr(),
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Wrap(
-            spacing: 10.w,
-            children: [
-              _buildFilterChip('all'.tr()),
-              _buildFilterChip('electronics'.tr()),
-              _buildFilterChip('clothing'.tr()),
-              _buildFilterChip('home_kitchen'.tr()),
-              _buildFilterChip('sports'.tr()),
-              _buildFilterChip('toys'.tr()),
-            ],
-          ),
-          SizedBox(height: 20.h),
+  //         // Categories filter
+  //         Text(
+  //           'categories'.tr(),
+  //           style: TextStyle(
+  //             fontSize: 16.sp,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //         SizedBox(height: 10.h),
+  //         Wrap(
+  //           spacing: 10.w,
+  //           children: [
+  //             _buildFilterChip('all'.tr()),
+  //             _buildFilterChip('electronics'.tr()),
+  //             _buildFilterChip('clothing'.tr()),
+  //             _buildFilterChip('home_kitchen'.tr()),
+  //             _buildFilterChip('sports'.tr()),
+  //             _buildFilterChip('toys'.tr()),
+  //           ],
+  //         ),
+  //         SizedBox(height: 20.h),
 
-          // Price Range filter
-          Text(
-            'price_range'.tr(),
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'min'.tr(),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-              ),
-              SizedBox(width: 15.w),
-              Expanded(
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'max'.tr(),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.h),
+  //         // Price Range filter
+  //         Text(
+  //           'price_range'.tr(),
+  //           style: TextStyle(
+  //             fontSize: 16.sp,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //         SizedBox(height: 10.h),
+  //         Row(
+  //           children: [
+  //             Expanded(
+  //               child: Container(
+  //                 padding:
+  //                     EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
+  //                 decoration: BoxDecoration(
+  //                   border: Border.all(color: Colors.grey.shade300),
+  //                   borderRadius: BorderRadius.circular(8.r),
+  //                 ),
+  //                 child: TextField(
+  //                   decoration: InputDecoration(
+  //                     hintText: 'min'.tr(),
+  //                     border: InputBorder.none,
+  //                     contentPadding: EdgeInsets.zero,
+  //                   ),
+  //                   keyboardType: TextInputType.number,
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(width: 15.w),
+  //             Expanded(
+  //               child: Container(
+  //                 padding:
+  //                     EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
+  //                 decoration: BoxDecoration(
+  //                   border: Border.all(color: Colors.grey.shade300),
+  //                   borderRadius: BorderRadius.circular(8.r),
+  //                 ),
+  //                 child: TextField(
+  //                   decoration: InputDecoration(
+  //                     hintText: 'max'.tr(),
+  //                     border: InputBorder.none,
+  //                     contentPadding: EdgeInsets.zero,
+  //                   ),
+  //                   keyboardType: TextInputType.number,
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         SizedBox(height: 20.h),
 
-          // Sort By filter
-          Text(
-            'sort_by'.tr(),
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Wrap(
-            spacing: 10.w,
-            children: [
-              _buildFilterChip('newest'.tr()),
-              _buildFilterChip('price_low_high'.tr()),
-              _buildFilterChip('price_high_low'.tr()),
-              _buildFilterChip('popularity'.tr()),
-            ],
-          ),
+  //         // Sort By filter
+  //         Text(
+  //           'sort_by'.tr(),
+  //           style: TextStyle(
+  //             fontSize: 16.sp,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //         SizedBox(height: 10.h),
+  //         Wrap(
+  //           spacing: 10.w,
+  //           children: [
+  //             _buildFilterChip('newest'.tr()),
+  //             _buildFilterChip('price_low_high'.tr()),
+  //             _buildFilterChip('price_high_low'.tr()),
+  //             _buildFilterChip('popularity'.tr()),
+  //           ],
+  //         ),
 
-          const Spacer(),
+  //         const Spacer(),
 
-          // Apply button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                // Apply filters and navigate to filtered results
-                Navigator.pop(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-                padding: EdgeInsets.symmetric(vertical: 15.h),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-              ),
-              child: Text(
-                'apply_filters'.tr(),
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //         // Apply button
+  //         SizedBox(
+  //           width: double.infinity,
+  //           child: ElevatedButton(
+  //             onPressed: () {
+  //               // Apply filters and navigate to filtered results
+  //               Navigator.pop(context);
+  //             },
+  //             style: ElevatedButton.styleFrom(
+  //               backgroundColor: AppColors.primaryColor,
+  //               padding: EdgeInsets.symmetric(vertical: 15.h),
+  //               shape: RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(12.r),
+  //               ),
+  //             ),
+  //             child: Text(
+  //               'apply_filters'.tr(),
+  //               style: TextStyle(
+  //                 fontSize: 16.sp,
+  //                 fontWeight: FontWeight.bold,
+  //                 color: Colors.white,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   // Helper method to build filter chips
-  Widget _buildFilterChip(String label) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 8.h),
-      child: FilterChip(
-        label: Text(label),
-        onSelected: (selected) {},
-        backgroundColor: Colors.grey.shade100,
-        selectedColor: AppColors.primaryColor.withOpacity(0.2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-      ),
-    );
-  }
+  // Widget _buildFilterChip(String label) {
+  //   return Container(
+  //     margin: EdgeInsets.only(bottom: 8.h),
+  //     child: FilterChip(
+  //       label: Text(label),
+  //       onSelected: (selected) {},
+  //       backgroundColor: Colors.grey.shade100,
+  //       selectedColor: AppColors.primaryColor.withOpacity(0.2),
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(8.r),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

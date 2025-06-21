@@ -22,8 +22,7 @@ class ButtonDelete extends StatefulWidget {
 }
 
 class _ButtonDeleteState extends State<ButtonDelete> {
-  final FavoriteManager _favoriteManager =
-      FavoriteManager(); // إنشاء كائن من FavoriteManager
+  final FavoriteManager _favoriteManager = FavoriteManager(); // إنشاء كائن من FavoriteManager
 
   final FavoritesService _favoritesService = FavoritesService();
 
@@ -45,12 +44,10 @@ class _ButtonDeleteState extends State<ButtonDelete> {
         borderRadius: BorderRadius.circular(14.r),
       ),
       //!delete button
-      child:
-          BlocBuilder<FavoriteCubit, FavoriteState>(builder: (context, state) {
+      child: BlocBuilder<FavoriteCubit, FavoriteState>(builder: (context, state) {
         return IconButton(
             onPressed: () {
-              context.read<FavoriteCubit>().deleteFavorite(
-                  widget.favoriteId.products!.productId.toString());
+              context.read<FavoriteCubit>().deleteFavorite(widget.favoriteId.products!.productId.toString());
               //! delete for cash
 
               _favoritesService.deleteFavorite(

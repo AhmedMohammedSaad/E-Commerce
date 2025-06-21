@@ -24,10 +24,8 @@ class LoveIconButton extends StatefulWidget {
 }
 
 class _LoveIconButtonState extends State<LoveIconButton> {
-  final FavoritesService _favoriteService =
-      FavoritesService(); // إنشاء كائن من FavoriteService
-  final FavoriteManager _favoriteManager =
-      FavoriteManager(); // إنشاء كائن من FavoriteManager
+  final FavoritesService _favoriteService = FavoritesService(); // إنشاء كائن من FavoriteService
+  final FavoriteManager _favoriteManager = FavoriteManager(); // إنشاء كائن من FavoriteManager
 
   @override
   void initState() {
@@ -37,8 +35,7 @@ class _LoveIconButtonState extends State<LoveIconButton> {
 
   // جلب حالة الإعجاب عند بدء التشغيل
   Future<void> _loadFavoriteState() async {
-    final isFavorite = await _favoriteService
-        .getFavorite(widget.getProductData.productId.toString());
+    final isFavorite = await _favoriteService.getFavorite(widget.getProductData.productId.toString());
     _favoriteManager.setFavorite(isFavorite);
     setState(() {}); // تحديث الواجهة
   }
@@ -72,8 +69,7 @@ class _LoveIconButtonState extends State<LoveIconButton> {
           _favoriteManager.toggleFavorite(); // تغيير حالة الإعجاب
 
           // حفظ الحالة بعد التغيير
-          await _favoriteService.saveFavorite(
-              id.toString(), _favoriteManager.favoriteBoll);
+          await _favoriteService.saveFavorite(id.toString(), _favoriteManager.favoriteBoll);
         },
         icon: _favoriteManager.favoriteBoll
             ? const Icon(Icons.favorite, color: AppColors.red)

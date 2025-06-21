@@ -33,8 +33,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ShopCubit(apiConsumer: DioConsumer())
-            ..getProducts(quary: widget.quary),
+          create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: widget.quary),
         ),
         BlocProvider(
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
@@ -55,9 +54,8 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
         child: BlocBuilder<ShopCubit, ShopState>(
           builder: (context, state) {
             //! list of Product
-            List<ProductsShop> getProductData = widget.quary != null
-                ? context.read<ShopCubit>().searchList
-                : context.read<ShopCubit>().getProductsData;
+            List<ProductsShop> getProductData =
+                widget.quary != null ? context.read<ShopCubit>().searchList : context.read<ShopCubit>().getProductsData;
 
             if (state is ShopingLoading) {
               return const LodingApp();
@@ -118,8 +116,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                             builder: (ctx) => MultiBlocProvider(
                               providers: [
                                 BlocProvider(
-                                  create: (context) => DetailsscreenCubit(
-                                      apiConsumer: DioConsumer()),
+                                  create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer()),
                                 ),
                                 BlocProvider.value(
                                   value: context.read<ShopCubit>(),
@@ -153,8 +150,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                     child: CachedNetworkImage(
                                       imageUrl: product.imageUrl ?? '',
                                       fit: BoxFit.cover,
-                                      imageBuilder: (context, imageProvider) =>
-                                          Container(
+                                      imageBuilder: (context, imageProvider) => Container(
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: imageProvider,
@@ -171,8 +167,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                           ),
                                         ),
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          Container(
+                                      errorWidget: (context, url, error) => Container(
                                         color: const Color(0xFFF8F8F8),
                                         child: Icon(
                                           Icons.image_not_supported,
@@ -194,8 +189,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                         ),
                                         decoration: BoxDecoration(
                                           color: Colors.red,
-                                          borderRadius:
-                                              BorderRadius.circular(12.r),
+                                          borderRadius: BorderRadius.circular(12.r),
                                         ),
                                         child: Text(
                                           "SALE",
@@ -222,8 +216,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                     SizedBox(
                                       height: 36.h,
                                       child: Text(
-                                        product.productName ??
-                                            'Unknown Product',
+                                        product.productName ?? 'Unknown Product',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -238,19 +231,15 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
 
                                     // Price and Add to cart row at bottom
                                     SizedBox(
-                                      height:
-                                          product.isSale == true ? 40.h : 23.h,
+                                      height: product.isSale == true ? 40.h : 23.h,
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           // Price column
                                           Column(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               if (product.isSale == true)
                                                 Text(
@@ -258,8 +247,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                                   style: TextStyle(
                                                     fontSize: 11.sp,
                                                     color: Colors.grey,
-                                                    decoration: TextDecoration
-                                                        .lineThrough,
+                                                    decoration: TextDecoration.lineThrough,
                                                   ),
                                                 ),
                                               Text(
@@ -274,8 +262,7 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
                                           ),
 
                                           // Add to cart button
-                                          _buildAddToCartButton(
-                                              context, product),
+                                          _buildAddToCartButton(context, product),
                                         ],
                                       ),
                                     ),
@@ -301,15 +288,13 @@ class _GridviewForWidgetState extends State<GridviewForWidget> {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         final carts = context.read<CartCubit>().carts;
-        final isProductInCart =
-            carts.any((cart) => cart.products!.productId == product.productId);
+        final isProductInCart = carts.any((cart) => cart.products!.productId == product.productId);
 
         return Container(
           height: 32.h,
           width: 32.h,
           decoration: BoxDecoration(
-            color:
-                isProductInCart ? Colors.grey.shade400 : AppColors.primaryColor,
+            color: isProductInCart ? Colors.grey.shade400 : AppColors.primaryColor,
             borderRadius: BorderRadius.circular(6.r),
           ),
           child: InkWell(

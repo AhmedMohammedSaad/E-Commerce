@@ -33,8 +33,7 @@ Container addToCartBottn(
 
                       // التحقق من وجود المنتج في السلة
                       final isProductInCart = carts.any(
-                        (cart) =>
-                            cart.products!.productId == productID.productId,
+                        (cart) => cart.products!.productId == productID.productId,
                       );
 
                       if (isProductInCart) {
@@ -45,8 +44,7 @@ Container addToCartBottn(
                               backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت الإضافة إلى السلة مسبقًا",
-                                style:
-                                    StyleTextApp.font14ColorWhiteFontWeightBold,
+                                style: StyleTextApp.font14ColorWhiteFontWeightBold,
                               ),
                               duration: const Duration(seconds: 2),
                             ),
@@ -65,8 +63,7 @@ Container addToCartBottn(
                               backgroundColor: AppColors.primaryColor,
                               content: Text(
                                 "تمت الإضافة إلى السلة بنجاح",
-                                style:
-                                    StyleTextApp.font14ColorWhiteFontWeightBold,
+                                style: StyleTextApp.font14ColorWhiteFontWeightBold,
                               ),
                               duration: const Duration(seconds: 2),
                             ),

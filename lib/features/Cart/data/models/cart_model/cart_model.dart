@@ -20,15 +20,11 @@ class CartModel {
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
       cartId: json['cart_id'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       isCart: json['is_cart'] as bool?,
       forUserId: json['for_user_id'] as String?,
       forProductId: json['for_product_id'] as String?,
-      products: json['products'] == null
-          ? null
-          : Products.fromJson(json['products'] as Map<String, dynamic>),
+      products: json['products'] == null ? null : Products.fromJson(json['products'] as Map<String, dynamic>),
     );
   }
 

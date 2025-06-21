@@ -24,8 +24,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     emit(FavoriteLoding());
 
     try {
-      final response = await apiConsumer
-          .get("favorte?for_user_id=eq.$userId&select=*,products(*)");
+      final response = await apiConsumer.get("favorte?for_user_id=eq.$userId&select=*,products(*)");
 
       for (var data in response) {
         favorites.add(FavoriteModel.fromJson(data));

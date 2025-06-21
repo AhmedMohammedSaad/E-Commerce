@@ -9,8 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 part 'detailsscreen_state.dart';
 
 class DetailsscreenCubit extends Cubit<DetailsscreenState> {
-  DetailsscreenCubit({required this.apiConsumer})
-      : super(DetailsscreenInitial());
+  DetailsscreenCubit({required this.apiConsumer}) : super(DetailsscreenInitial());
   final userID = Supabase.instance.client.auth.currentUser!.id;
   //! dio
   final ApiConsumer apiConsumer;
@@ -36,11 +35,8 @@ class DetailsscreenCubit extends Cubit<DetailsscreenState> {
     emit(AddCommentesLoading());
     try {
       //! comments
-      await apiConsumer.post("comments", data: {
-        "comment": comment,
-        "for_user_id": userID,
-        "for_product_id": productID
-      });
+      await apiConsumer
+          .post("comments", data: {"comment": comment, "for_user_id": userID, "for_product_id": productID});
 
       emit(AddCommentesSuccses());
     } on ApiExceptions catch (e) {
@@ -55,11 +51,8 @@ class DetailsscreenCubit extends Cubit<DetailsscreenState> {
     emit(AddRatLoading());
     try {
       //! rating
-      await apiConsumer.post("rating", data: {
-        "rating_num": ratNum,
-        "for_user_id": userID,
-        "for_producte_id": productID
-      });
+      await apiConsumer
+          .post("rating", data: {"rating_num": ratNum, "for_user_id": userID, "for_producte_id": productID});
 
       emit(AddRatSuccses());
     } on ApiExceptions catch (e) {

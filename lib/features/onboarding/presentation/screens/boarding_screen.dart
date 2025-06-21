@@ -37,33 +37,33 @@ class _BoardingScreenState extends State<BoardingScreen> {
             children: [
               BoardingPage(
                 image: 'assets/images/onpording.jpg',
-                title: '🚀 اطلب سيستمك في دقايق!',
+                title: '🚀 Order Your System in Minutes!',
                 description: '''
-دلوقتي تقدر تشتري السيستم الجاهز لشغلك بسهولة، أمان، وسرعة غير مسبوقة.
-سيستم جاهز للتشغيل فورًا، سهل في الاستخدام، وقابل للتخصيص حسب احتياجك.
-كل اللي عليك تختار، وإحنا علينا الباقي!
+Now you can easily, securely, and quickly purchase a ready-made system for your business. 
+A system that's ready to run immediately, easy to use, and customizable to your needs. 
+All you have to do is choose, and we’ll handle the rest!
 ''',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording3.jpg',
-                title: '📱 كل أنواع التطبيقات في مكان واحد!',
+                title: '📱 All Types of Apps in One Place!',
                 description:
-                    'تقدر تشتري أي تطبيق جاهز سواء كان   تطبيق خدمات، أو حتى E-Commerce كامل متكامل.',
+                    'You can buy any ready-made app, whether it’s a service app or even a complete E-Commerce solution.',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording2.jpg',
-                title: '🌐 اشتري موقعك الإلكتروني بسهولة',
+                title: '🌐 Buy Your Website with Ease',
                 description:
-                    'اختار من بين مجموعة كبيرة من المواقع الجاهزة في مختلف المجالات.من غير وجع دماغ، ولا وقت ضايع – موقعك جاهز للاستلام والتشغيل فورًا',
+                    'Choose from a wide range of ready-made websites across different industries.No hassle, no wasted time – your website is ready to launch instantly.',
                 onPressed: () => _nextPage(),
               ),
               BoardingPage(
                 image: 'assets/images/onpording4.jpg',
-                title: '💡 التطبيق اللي عجبك؟ خده بسورس كوده!',
+                title: '💡 Like the App? Get Its Source Code!',
                 description:
-                    'شوف التطبيقات اللي تناسبك، واشتري السورس كود الخاص بيها بكل سهولة. ابدأ تعدل، تطور، وتطلق مشروعك الخاص بنفسك أو مع فريقك!',
+                    'Browse the apps that suit you and purchase their source code with ease. Start editing, improving, and launching your own project – by yourself or with your team!',
                 onPressed: () => _navigateToNextScreen(),
                 buttonText: 'get_started'.tr(),
               ),
@@ -85,9 +85,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
                   height: 8.h,
                   width: _currentPage == index ? 24.w : 8.w,
                   decoration: BoxDecoration(
-                    color: _currentPage == index
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey.shade300,
+                    color: _currentPage == index ? Theme.of(context).primaryColor : Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(4.r),
                   ),
                 ),
@@ -147,7 +145,7 @@ class BoardingPage extends StatelessWidget {
     required this.title,
     required this.description,
     required this.onPressed,
-    this.buttonText = 'next',
+    this.buttonText = 'Next',
   });
 
   @override
@@ -158,11 +156,8 @@ class BoardingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 3,
-            child: Image.asset(image)
-                .animate()
-                .fadeIn(duration: 600.ms)
-                .slide(begin: const Offset(0.2, 0)),
+            flex: 2,
+            child: Image.asset(image).animate().fadeIn(duration: 600.ms).slide(begin: const Offset(0.2, 0)),
           ),
           Expanded(
             flex: 2,
@@ -184,7 +179,7 @@ class BoardingPage extends StatelessWidget {
                     color: Colors.grey.shade600,
                   ),
                 ).animate().fadeIn(delay: 400.ms).moveY(begin: 20, end: 0),
-                SizedBox(height: 40.h),
+                const Spacer(),
                 Row(
                   children: [
                     Expanded(
@@ -208,10 +203,7 @@ class BoardingPage extends StatelessWidget {
                             color: AppColors.white,
                           ),
                         ),
-                      )
-                          .animate()
-                          .fadeIn(delay: 600.ms)
-                          .scale(begin: const Offset(0.8, 0.8)),
+                      ).animate().fadeIn(delay: 600.ms).scale(begin: const Offset(0.8, 0.8)),
                     ),
                   ],
                 ),

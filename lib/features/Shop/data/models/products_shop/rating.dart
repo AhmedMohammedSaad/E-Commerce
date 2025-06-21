@@ -16,9 +16,7 @@ class Rating {
   factory Rating.fromJson(Map<String, dynamic> json) {
     return Rating(
       ratingId: json['rating_id'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       ratingNum: json['rating_num'] as int?,
       forUserId: json['for_user_id'] as String?,
       forProducteId: json['for_producte_id'] as String?,

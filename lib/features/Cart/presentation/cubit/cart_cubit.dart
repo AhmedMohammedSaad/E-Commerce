@@ -22,8 +22,7 @@ class CartCubit extends Cubit<CartState> {
     carts = [];
     emit(GetCartLoding());
     try {
-      final response = await apiConsumer
-          .get("cart?for_user_id=eq.$userId&select=*,products(*)");
+      final response = await apiConsumer.get("cart?for_user_id=eq.$userId&select=*,products(*)");
       for (var elment in response) {
         final cartItem = CartModel.fromJson(elment);
         carts.add(cartItem);
@@ -93,8 +92,7 @@ class CartCubit extends Cubit<CartState> {
   }) async {
     emit(PostProductToDataBaseLoading());
     try {
-      final response = await apiConsumer
-          .get("cart?for_user_id=eq.$userId&select=*,products(*)");
+      final response = await apiConsumer.get("cart?for_user_id=eq.$userId&select=*,products(*)");
       await apiConsumer.post("user_detalse_purtchease", data: {
         "name": name,
         "address": address,

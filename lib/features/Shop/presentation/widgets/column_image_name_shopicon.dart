@@ -71,8 +71,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                           builder: (ctx) => MultiBlocProvider(
                             providers: [
                               BlocProvider(
-                                create: (context) => DetailsscreenCubit(
-                                    apiConsumer: DioConsumer()),
+                                create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer()),
                               ),
                               BlocProvider.value(
                                 value: context.read<ShopCubit>(),
@@ -127,8 +126,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                     listener: (context, state) {},
                     builder: (context, state) {
                       return LoveIconButton(
-                        isFavorte: coubitData
-                            .chaickIsFavorte(getProductData[index].productId!),
+                        isFavorte: coubitData.chaickIsFavorte(getProductData[index].productId!),
                         index: index,
                         getProductData: getProductData[index],
                       );
@@ -138,8 +136,7 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                 Positioned(
                   bottom: 5.h,
                   left: 5.w,
-                  child: ContainerReting(
-                      index: index, getProductData: getProductData),
+                  child: ContainerReting(index: index, getProductData: getProductData),
                 ),
               ],
             ),
@@ -172,11 +169,8 @@ class ColumnImageNameShopIcon extends StatelessWidget {
                         style: StyleTextApp.font13ColorblacFontWeightBold,
                       ),
                       Text(
-                        getProductData[index].oldPrice == null
-                            ? ""
-                            : "${getProductData[index].oldPrice.toString()} LE",
-                        style: StyleTextApp
-                            .font12ColorgrayTextDecorationlineThrough,
+                        getProductData[index].oldPrice == null ? "" : "${getProductData[index].oldPrice.toString()} LE",
+                        style: StyleTextApp.font12ColorgrayTextDecorationlineThrough,
                       ),
                     ],
                   ),

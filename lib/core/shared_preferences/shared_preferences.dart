@@ -11,14 +11,12 @@ class SharedPreferencesHelper {
 
   static Future<void> _ensureInitialized() async {
     if (_preferences == null) {
-      throw Exception(
-          "SharedPreferences not initialized. Call SharedPreferencesHelper.init() first.");
+      throw Exception("SharedPreferences not initialized. Call SharedPreferencesHelper.init() first.");
     }
   }
 
   // Save data to SharedPreferences
-  static Future<void> saveData(
-      {required String key, required dynamic value}) async {
+  static Future<void> saveData({required String key, required dynamic value}) async {
     await _ensureInitialized();
 
     if (value is String) {

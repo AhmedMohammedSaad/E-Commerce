@@ -16,9 +16,7 @@ class Advertisements {
   factory Advertisements.fromJson(Map<String, dynamic> json) {
     return Advertisements(
       id: json['id'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       titleName: json['title_name'] as String?,
       descreption: json['descreption'] as String?,
       imageUrl: json['image_url'] as String?,

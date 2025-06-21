@@ -29,8 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
 //! sign up Function
-  Future signup(
-      final String name, final String email, final String password) async {
+  Future signup(final String name, final String email, final String password) async {
     emit(SignUpLoading());
     try {
       await supabase.auth.signUp(email: email, password: password);
@@ -47,8 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
   //! Sign in with Google
   Future<AuthResponse> nativeGoogleSignIn() async {
     emit(SignInWithGoogleLoading());
-    const webClientId =
-        '188319356517-cee62pbmpjngeo85bkkbug4257vkhd5v.apps.googleusercontent.com';
+    const webClientId = '188319356517-cee62pbmpjngeo85bkkbug4257vkhd5v.apps.googleusercontent.com';
 
     final GoogleSignIn googleSignIn = GoogleSignIn(
       // clientId: iosClientId,

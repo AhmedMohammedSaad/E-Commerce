@@ -19,8 +19,7 @@ class ProductComments extends StatelessWidget {
     return BlocConsumer<DetailsscreenCubit, DetailsscreenState>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
-        List<Comments> comments =
-            context.read<DetailsscreenCubit>().commentsList;
+        List<Comments> comments = context.read<DetailsscreenCubit>().commentsList;
         if (state is CommentLoading) {
           return Center(
             child: LoadingAnimationWidget.dotsTriangle(

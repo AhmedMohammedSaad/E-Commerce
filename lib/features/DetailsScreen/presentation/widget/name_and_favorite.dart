@@ -38,8 +38,7 @@ class NameAndFavorite extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(
-                8.0), //! Padding around the favorite button
+            padding: const EdgeInsets.all(8.0), //! Padding around the favorite button
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -58,13 +57,11 @@ class NameAndFavorite extends StatelessWidget {
               child: ClipOval(
                 child: Material(
                   color: Colors.transparent,
-                  child: BlocBuilder<ShopCubit, ShopState>(
-                      builder: (context, state) {
+                  child: BlocBuilder<ShopCubit, ShopState>(builder: (context, state) {
                     return LoveIconButton(
                       index: index,
                       getProductData: productID,
-                      isFavorte:
-                          context.read<ShopCubit>().chaickIsFavorte(productID),
+                      isFavorte: context.read<ShopCubit>().chaickIsFavorte(productID),
                     );
                   }),
                 ),

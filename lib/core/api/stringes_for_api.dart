@@ -4,8 +4,7 @@ class StringesForApi {
 }
 
 class Endpoint {
-  static String getComment(id) =>
-      "products?product_id=eq.$id&select=product_id,comments(*,users(name))";
+  static String getComment(id) => "products?product_id=eq.$id&select=product_id,comments(*,users(name))";
   static String getAdvertisements = "advertisements";
   static String getProduct = "products?select=*,rating(*)";
 }

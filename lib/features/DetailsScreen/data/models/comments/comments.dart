@@ -9,9 +9,7 @@ class Comments {
   factory Comments.fromJson(Map<String, dynamic> json) {
     return Comments(
       productId: json['product_id'] as String?,
-      comments: (json['comments'] as List<dynamic>?)
-          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      comments: (json['comments'] as List<dynamic>?)?.map((e) => Comment.fromJson(e as Map<String, dynamic>)).toList(),
     );
   }
 

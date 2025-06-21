@@ -7,8 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // ignore: non_constant_identifier_names
-Stack HomWidget(
-    BuildContext context, List<ProductsShop> getProductSale, int index) {
+Stack HomWidget(BuildContext context, List<ProductsShop> getProductSale, int index) {
   return Stack(
     children: [
       Padding(
@@ -55,8 +54,7 @@ Stack HomWidget(
                   child: card,
                 );
               },
-              errorWidget: (context, url, error) =>
-                  const Icon(Icons.broken_image_rounded, size: 50),
+              errorWidget: (context, url, error) => const Icon(Icons.broken_image_rounded, size: 50),
             ),
           ),
         ),
@@ -89,11 +87,8 @@ Stack HomWidget(
           //! text Sale
           child: Text(
               '${calculateSaleOffer(
-                int.tryParse(getProductSale[index].price?.toString() ?? "0") ??
-                    0,
-                int.tryParse(
-                        getProductSale[index].oldPrice?.toString() ?? "0") ??
-                    0,
+                int.tryParse(getProductSale[index].price?.toString() ?? "0") ?? 0,
+                int.tryParse(getProductSale[index].oldPrice?.toString() ?? "0") ?? 0,
               )}% OFF',
               style: StyleTextApp.font14ColorWhiteFontWeightBold),
         ),

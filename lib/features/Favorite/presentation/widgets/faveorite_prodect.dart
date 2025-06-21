@@ -29,8 +29,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
         ),
         BlocProvider(
-          create: (BuildContext context) =>
-              ShopCubit(apiConsumer: DioConsumer()),
+          create: (BuildContext context) => ShopCubit(apiConsumer: DioConsumer()),
         ),
       ],
       child: Column(
@@ -80,8 +79,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),
@@ -139,8 +137,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                     ),
                     Text(
                       "${favorite.products!.oldPrice.toString()} LE",
-                      style:
-                          StyleTextApp.font12ColorgrayTextDecorationlineThrough,
+                      style: StyleTextApp.font12ColorgrayTextDecorationlineThrough,
                     ),
                   ],
                 ),
@@ -154,9 +151,8 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                         final carts = context.read<CartCubit>().carts;
 
                         // التحقق من وجود المنتج في السلة
-                        final isProductInCart = carts.any((cart) =>
-                            cart.products!.productId ==
-                            listFavorite[index].products!.productId);
+                        final isProductInCart =
+                            carts.any((cart) => cart.products!.productId == listFavorite[index].products!.productId);
 
                         if (isProductInCart) {
                           // إذا كان المنتج موجودًا في السلة، عرض رسالة
@@ -166,8 +162,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                                 backgroundColor: AppColors.primaryColor,
                                 content: Text(
                                   "تمت الإضافة إلى السلة مسبقًا",
-                                  style: StyleTextApp
-                                      .font14ColorWhiteFontWeightBold,
+                                  style: StyleTextApp.font14ColorWhiteFontWeightBold,
                                 ),
                                 duration: const Duration(seconds: 2),
                               ),
@@ -176,10 +171,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                         } else {
                           // إذا لم يكن المنتج موجودًا في السلة، إضافته
                           context.read<ShopCubit>().addToCart(
-                                listFavorite[index]
-                                    .products!
-                                    .productId
-                                    .toString(),
+                                listFavorite[index].products!.productId.toString(),
                               );
 
                           // عرض رسالة نجاح
@@ -189,8 +181,7 @@ class FavortColumnImageNameShopIcon extends StatelessWidget {
                                 backgroundColor: AppColors.primaryColor,
                                 content: Text(
                                   "تمت الإضافة إلى السلة بنجاح",
-                                  style: StyleTextApp
-                                      .font14ColorWhiteFontWeightBold,
+                                  style: StyleTextApp.font14ColorWhiteFontWeightBold,
                                 ),
                                 duration: const Duration(seconds: 2),
                               ),

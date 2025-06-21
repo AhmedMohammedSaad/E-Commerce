@@ -142,8 +142,7 @@ class _ListOfProductsState extends State<ListOfProducts> {
         //! Product detalse section
         Padding(
           padding: widget.padding,
-          child: Text(widget.products.discription.toString(),
-              style: StyleTextApp.font14Colorblac),
+          child: Text(widget.products.discription.toString(), style: StyleTextApp.font14Colorblac),
         ),
         //!  rating section with animations
         Padding(
@@ -154,8 +153,7 @@ class _ListOfProductsState extends State<ListOfProducts> {
               Row(
                 children: [
                   RatingStar(
-                    rating: double.parse(widget.products.rating != null &&
-                            widget.products.rating!.isNotEmpty
+                    rating: double.parse(widget.products.rating != null && widget.products.rating!.isNotEmpty
                         ? widget.products.rating![0].ratingNum.toString()
                         : "0"),
                   ),

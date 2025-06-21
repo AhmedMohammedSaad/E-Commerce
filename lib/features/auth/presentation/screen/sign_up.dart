@@ -138,8 +138,7 @@ class _SingUPState extends State<SingUP> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 25.w, vertical: 20.h),
+                            padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 20.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -150,10 +149,7 @@ class _SingUPState extends State<SingUP> {
                                     fontWeight: FontWeight.bold,
                                     color: primaryPurple,
                                   ),
-                                )
-                                    .animate()
-                                    .fadeIn(delay: 200.ms)
-                                    .moveY(begin: 20, end: 0),
+                                ).animate().fadeIn(delay: 200.ms).moveY(begin: 20, end: 0),
                                 SizedBox(height: 8.h),
                                 Row(
                                   children: [
@@ -208,18 +204,14 @@ class _SingUPState extends State<SingUP> {
                                     },
                                     decoration: InputDecoration(
                                       hintText: "full_name".tr(),
-                                      prefixIcon: Icon(Icons.person_outline,
-                                          color: primaryPurple),
+                                      prefixIcon: Icon(Icons.person_outline, color: primaryPurple),
                                       border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
+                                        borderRadius: BorderRadius.circular(15.r),
                                         borderSide: BorderSide.none,
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                        borderSide: BorderSide(
-                                            color: primaryPurple, width: 1.5),
+                                        borderRadius: BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(color: primaryPurple, width: 1.5),
                                       ),
                                     ),
                                   ),
@@ -250,18 +242,14 @@ class _SingUPState extends State<SingUP> {
                                     },
                                     decoration: InputDecoration(
                                       hintText: "email".tr(),
-                                      prefixIcon: Icon(Icons.email_outlined,
-                                          color: primaryPurple),
+                                      prefixIcon: Icon(Icons.email_outlined, color: primaryPurple),
                                       border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
+                                        borderRadius: BorderRadius.circular(15.r),
                                         borderSide: BorderSide.none,
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                        borderSide: BorderSide(
-                                            color: primaryPurple, width: 1.5),
+                                        borderRadius: BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(color: primaryPurple, width: 1.5),
                                       ),
                                     ),
                                   ),
@@ -293,18 +281,14 @@ class _SingUPState extends State<SingUP> {
                                     },
                                     decoration: InputDecoration(
                                       hintText: "password".tr(),
-                                      prefixIcon: Icon(Icons.lock_outline,
-                                          color: primaryPurple),
+                                      prefixIcon: Icon(Icons.lock_outline, color: primaryPurple),
                                       border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
+                                        borderRadius: BorderRadius.circular(15.r),
                                         borderSide: BorderSide.none,
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                        borderSide: BorderSide(
-                                            color: primaryPurple, width: 1.5),
+                                        borderRadius: BorderRadius.circular(15.r),
+                                        borderSide: BorderSide(color: primaryPurple, width: 1.5),
                                       ),
                                     ),
                                   ),
@@ -328,8 +312,7 @@ class _SingUPState extends State<SingUP> {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: primaryPurple,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
+                                        borderRadius: BorderRadius.circular(15.r),
                                       ),
                                       elevation: 5,
                                     ),
@@ -342,10 +325,7 @@ class _SingUPState extends State<SingUP> {
                                       ),
                                     ),
                                   ),
-                                )
-                                    .animate()
-                                    .fadeIn(delay: 1200.ms)
-                                    .moveY(begin: 20, end: 0),
+                                ).animate().fadeIn(delay: 1200.ms).moveY(begin: 20, end: 0),
 
                                 SizedBox(height: 25.h),
 
@@ -359,8 +339,7 @@ class _SingUPState extends State<SingUP> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15.w),
+                                      padding: EdgeInsets.symmetric(horizontal: 15.w),
                                       child: Text(
                                         "or".tr(),
                                         style: TextStyle(
@@ -386,16 +365,14 @@ class _SingUPState extends State<SingUP> {
                                   height: 45.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15.r),
-                                    border:
-                                        Border.all(color: Colors.grey[400]!),
+                                    border: Border.all(color: Colors.grey[400]!),
                                     color: Colors.white,
                                   ),
                                   child: InkWell(
                                     onTap: () => cubit.nativeGoogleSignIn(),
                                     borderRadius: BorderRadius.circular(15.r),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/images/googleIcon.png',
@@ -413,10 +390,7 @@ class _SingUPState extends State<SingUP> {
                                       ],
                                     ),
                                   ),
-                                )
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .moveY(begin: 20, end: 0),
+                                ).animate().fadeIn(delay: 1600.ms).moveY(begin: 20, end: 0),
                               ],
                             ),
                           ),

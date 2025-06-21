@@ -57,18 +57,15 @@ class _DropdownColorsState extends State<DropdownColors> {
         items: [
           DropdownMenuItem<String>(
             value: 'red',
-            child: Text("red".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("red".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
           DropdownMenuItem<String>(
             value: 'green',
-            child: Text("green".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("green".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
           DropdownMenuItem<String>(
             value: 'blue',
-            child: Text("blue".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("blue".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
         ],
         onChanged: (String? newValue) {
@@ -162,18 +159,15 @@ class _DropdownSizesState extends State<DropdownSizes> {
         items: [
           DropdownMenuItem<String>(
             value: 'S',
-            child: Text("small".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("small".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
           DropdownMenuItem<String>(
             value: 'M',
-            child: Text("medium".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("medium".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
           DropdownMenuItem<String>(
             value: 'L',
-            child: Text("large".tr(),
-                style: const TextStyle(color: AppColors.primaryColor)),
+            child: Text("large".tr(), style: const TextStyle(color: AppColors.primaryColor)),
           ),
         ],
         onChanged: (String? newValue) {

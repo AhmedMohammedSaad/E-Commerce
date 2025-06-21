@@ -20,15 +20,11 @@ class FavoriteModel {
   factory FavoriteModel.fromJson(Map<String, dynamic> json) {
     return FavoriteModel(
       favorteId: json['favorte_id'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       isbool: json['bool'] as bool?,
       forUserId: json['for_user_id'] as String?,
       forProductId: json['for_product_id'] as String?,
-      products: json['products'] == null
-          ? null
-          : Products.fromJson(json['products'] as Map<String, dynamic>),
+      products: json['products'] == null ? null : Products.fromJson(json['products'] as Map<String, dynamic>),
     );
   }
 

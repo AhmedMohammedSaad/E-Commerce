@@ -19,18 +19,15 @@ class Favorite extends StatelessWidget {
       //! AppBar
       appBar: appBar(leding: false, title: 'Favorite'),
       body: BlocProvider(
-        create: (context) =>
-            FavoriteCubit(apiConsumer: DioConsumer())..getFavorite(),
-        child: BlocConsumer<FavoriteCubit, FavoriteState>(
-            listener: (BuildContext context, state) {
+        create: (context) => FavoriteCubit(apiConsumer: DioConsumer())..getFavorite(),
+        child: BlocConsumer<FavoriteCubit, FavoriteState>(listener: (BuildContext context, state) {
           if (state is FavoriteError) {
             Center(
               child: Text(state.error),
             );
           }
         }, builder: (context, state) {
-          List<FavoriteModel> favorites =
-              context.read<FavoriteCubit>().favorites;
+          List<FavoriteModel> favorites = context.read<FavoriteCubit>().favorites;
 
           return state is FavoriteLoding
               ? const LodingApp()
@@ -55,8 +52,7 @@ class Favorite extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.black26, // لون أسود مع شفافية
                                 offset: Offset(1, 1), // اتجاه ومسافة الظل
-                                blurStyle:
-                                    BlurStyle.normal, // تأثير طبيعي على الحواف
+                                blurStyle: BlurStyle.normal, // تأثير طبيعي على الحواف
                                 spreadRadius: 1, // عرض الظل
                                 blurRadius: 7, // نعومة الظل
                               ),

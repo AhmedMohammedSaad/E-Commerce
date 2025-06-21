@@ -134,8 +134,7 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
                         margin: EdgeInsets.all(16),
                       ),
                     );
-                    Navigator.pop(
-                        context, true); // Return true to indicate success
+                    Navigator.pop(context, true); // Return true to indicate success
                   }
 
                   if (state is AddRatError || state is AddCommentesError) {
@@ -157,8 +156,7 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
                   }
                 },
                 builder: (context, state) {
-                  final isLoading =
-                      state is AddRatLoading || state is AddCommentesLoading;
+                  final isLoading = state is AddRatLoading || state is AddCommentesLoading;
 
                   return SizedBox(
                     width: double.infinity,
@@ -168,16 +166,12 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
                           : () async {
                               if (_commentController.text.trim().isNotEmpty) {
                                 // Add both rating and comment
-                                await context
-                                    .read<DetailsscreenCubit>()
-                                    .addRating(
+                                await context.read<DetailsscreenCubit>().addRating(
                                       ratNum: _rating.round(),
                                       productID: widget.productId,
                                     );
 
-                                await context
-                                    .read<DetailsscreenCubit>()
-                                    .addComment(
+                                await context.read<DetailsscreenCubit>().addComment(
                                       productID: widget.productId,
                                       comment: _commentController.text.trim(),
                                     );

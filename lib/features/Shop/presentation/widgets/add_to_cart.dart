@@ -14,8 +14,7 @@ BlocBuilder<ShopCubit, ShopState> addToCartForProduct(getProductData) {
             final carts = context.read<CartCubit>().carts;
 
             // التحقق من وجود المنتج في السلة
-            final isProductInCart = carts.any(
-                (cart) => cart.products!.productId == getProductData.productId);
+            final isProductInCart = carts.any((cart) => cart.products!.productId == getProductData.productId);
 
             if (isProductInCart) {
               // إذا كان المنتج موجودًا في السلة، عرض رسالة

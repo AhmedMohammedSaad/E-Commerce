@@ -40,8 +40,7 @@ class ContainerReting extends StatelessWidget {
           ),
           //! this text is  reting
           Text(
-            getProductData[index].rating != null &&
-                    getProductData[index].rating!.isNotEmpty
+            getProductData[index].rating != null && getProductData[index].rating!.isNotEmpty
                 ? getProductData[index].rating![0].ratingNum.toString()
                 : "0",
             style: StyleTextApp.font12ColorblacFontWeightBold,

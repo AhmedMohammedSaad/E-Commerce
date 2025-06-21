@@ -16,9 +16,7 @@ class Favorte {
   factory Favorte.fromJson(Map<String, dynamic> json) {
     return Favorte(
       isbool: json['bool'] as bool?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       favorteId: json['favorte_id'] as String?,
       forUserId: json['for_user_id'] as String?,
       forProductId: json['for_product_id'] as String?,

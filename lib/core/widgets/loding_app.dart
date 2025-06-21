@@ -96,8 +96,7 @@ class LodingApp extends StatelessWidget {
                                   width: 50.w,
                                   height: 12.h,
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.grey[300], // لون الهيكل العظمي
+                                    color: Colors.grey[300], // لون الهيكل العظمي
                                     borderRadius: BorderRadius.circular(4.r),
                                   ),
                                 ),
@@ -106,8 +105,7 @@ class LodingApp extends StatelessWidget {
                                   width: 40.w,
                                   height: 10.h,
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.grey[300], // لون الهيكل العظمي
+                                    color: Colors.grey[300], // لون الهيكل العظمي
                                     borderRadius: BorderRadius.circular(4.r),
                                   ),
                                 ),
@@ -208,8 +206,7 @@ class LodingApp extends StatelessWidget {
                                   width: 50.w,
                                   height: 12.h,
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.grey[300], // لون الهيكل العظمي
+                                    color: Colors.grey[300], // لون الهيكل العظمي
                                     borderRadius: BorderRadius.circular(4.r),
                                   ),
                                 ),
@@ -218,8 +215,7 @@ class LodingApp extends StatelessWidget {
                                   width: 40.w,
                                   height: 10.h,
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.grey[300], // لون الهيكل العظمي
+                                    color: Colors.grey[300], // لون الهيكل العظمي
                                     borderRadius: BorderRadius.circular(4.r),
                                   ),
                                 ),

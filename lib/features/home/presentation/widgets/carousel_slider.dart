@@ -25,8 +25,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          HomeCubit(apiConsumer: DioConsumer())..getAdvertisements(),
+      create: (context) => HomeCubit(apiConsumer: DioConsumer())..getAdvertisements(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state is AdvertisementsFailure) {
@@ -43,8 +42,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
           }
         },
         builder: (context, state) {
-          List<Advertisements> advertisements =
-              context.read<HomeCubit>().advertisementsList;
+          List<Advertisements> advertisements = context.read<HomeCubit>().advertisementsList;
 
           if (state is AdvertisementsLoading) {
             return Center(
@@ -53,8 +51,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 size: 50,
               ),
             );
-          } else if (state is AdvertisementsSuccses &&
-              advertisements.isNotEmpty) {
+          } else if (state is AdvertisementsSuccses && advertisements.isNotEmpty) {
             return Column(
               children: [
                 CarouselSlider.builder(
@@ -72,8 +69,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                     },
                   ),
                   itemCount: advertisements.length,
-                  itemBuilder:
-                      (BuildContext context, int index, int realIndex) {
+                  itemBuilder: (BuildContext context, int index, int realIndex) {
                     return GestureDetector(
                       onTap: () {
                         // Handle tap event if needed
@@ -82,8 +78,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                         tag: 'advert_${advertisements[index].titleName}',
                         child: Container(
                           width: double.infinity,
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 5.w, vertical: 10.h),
+                          margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
                           decoration: BoxDecoration(
                             color: AppColors.white,
                             borderRadius: BorderRadius.circular(20.r),
@@ -103,22 +98,17 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                                 // Background image
                                 Positioned.fill(
                                   child: CachedNetworkImage(
-                                    imageUrl: advertisements[index]
-                                        .imageUrl
-                                        .toString(),
+                                    imageUrl: advertisements[index].imageUrl.toString(),
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Center(
-                                      child: LoadingAnimationWidget
-                                          .staggeredDotsWave(
+                                      child: LoadingAnimationWidget.staggeredDotsWave(
                                         color: AppColors.primaryColor,
                                         size: 40,
                                       ),
                                     ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
+                                    errorWidget: (context, url, error) => Container(
                                       color: AppColors.grey.withOpacity(0.1),
-                                      child: const Icon(Icons.error_outline,
-                                          color: AppColors.red, size: 40),
+                                      child: const Icon(Icons.error_outline, color: AppColors.red, size: 40),
                                     ),
                                   ),
                                 ),
@@ -145,22 +135,18 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                                   child: Padding(
                                     padding: EdgeInsets.all(15.r),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         // Title
                                         Text(
-                                          advertisements[index]
-                                              .titleName
-                                              .toString(),
+                                          advertisements[index].titleName.toString(),
                                           style: TextStyle(
                                             color: AppColors.white,
                                             fontSize: 18.sp,
                                             fontWeight: FontWeight.bold,
                                             shadows: [
                                               Shadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.5),
+                                                color: Colors.black.withOpacity(0.5),
                                                 offset: const Offset(1, 1),
                                                 blurRadius: 3,
                                               ),
@@ -172,17 +158,13 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                                         SizedBox(height: 5.h),
                                         // Description
                                         Text(
-                                          advertisements[index]
-                                              .descreption
-                                              .toString(),
+                                          advertisements[index].descreption.toString(),
                                           style: TextStyle(
-                                            color: AppColors.white
-                                                .withOpacity(0.9),
+                                            color: AppColors.white.withOpacity(0.9),
                                             fontSize: 12.sp,
                                             shadows: [
                                               Shadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.7),
+                                                color: Colors.black.withOpacity(0.7),
                                                 offset: const Offset(1, 1),
                                                 blurRadius: 3,
                                               ),
@@ -215,9 +197,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                       margin: EdgeInsets.symmetric(horizontal: 3.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        color: _currentIndex == entry.key
-                            ? AppColors.primaryColor
-                            : AppColors.grey.withOpacity(0.3),
+                        color: _currentIndex == entry.key ? AppColors.primaryColor : AppColors.grey.withOpacity(0.3),
                       ),
                     );
                   }).toList(),
@@ -231,8 +211,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
             );
           } else {
             return _buildEmptyState(
-              icon:
-                  Icons.signal_wifi_statusbar_connected_no_internet_4_outlined,
+              icon: Icons.signal_wifi_statusbar_connected_no_internet_4_outlined,
               message: 'No Internet Connection',
             );
           }

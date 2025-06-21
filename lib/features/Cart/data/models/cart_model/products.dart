@@ -30,9 +30,7 @@ class Products {
       isSale: json['is_sale'] as bool?,
       imageUrl: json['image_url'] as String?,
       oldPrice: json['old_price'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       productId: json['product_id'] as String?,
       discription: json['discription'] as String?,
       productName: json['product_name'] as String?,

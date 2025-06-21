@@ -30,9 +30,7 @@ class ProductsShop {
   factory ProductsShop.fromJson(Map<String, dynamic> json) {
     return ProductsShop(
       productId: json['product_id'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
       productName: json['product_name'] as String?,
       price: json['price'] as String?,
       oldPrice: json['old_price'] as String?,
@@ -41,9 +39,7 @@ class ProductsShop {
       discription: json['discription'] as String?,
       imageUrl: json['image_url'] as String?,
       isSale: json['is_sale'] as bool?,
-      rating: (json['rating'] as List<dynamic>?)
-          ?.map((e) => Rating.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      rating: (json['rating'] as List<dynamic>?)?.map((e) => Rating.fromJson(e as Map<String, dynamic>)).toList(),
     );
   }
 

@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'language_state.dart';
 
 class LanguageCubit extends Cubit<LanguageState> {
-  LanguageCubit() : super(const LanguageState(Locale('en')));
+  LanguageCubit() : super(const LanguageState(Locale('ar')));
 
   static const String LANGUAGE_KEY = 'LANGUAGE_KEY';
 
@@ -35,9 +35,7 @@ class LanguageCubit extends Cubit<LanguageState> {
   Future<void> toggleLanguage(BuildContext context) async {
     final currentLocale = context.locale;
     final newLanguageCode =
-        currentLocale.languageCode == LanguageManager.ENGLISH
-            ? LanguageManager.ARABIC
-            : LanguageManager.ENGLISH;
+        currentLocale.languageCode == LanguageManager.ARABIC ? LanguageManager.ENGLISH : LanguageManager.ARABIC;
 
     await setLanguage(context, newLanguageCode);
   }

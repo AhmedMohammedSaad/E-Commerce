@@ -142,8 +142,7 @@ class _SearchState extends State<Search> {
           // Search results grid
           Expanded(
             child: BlocProvider(
-              create: (context) => ShopCubit(apiConsumer: DioConsumer())
-                ..getProducts(quary: _searchController.text),
+              create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(quary: _searchController.text),
               child: GridviewForWidget(
                 quary: _searchController.text,
               ),
