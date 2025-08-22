@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:advanced_app/core/Routes/routes_app.dart';
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
+import 'package:advanced_app/features/Favorite/presentation/pages/favorite.dart';
 import 'package:advanced_app/features/Profile/presentation/cubit/profile_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class ProfilePage extends StatelessWidget {
     const Color backgroundPurple = Color.fromARGB(255, 249, 245, 255);
 
     return BlocProvider(
-      create: (context) => ProfileCubit(apiConsumer: DioConsumer())..getDataUser(),
+      create: (context) =>
+          ProfileCubit(apiConsumer: DioConsumer())..getDataUser(),
       child: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is GetDataUserFailure) {
@@ -108,7 +110,8 @@ class ProfilePage extends StatelessWidget {
                             children: [
                               // Profile picture with decorative ring
                               Container(
-                                margin: EdgeInsets.only(top: 10.h, bottom: 20.h),
+                                margin:
+                                    EdgeInsets.only(top: 10.h, bottom: 20.h),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
@@ -131,7 +134,10 @@ class ProfilePage extends StatelessWidget {
                                     'assets/images/profileimage.png',
                                   ),
                                 ),
-                              ).animate().fadeIn(duration: 600.ms).scale(begin: const Offset(0.8, 0.8)),
+                              )
+                                  .animate()
+                                  .fadeIn(duration: 600.ms)
+                                  .scale(begin: const Offset(0.8, 0.8)),
 
                               // User name
                               Text(
@@ -142,7 +148,10 @@ class ProfilePage extends StatelessWidget {
                                   color: primaryPurple,
                                 ),
                                 textAlign: TextAlign.center,
-                              ).animate().fadeIn(delay: 200.ms).moveY(begin: 20, end: 0),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 200.ms)
+                                  .moveY(begin: 20, end: 0),
 
                               SizedBox(height: 8.h),
 
@@ -218,7 +227,10 @@ class ProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ).animate().fadeIn(delay: 1000.ms).moveY(begin: 20, end: 0),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 1000.ms)
+                                  .moveY(begin: 20, end: 0),
                               SizedBox(height: 100.h),
                             ],
                           ),
@@ -256,18 +268,17 @@ class ProfilePage extends StatelessWidget {
             delay: 500,
           ),
           Divider(height: 1),
-          _buildProfileOption(
-            icon: Icons.dashboard_rounded,
-            title: 'dashboard'.tr(),
-            onTap: () => Navigator.pushNamed(context, '/dashboard'),
-            color: primaryColor,
-            delay: 600,
-          ),
           Divider(height: 1),
           _buildProfileOption(
             icon: Icons.favorite_outline,
             title: 'my_favorites'.tr(),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Favorite(),
+                  ));
+            },
             color: primaryColor,
             delay: 700,
           ),

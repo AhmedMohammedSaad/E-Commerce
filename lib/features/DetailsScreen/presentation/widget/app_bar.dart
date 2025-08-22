@@ -21,7 +21,7 @@ AppBar appBarDetalles(BuildContext context, products) {
       Image(
           width: 140.w,
           image: const AssetImage(
-            'assets/images/logo png.png',
+            'assets/images/logo.png',
           ))
     ],
   );

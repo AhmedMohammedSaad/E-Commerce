@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 AppBar appBar({
   required bool leding,
@@ -20,7 +19,7 @@ AppBar appBar({
     title: Image(
       width: 40.w,
       image: const AssetImage(
-        'assets/images/code_shop_logo.jpeg',
+        'assets/images/logo.png',
       ),
     ),
   );

@@ -37,7 +37,8 @@ class ProductDetailsScreen extends StatefulWidget {
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> with SingleTickerProviderStateMixin {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen>
+    with SingleTickerProviderStateMixin {
   final Rating rating = Rating();
   final ScrollController _scrollController = ScrollController();
   late AnimationController _animationController;
@@ -70,9 +71,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer())..getComments(widget.productID.productId),
+          create: (context) => DetailsscreenCubit(apiConsumer: DioConsumer())
+            ..getComments(widget.productID.productId),
         ),
-        BlocProvider(create: (context) => ShopCubit(apiConsumer: DioConsumer())),
+        BlocProvider(
+            create: (context) => ShopCubit(apiConsumer: DioConsumer())),
         BlocProvider(
           create: (context) => CartCubit(apiConsumer: DioConsumer())..getCart(),
         ),
@@ -118,7 +121,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
               padding: EdgeInsets.only(right: 8.w),
               child: Image(
                 width: 40.w,
-                image: const AssetImage("assets/images/code_shop_logo.jpeg"),
+                image: const AssetImage("assets/images/logo.png"),
               ),
             ).animate().fadeIn(
                   delay: 100.ms,
@@ -164,7 +167,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                           animation: _scrollController,
                           builder: (context, child) {
                             final double parallaxOffset =
-                                _scrollController.hasClients ? (_scrollController.offset / 500).clamp(-1.0, 1.0) : 0.0;
+                                _scrollController.hasClients
+                                    ? (_scrollController.offset / 500)
+                                        .clamp(-1.0, 1.0)
+                                    : 0.0;
 
                             return CachedNetworkImage(
                               imageUrl: widget.products.imageUrl.toString(),
@@ -188,7 +194,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                     )
                         .animate()
                         .fadeIn(duration: 600.ms, curve: Curves.easeOut)
-                        .slideY(begin: 0.2, end: 0, duration: 700.ms, curve: Curves.easeOutQuint)
+                        .slideY(
+                            begin: 0.2,
+                            end: 0,
+                            duration: 700.ms,
+                            curve: Curves.easeOutQuint)
                         .scale(
                           begin: Offset(0.9, 0.9),
                           end: Offset(1.0, 1.0),
@@ -229,8 +239,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                     color: Colors.black87,
                                     height: 1.3,
                                   ),
-                                ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideX(
-                                    begin: -0.2, end: 0, delay: 200.ms, duration: 400.ms, curve: Curves.easeOutQuad),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 200.ms, duration: 400.ms)
+                                    .slideX(
+                                        begin: -0.2,
+                                        end: 0,
+                                        delay: 200.ms,
+                                        duration: 400.ms,
+                                        curve: Curves.easeOutQuad),
                               ),
                               BlocBuilder<ShopCubit, ShopState>(
                                 builder: (context, state) {
@@ -252,12 +269,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                     child: LoveIconButton(
                                       index: widget.index,
                                       getProductData: widget.productID,
-                                      isFavorte: context.read<ShopCubit>().chaickIsFavorte(widget.productID),
+                                      isFavorte: context
+                                          .read<ShopCubit>()
+                                          .chaickIsFavorte(widget.productID),
                                     ),
                                   )
                                       .animate()
                                       .fadeIn(delay: 300.ms, duration: 400.ms)
-                                      .scale(delay: 300.ms, duration: 400.ms, curve: Curves.elasticOut);
+                                      .scale(
+                                          delay: 300.ms,
+                                          duration: 400.ms,
+                                          curve: Curves.elasticOut);
                                 },
                               ),
                             ],
@@ -270,13 +292,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                             children: [
                               RatingStar(
                                 rating: double.parse(
-                                    widget.products.rating != null && widget.products.rating!.isNotEmpty
-                                        ? widget.products.rating![0].ratingNum.toString()
+                                    widget.products.rating != null &&
+                                            widget.products.rating!.isNotEmpty
+                                        ? widget.products.rating![0].ratingNum
+                                            .toString()
                                         : "0"),
                               )
                                   .animate()
                                   .fadeIn(delay: 400.ms, duration: 400.ms)
-                                  .slideX(begin: -0.2, end: 0, delay: 400.ms, duration: 400.ms),
+                                  .slideX(
+                                      begin: -0.2,
+                                      end: 0,
+                                      delay: 400.ms,
+                                      duration: 400.ms),
                               SizedBox(width: 6.w),
                               Text(
                                 "(${widget.products.rating != null && widget.products.rating!.isNotEmpty ? widget.products.rating!.length : 0} reviews)",
@@ -287,7 +315,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                               )
                                   .animate()
                                   .fadeIn(delay: 500.ms, duration: 400.ms)
-                                  .slideX(begin: -0.2, end: 0, delay: 500.ms, duration: 400.ms),
+                                  .slideX(
+                                      begin: -0.2,
+                                      end: 0,
+                                      delay: 500.ms,
+                                      duration: 400.ms),
                             ],
                           ),
 
@@ -321,7 +353,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                             stops: [0, value, 1],
                                           ).createShader(
                                             Rect.fromLTWH(
-                                              -bounds.width + (bounds.width * 2 * value),
+                                              -bounds.width +
+                                                  (bounds.width * 2 * value),
                                               0,
                                               bounds.width * 2,
                                               bounds.height,
@@ -335,7 +368,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                               SizedBox(width: 12.w),
                               if (widget.products.oldPrice != null)
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8.w, vertical: 4.h),
                                   decoration: BoxDecoration(
                                     color: Colors.red[50],
                                     borderRadius: BorderRadius.circular(8.r),
@@ -349,16 +383,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                       decoration: TextDecoration.lineThrough,
                                     ),
                                   ),
-                                ).animate().fadeIn(delay: 700.ms, duration: 400.ms).scale(
-                                    begin: Offset(0.8, 0.8), end: Offset(1.0, 1.0), delay: 700.ms, duration: 400.ms),
+                                )
+                                    .animate()
+                                    .fadeIn(delay: 700.ms, duration: 400.ms)
+                                    .scale(
+                                        begin: Offset(0.8, 0.8),
+                                        end: Offset(1.0, 1.0),
+                                        delay: 700.ms,
+                                        duration: 400.ms),
                             ],
                           ),
                         ],
                       ),
-                    )
-                        .animate()
-                        .fadeIn(delay: 200.ms, duration: 500.ms)
-                        .slideY(begin: 0.3, end: 0, delay: 200.ms, duration: 500.ms),
+                    ).animate().fadeIn(delay: 200.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 200.ms, duration: 500.ms),
 
                     // Description section with typing text effect
                     Container(
@@ -389,7 +427,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                           )
                               .animate()
                               .fadeIn(delay: 800.ms, duration: 400.ms)
-                              .slideX(begin: -0.2, end: 0, delay: 800.ms, duration: 400.ms),
+                              .slideX(
+                                  begin: -0.2,
+                                  end: 0,
+                                  delay: 800.ms,
+                                  duration: 400.ms),
                           SizedBox(height: 12.h),
                           Text(
                             widget.products.discription.toString(),
@@ -405,7 +447,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                   return Text(
                                     widget.products.discription
                                         .toString()
-                                        .substring(0, (widget.products.discription.toString().length * value).toInt()),
+                                        .substring(
+                                            0,
+                                            (widget.products.discription
+                                                        .toString()
+                                                        .length *
+                                                    value)
+                                                .toInt()),
                                     style: TextStyle(
                                       fontSize: 15.sp,
                                       color: Colors.black54,
@@ -416,10 +464,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                               ),
                         ],
                       ),
-                    )
-                        .animate()
-                        .fadeIn(delay: 800.ms, duration: 500.ms)
-                        .slideY(begin: 0.3, end: 0, delay: 800.ms, duration: 500.ms),
+                    ).animate().fadeIn(delay: 800.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 800.ms, duration: 500.ms),
 
                     // Reviews section with flip card animations
                     Container(
@@ -450,17 +496,24 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                           )
                               .animate()
                               .fadeIn(delay: 1000.ms, duration: 400.ms)
-                              .slideX(begin: -0.2, end: 0, delay: 1000.ms, duration: 400.ms),
+                              .slideX(
+                                  begin: -0.2,
+                                  end: 0,
+                                  delay: 1000.ms,
+                                  duration: 400.ms),
                           SizedBox(height: 16.h),
                           BlocConsumer<DetailsscreenCubit, DetailsscreenState>(
                             listener: (context, state) {},
                             builder: (context, state) {
-                              List<Comments> comments = context.read<DetailsscreenCubit>().commentsList;
+                              List<Comments> comments = context
+                                  .read<DetailsscreenCubit>()
+                                  .commentsList;
 
                               if (state is CommentLoading) {
                                 return Center(
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 20.h),
                                     child: LoadingAnimationWidget.dotsTriangle(
                                       size: 40,
                                       color: AppColors.primaryColor,
@@ -471,7 +524,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                 if (comments.isEmpty) {
                                   return Center(
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 20.h),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 20.h),
                                       child: Column(
                                         children: [
                                           Icon(
@@ -488,11 +542,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                             ),
                                           ),
                                         ],
-                                      ).animate().fadeIn(delay: 1200.ms, duration: 600.ms).scale(
-                                          begin: Offset(0.8, 0.8),
-                                          end: Offset(1.0, 1.0),
-                                          delay: 1200.ms,
-                                          duration: 600.ms),
+                                      )
+                                          .animate()
+                                          .fadeIn(
+                                              delay: 1200.ms, duration: 600.ms)
+                                          .scale(
+                                              begin: Offset(0.8, 0.8),
+                                              end: Offset(1.0, 1.0),
+                                              delay: 1200.ms,
+                                              duration: 600.ms),
                                     ),
                                   );
                                 }
@@ -508,43 +566,62 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                   itemBuilder: (context, index) {
                                     final comment = comments[index];
 
-                                    if (comment.comments != null && comment.comments!.isNotEmpty) {
+                                    if (comment.comments != null &&
+                                        comment.comments!.isNotEmpty) {
                                       final innerComment = comment.comments![0];
-                                      final user = innerComment.users?.name ?? "unknown_user".tr();
-                                      final comm = innerComment.comment ?? "no_comment".tr();
+                                      final user = innerComment.users?.name ??
+                                          "unknown_user".tr();
+                                      final comm = innerComment.comment ??
+                                          "no_comment".tr();
 
                                       return Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 8.h),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
                                                 CircleAvatar(
                                                   radius: 20.r,
-                                                  backgroundColor: AppColors.primaryColor.withOpacity(0.2),
+                                                  backgroundColor: AppColors
+                                                      .primaryColor
+                                                      .withOpacity(0.2),
                                                   child: Text(
-                                                    user.isNotEmpty ? user[0].toUpperCase() : "U",
+                                                    user.isNotEmpty
+                                                        ? user[0].toUpperCase()
+                                                        : "U",
                                                     style: TextStyle(
-                                                      color: AppColors.primaryColor,
-                                                      fontWeight: FontWeight.bold,
+                                                      color: AppColors
+                                                          .primaryColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                     ),
                                                   ),
                                                 )
                                                     .animate(
-                                                      delay: 1100.ms + (index * 200).ms,
-                                                      onPlay: (controller) => controller.repeat(reverse: true),
+                                                      delay: 1100.ms +
+                                                          (index * 200).ms,
+                                                      onPlay: (controller) =>
+                                                          controller.repeat(
+                                                              reverse: true),
                                                     )
-                                                    .shimmer(duration: 1800.ms, delay: 1100.ms + (index * 100).ms),
+                                                    .shimmer(
+                                                        duration: 1800.ms,
+                                                        delay: 1100.ms +
+                                                            (index * 100).ms),
                                                 SizedBox(width: 12.w),
                                                 Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       user,
                                                       style: TextStyle(
                                                         fontSize: 16.sp,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.black87,
                                                       ),
                                                     ),
@@ -552,12 +629,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                                 ),
                                               ],
                                             ).animate().fadeIn(
-                                                  delay: 1100.ms + (index * 100).ms,
+                                                  delay: 1100.ms +
+                                                      (index * 100).ms,
                                                   duration: 500.ms,
                                                 ),
                                             SizedBox(height: 8.h),
                                             Padding(
-                                              padding: EdgeInsets.only(left: 52.w),
+                                              padding:
+                                                  EdgeInsets.only(left: 52.w),
                                               child: Text(
                                                 comm,
                                                 style: TextStyle(
@@ -567,7 +646,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                                 ),
                                               ),
                                             ).animate().fadeIn(
-                                                  delay: 1200.ms + (index * 100).ms,
+                                                  delay: 1200.ms +
+                                                      (index * 100).ms,
                                                   duration: 500.ms,
                                                 ),
                                           ],
@@ -597,15 +677,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                     ),
                                   ),
                                 ),
-                              ).animate().fadeIn(delay: 1100.ms, duration: 400.ms);
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 1100.ms, duration: 400.ms);
                             },
                           ),
                         ],
                       ),
-                    )
-                        .animate()
-                        .fadeIn(delay: 1000.ms, duration: 500.ms)
-                        .slideY(begin: 0.3, end: 0, delay: 1000.ms, duration: 500.ms),
+                    ).animate().fadeIn(delay: 1000.ms, duration: 500.ms).slideY(
+                        begin: 0.3, end: 0, delay: 1000.ms, duration: 500.ms),
 
                     SizedBox(height: 24.h),
                   ],
@@ -631,7 +711,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                     );
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -660,22 +741,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                               onPressedToCart: () {
                                 final carts = context.read<CartCubit>().carts;
                                 final isProductInCart = carts.any(
-                                  (cart) => cart.products!.productId == widget.productID.productId,
+                                  (cart) =>
+                                      cart.products!.productId ==
+                                      widget.productID.productId,
                                 );
 
                                 if (isProductInCart) {
-                                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
                                           "product_already_in_cart".tr(),
-                                          style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                                          style: StyleTextApp
+                                              .font14ColorWhiteFontWeightBold,
                                         ),
                                         duration: const Duration(seconds: 2),
                                         behavior: SnackBarBehavior.floating,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.r),
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
                                         ),
                                         margin: EdgeInsets.all(16),
                                       ),
@@ -686,18 +772,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                                         widget.productID.productId.toString(),
                                       );
 
-                                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((_) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         backgroundColor: AppColors.primaryColor,
                                         content: Text(
                                           "added_to_cart_successfully".tr(),
-                                          style: StyleTextApp.font14ColorWhiteFontWeightBold,
+                                          style: StyleTextApp
+                                              .font14ColorWhiteFontWeightBold,
                                         ),
                                         duration: const Duration(seconds: 2),
                                         behavior: SnackBarBehavior.floating,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.r),
+                                          borderRadius:
+                                              BorderRadius.circular(10.r),
                                         ),
                                         margin: EdgeInsets.all(16),
                                       ),
@@ -714,10 +803,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> with Single
                   ),
                 ),
               ),
-            )
-                .animate()
-                .fadeIn(delay: 1200.ms, duration: 500.ms)
-                .moveY(begin: 50, end: 0, delay: 1200.ms, duration: 800.ms, curve: Curves.elasticOut),
+            ).animate().fadeIn(delay: 1200.ms, duration: 500.ms).moveY(
+                begin: 50,
+                end: 0,
+                delay: 1200.ms,
+                duration: 800.ms,
+                curve: Curves.elasticOut),
           ],
         ),
       ),
