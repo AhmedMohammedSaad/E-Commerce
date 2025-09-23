@@ -1,6 +1,7 @@
 import 'package:advanced_app/features/ai_chat/data/models/simple_chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChatMessageBubble extends StatefulWidget {
   final ChatMessage message;
@@ -177,7 +178,7 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble>
   Widget _buildMessageContent() {
     return AnimatedDefaultTextStyle(
       duration: const Duration(milliseconds: 300),
-      style: TextStyle(
+      style: GoogleFonts.cairo(
         color: widget.message.sender == MessageSender.user
             ? Colors.white
             : Colors.black87,
@@ -187,7 +188,7 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble>
       ),
       child: SelectableText(
         widget.message.content,
-        style: TextStyle(
+        style: GoogleFonts.cairo(
           color: widget.message.sender == MessageSender.user
               ? Colors.white
               : Colors.black87,
@@ -213,7 +214,7 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble>
         const SizedBox(width: 4),
         Text(
           _formatTimestamp(widget.message.timestamp),
-          style: TextStyle(
+          style: GoogleFonts.cairo(
             color: widget.message.sender == MessageSender.user
                 ? Colors.white.withOpacity(0.7)
                 : Colors.grey.withOpacity(0.7),

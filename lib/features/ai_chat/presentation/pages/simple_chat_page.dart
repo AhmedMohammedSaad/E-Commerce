@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../data/cubit/simple_chat_cubit.dart';
 import '../../data/cubit/simple_chat_state.dart';
 import '../../data/models/simple_chat_model.dart';
@@ -137,10 +138,10 @@ class _SimpleChatPageState extends State<SimpleChatPage>
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Text(
               'برعي',
-              style: TextStyle(
+              style: GoogleFonts.cairoPlay(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -272,9 +273,9 @@ class _SimpleChatPageState extends State<SimpleChatPage>
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'حدث خطأ',
-              style: TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -284,7 +285,7 @@ class _SimpleChatPageState extends State<SimpleChatPage>
             const SizedBox(height: 12),
             Text(
               message,
-              style: const TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white70,
                 fontSize: 16,
               ),
@@ -345,9 +346,9 @@ class _SimpleChatPageState extends State<SimpleChatPage>
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'تم تجاوز حصة الاستخدام',
-              style: TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -355,9 +356,9 @@ class _SimpleChatPageState extends State<SimpleChatPage>
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'يرجى المحاولة مرة أخرى لاحقاً',
-              style: TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white70,
                 fontSize: 16,
               ),
@@ -416,9 +417,9 @@ class _SimpleChatPageState extends State<SimpleChatPage>
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               'مرحباً بك مع برعي !',
-              style: TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -426,9 +427,9 @@ class _SimpleChatPageState extends State<SimpleChatPage>
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'ابدأ محادثة جديدة واسأل عن أي شيء تريد معرفته',
-              style: TextStyle(
+              style: GoogleFonts.cairo(
                 color: Colors.white70,
                 fontSize: 16,
               ),

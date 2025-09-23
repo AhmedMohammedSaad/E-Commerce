@@ -20,7 +20,7 @@ class NavBar extends StatefulWidget {
   State<NavBar> createState() => _NavBarState();
 }
 
-class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
+class _NavBarState extends State<NavBar> with TickerProviderStateMixin {
   final List widgetChangeIndex = [
     Home(),
     Shop(),
@@ -31,20 +31,49 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
 
   // Use late but initialize in init
   late AnimationController _animationController;
+  late AnimationController _floatingController;
+  late Animation<double> _floatingAnimation;
   bool _isControllerInitialized = false;
 
   @override
   void initState() {
     super.initState();
+    try {
+      // Initialize the controller properly with the state as vsync
+      _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 400),
+      );
 
-    // Initialize the controller properly with the state as vsync
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 400),
-    );
+      // أنيميشن العوم للـ AI button
+      _floatingController = AnimationController(
+        duration: const Duration(seconds: 3),
+        vsync: this,
+      );
 
-    _animationController.forward();
-    _isControllerInitialized = true;
+      _floatingAnimation = Tween<double>(
+        begin: -8.0,
+        end: 8.0,
+      ).animate(CurvedAnimation(
+        parent: _floatingController,
+        curve: Curves.easeInOut,
+      ));
+
+      _animationController.forward();
+      _isControllerInitialized = true;
+
+      // بدء الأنيميشن العايم
+      _startFloatingAnimation();
+    } catch (e) {
+      print("Animation controller initialization error: $e");
+      _isControllerInitialized = false;
+    }
+  }
+
+  void _startFloatingAnimation() {
+    if (_isControllerInitialized && mounted) {
+      _floatingController.repeat(reverse: true);
+    }
   }
 
   @override
@@ -69,6 +98,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   void dispose() {
     if (_isControllerInitialized) {
       _animationController.dispose();
+      _floatingController.dispose();
     }
     super.dispose();
   }
@@ -108,14 +138,14 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.15),
-            blurRadius: 30,
-            offset: Offset(0, 10),
-            spreadRadius: -5,
-          ),
-        ],
+        // boxShadow: [
+        // BoxShadow(
+        // color: AppColors.primaryColor.withOpacity(0.15),
+        // blurRadius: 30,
+        // offset: Offset(0, 10),
+        // spreadRadius: -5,
+        // ),
+        // ],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30.r),
@@ -153,33 +183,41 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildAIChatFAB() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 100.h), // Position above bottom nav
-      child: FloatingActionButton.extended(
-        heroTag: "navbar_chat_fab",
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SimpleChatPage(),
+    return AnimatedBuilder(
+      animation: _floatingAnimation,
+      builder: (context, child) {
+        return Container(
+          margin: EdgeInsets.only(
+              bottom: 100.h +
+                  _floatingAnimation
+                      .value), // Position above bottom nav with floating effect
+          child: FloatingActionButton.extended(
+            heroTag: "navbar_chat_fab",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SimpleChatPage(),
+                ),
+              );
+            },
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            label: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.r),
+                color: Colors.transparent,
+              ),
+              child: Image.asset(
+                'assets/images/artificial-intelligence.png',
+                width: 60.w,
+                height: 60.h,
+              ),
             ),
-          );
-        },
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        label: Container(
-          padding: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.r),
-            color: Colors.transparent,
           ),
-          child: Image.asset(
-            'assets/images/artificial-intelligence.png',
-            width: 60.w,
-            height: 60.h,
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -246,9 +284,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               height: isSelected ? 40.h : 30.h,
               width: isSelected ? 40.w : 30.w,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primaryColor.withOpacity(0.15)
-                    : Colors.transparent,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(isSelected ? 14.r : 8.r),
               ),
               child: Center(

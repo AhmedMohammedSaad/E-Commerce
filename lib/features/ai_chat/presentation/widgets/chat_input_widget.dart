@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChatInputWidget extends StatefulWidget {
   final Function(String) onSendMessage;
@@ -19,31 +20,31 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
     with TickerProviderStateMixin {
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  
+
   late AnimationController _pulseController;
   late AnimationController _scaleController;
   late AnimationController _glowController;
   late Animation<double> _pulseAnimation;
   late Animation<double> _scaleAnimation;
   late Animation<double> _glowAnimation;
-  
+
   bool _hasText = false;
   bool _isFocused = false;
 
   @override
   void initState() {
     super.initState();
-    
+
     _pulseController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
-    
+
     _scaleController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    
+
     _glowController = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
@@ -75,7 +76,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
 
     _textController.addListener(_onTextChanged);
     _focusNode.addListener(_onFocusChanged);
-    
+
     _pulseController.repeat(reverse: true);
   }
 
@@ -95,7 +96,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
       setState(() {
         _hasText = hasText;
       });
-      
+
       if (hasText) {
         _scaleController.forward();
       } else {
@@ -110,7 +111,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
       setState(() {
         _isFocused = isFocused;
       });
-      
+
       if (isFocused) {
         _glowController.forward();
       } else {
@@ -140,7 +141,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
-                color: _isFocused 
+                color: _isFocused
                     ? Colors.blue.withOpacity(0.3 * _glowAnimation.value)
                     : Colors.black.withOpacity(0.1),
                 blurRadius: _isFocused ? 20 : 10,
@@ -162,7 +163,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
                   end: Alignment.bottomRight,
                 ),
                 border: Border.all(
-                  color: _isFocused 
+                  color: _isFocused
                       ? Colors.blue.withOpacity(0.5)
                       : Colors.grey.withOpacity(0.3),
                   width: _isFocused ? 2 : 1,
@@ -183,14 +184,14 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
                         maxLines: null,
                         textInputAction: TextInputAction.send,
                         onSubmitted: (_) => _sendTextMessage(),
-                        style: const TextStyle(
+                        style: GoogleFonts.cairo(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.black87,
                         ),
                         decoration: InputDecoration(
                           hintText: 'اكتب رسالتك هنا...',
-                          hintStyle: TextStyle(
+                          hintStyle: GoogleFonts.cairoPlay(
                             color: Colors.grey.withOpacity(0.6),
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -203,7 +204,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
                       ),
                     ),
                   ),
-                  
+
                   // زر الإرسال
                   Container(
                     margin: const EdgeInsets.all(8),
@@ -213,7 +214,8 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
                         animation: _pulseAnimation,
                         builder: (context, child) {
                           return Transform.scale(
-                            scale: widget.isLoading ? _pulseAnimation.value : 1.0,
+                            scale:
+                                widget.isLoading ? _pulseAnimation.value : 1.0,
                             child: GestureDetector(
                               onTap: widget.isLoading ? null : _sendTextMessage,
                               child: Container(
@@ -235,7 +237,8 @@ class _ChatInputWidgetState extends State<ChatInputWidget>
                                   boxShadow: _hasText || widget.isLoading
                                       ? [
                                           BoxShadow(
-                                            color: Colors.purple.withOpacity(0.4),
+                                            color:
+                                                Colors.purple.withOpacity(0.4),
                                             blurRadius: 12,
                                             offset: const Offset(0, 4),
                                           ),

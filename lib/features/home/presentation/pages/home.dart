@@ -58,14 +58,16 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),
+          create: (context) =>
+              ShopCubit(apiConsumer: DioConsumer())..getProducts(),
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               // App Bar
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -116,7 +118,8 @@ class _HomeState extends State<Home> {
               // Search Bar
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     height: 50.h,
@@ -148,10 +151,12 @@ class _HomeState extends State<Home> {
                                 fontSize: 14.sp,
                               ),
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(vertical: 15.h),
+                              contentPadding:
+                                  EdgeInsets.symmetric(vertical: 15.h),
                               suffixIcon: _searchController.text.isNotEmpty
                                   ? IconButton(
-                                      icon: Icon(Icons.clear, color: Colors.grey[400]),
+                                      icon: Icon(Icons.clear,
+                                          color: Colors.grey[400]),
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {});
@@ -262,7 +267,8 @@ class _HomeState extends State<Home> {
               // Sales Section
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -308,68 +314,12 @@ class _HomeState extends State<Home> {
               ),
 
               // Recent Products Section
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'new_arrivals'.tr(),
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Navigate to new products screen
-                        },
-                        child: Text(
-                          'see_all'.tr(),
-                          style: TextStyle(
-                            color: AppColors.primaryColor,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
 
               // More products grid - placeholder
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 200.h,
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.03),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'coming_soon'.tr(),
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
 
               // Bottom spacing
               SliverToBoxAdapter(
-                child: SizedBox(height: 20.h),
+                child: SizedBox(height: 50.h),
               ),
             ],
           ),
