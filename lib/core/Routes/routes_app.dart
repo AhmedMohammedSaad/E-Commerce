@@ -11,6 +11,7 @@ import 'package:advanced_app/features/settings/presentation/pages/settings_page.
 import 'package:flutter/material.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/core/animations/page_transitions.dart';
+import 'package:advanced_app/features/ai_chat/presentation/pages/simple_chat_page.dart';
 
 class RouteManager {
   //! Route names
@@ -25,6 +26,7 @@ class RouteManager {
   static const String dashboard = '/dashboard';
   static const String settings = '/settings';
   static const String shop = '/shop';
+  static const String aiChat = '/aiChat';
 
   //! Route generator method
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -79,24 +81,9 @@ class RouteManager {
           child: const Shop(),
           transitionType: TransitionType.slideRight,
         );
-      case RouteManager.settings:
+      case aiChat:
         return CustomPageTransition(
-          child: const SettingsPage(),
-          transitionType: TransitionType.slideUp,
-        );
-      case shop:
-        return CustomPageTransition(
-          child: const Shop(),
-          transitionType: TransitionType.slideRight,
-        );
-      case RouteManager.settings:
-        return CustomPageTransition(
-          child: const SettingsPage(),
-          transitionType: TransitionType.slideUp,
-        );
-      case shop:
-        return CustomPageTransition(
-          child: const Shop(),
+          child: const SimpleChatPage(),
           transitionType: TransitionType.slideRight,
         );
       // case splashScreen:

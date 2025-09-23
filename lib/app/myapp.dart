@@ -3,6 +3,8 @@ import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/localization/language_cubit.dart';
 import 'package:advanced_app/core/theme/app_theme.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
+import 'package:advanced_app/features/ai_chat/data/cubit/simple_chat_cubit.dart';
+import 'package:advanced_app/features/ai_chat/data/services/simple_ai_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,10 @@ class Brando extends StatelessWidget {
                 apiConsumer: DioConsumer(),
               ),
             ),
-            BlocProvider(create: (context) => LanguageCubit()..getSavedLanguage()),
+            BlocProvider(
+                create: (context) => LanguageCubit()..getSavedLanguage()),
+            BlocProvider(
+                create: (context) => SimpleChatCubit(SimpleAIService())),
           ],
           child: BlocBuilder<LanguageCubit, LanguageState>(
             builder: (context, state) {
@@ -40,7 +45,9 @@ class Brando extends StatelessWidget {
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
                 theme: LightTheme.theme,
-                initialRoute: supabase.auth.currentUser != null ? RouteManager.navBar : RouteManager.onboarding,
+                initialRoute: supabase.auth.currentUser != null
+                    ? RouteManager.navBar
+                    : RouteManager.onboarding,
                 onGenerateRoute: RouteManager.generateRoute,
               );
             },

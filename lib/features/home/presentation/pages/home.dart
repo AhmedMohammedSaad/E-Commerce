@@ -1,5 +1,6 @@
 import 'package:advanced_app/core/api/dio_consumer.dart';
 import 'package:advanced_app/core/color/colors.dart';
+import 'package:advanced_app/core/Routes/routes_app.dart';
 import 'package:advanced_app/features/Shop/presentation/cubit/shop_cubit.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/search.dart';
@@ -44,6 +45,17 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
+      floatingActionButton: FloatingActionButton(
+        heroTag: "home_chat_fab",
+        onPressed: () {
+          Navigator.pushNamed(context, RouteManager.aiChat);
+        },
+        backgroundColor: AppColors.primaryColor,
+        child: const Icon(
+          Icons.chat_bubble_outline,
+          color: Colors.white,
+        ),
+      ),
       body: SafeArea(
         child: BlocProvider(
           create: (context) => ShopCubit(apiConsumer: DioConsumer())..getProducts(),

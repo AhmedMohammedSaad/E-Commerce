@@ -6,6 +6,7 @@ import 'package:advanced_app/features/Profile/presentation/pages/profile.dart';
 import 'package:advanced_app/features/Shop/presentation/pages/shop.dart';
 import 'package:advanced_app/features/home/presentation/pages/home.dart';
 import 'package:advanced_app/features/nav_bar/cubit/navebarsd_cubit.dart';
+import 'package:advanced_app/features/ai_chat/presentation/pages/simple_chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -92,6 +93,8 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                 ),
               ],
             ),
+            floatingActionButton: _buildAIChatFAB(),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           );
         },
       ),
@@ -127,7 +130,8 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               _buildNavItem(0, Icons.home_rounded, 'Home', indexChange),
               _buildNavItem(1, Icons.shopify, 'Shop', indexChange),
               _buildCenterNavItem(indexChange),
-              _buildNavItem(3, Icons.shopping_cart_rounded, 'Cart', indexChange),
+              _buildNavItem(
+                  3, Icons.shopping_cart_rounded, 'Cart', indexChange),
               _buildNavItem(4, Icons.person_rounded, 'Profile', indexChange),
             ],
           ),
@@ -146,6 +150,37 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
         print("Animation error: $e");
       }
     }
+  }
+
+  Widget _buildAIChatFAB() {
+    return Container(
+      margin: EdgeInsets.only(bottom: 100.h), // Position above bottom nav
+      child: FloatingActionButton.extended(
+        heroTag: "navbar_chat_fab",
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SimpleChatPage(),
+            ),
+          );
+        },
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        label: Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.r),
+            color: Colors.transparent,
+          ),
+          child: Image.asset(
+            'assets/images/artificial-intelligence.png',
+            width: 60.w,
+            height: 60.h,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildCenterNavItem(NavebarsdCubit cubit) {
@@ -191,7 +226,8 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label, NavebarsdCubit cubit) {
+  Widget _buildNavItem(
+      int index, IconData icon, String label, NavebarsdCubit cubit) {
     final isSelected = cubit.courntIndex == index;
 
     return Expanded(
@@ -210,7 +246,9 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               height: isSelected ? 40.h : 30.h,
               width: isSelected ? 40.w : 30.w,
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.primaryColor.withOpacity(0.15) : Colors.transparent,
+                color: isSelected
+                    ? AppColors.primaryColor.withOpacity(0.15)
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(isSelected ? 14.r : 8.r),
               ),
               child: Center(
